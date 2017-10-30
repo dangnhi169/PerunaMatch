@@ -1,0 +1,18 @@
+.container {
+    padding: 5% 30%;
+}
+
+.title {
+    text-align: center;
+    padding: 5% 0;
+}
+
+.submitButton {
+    position: relative;
+    left: 40%;
+    right: 40%;
+}
+
+button {
+    position: relative;
+}
