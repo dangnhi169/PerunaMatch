@@ -2,19 +2,29 @@
 <html>
 
   <head>
-    <link rel="stylesheet" href="home.component.css">
-    <script src="home.component.ts"></script>
+    <!-- <link rel="stylesheet" href="home.component.css">
+    <script src="home.component.ts"></script> -->
   </head>
 
-  <body>
-    <h2 id="welcome-message">Welcome!</h2>
+    <body>
+        <div class="card">
+            <div class="card-header" id="welcome-message">
+                <h2>Peruna Projects</h2>
+            </div>
+                
+            
+            <div id="search">
+                <form id="search-form" class="form-horizontal">
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="search-text" placeholder="Search"><br>
+                    </div>
 
-    <form>
-        <label for="search-field">Search</label><br>
-        <input type="text" id="search-field"><br>
-
-        <input type="submit" value="Submit">
-    </form>
-  </body>
+                    <div class="form-group">
+                        <input type="submit" id="submit-button" value="Submit" class="btn btn-default">
+                    </div>
+                </form>
+            </div>
+        </div>        
+    </body>
 
 </html>
