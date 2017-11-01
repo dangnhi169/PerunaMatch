@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './SignUp/sign-up.component';
 import { HomeComponent } from './home/home.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 //added Modules
-import { RoutingModule } from './routing.module';
+import { RoutingModule } from './_modules/routing.module';
 
 @NgModule({
     imports: [
@@ -19,12 +20,12 @@ import { RoutingModule } from './routing.module';
         AppComponent,
         SignUpComponent,
         LoginComponent,
-        HomeComponent
+        HomeComponent,
+        ProfilePageComponent
     ],
     bootstrap: [
         AppComponent
     ]
 })
-export class AppModule {
 
-}
+export class AppModule { }
