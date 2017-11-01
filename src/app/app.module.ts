@@ -6,24 +6,12 @@ import { HomeComponent } from './home/home.component';
 //added components
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './SignUp/sign-up.component';
-import { HomeComponent } from './home/home.component';
 
 //added Modules
 import { RoutingModule } from './routing.module';
 
 @NgModule({
-<<<<<<< HEAD
-    imports: [ 
-        BrowserModule 
-    ], 
-    declarations: [ 
-        AppComponent,
-        HomeComponent
-    ], 
-    bootstrap: [ 
-        AppComponent,
-        HomeComponent
-=======
+
     imports: [
         BrowserModule,
         RoutingModule
@@ -36,7 +24,6 @@ import { RoutingModule } from './routing.module';
     ],
     bootstrap: [
         AppComponent
->>>>>>> master
     ]
 })
 export class AppModule {
