@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 //added components
 import { LoginComponent } from './login/login.component';
@@ -12,6 +13,18 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { RoutingModule } from './_modules/routing.module';
 
 @NgModule({
+<<<<<<< HEAD
+    imports: [ 
+        BrowserModule 
+    ], 
+    declarations: [ 
+        AppComponent,
+        HomeComponent
+    ], 
+    bootstrap: [ 
+        AppComponent,
+        HomeComponent
+=======
     imports: [
         BrowserModule,
         RoutingModule
@@ -25,6 +38,7 @@ import { RoutingModule } from './_modules/routing.module';
     ],
     bootstrap: [
         AppComponent
+>>>>>>> master
     ]
 })
 
