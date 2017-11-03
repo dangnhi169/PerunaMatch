@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 
 //added components
 import { LoginComponent } from './login/login.component';
@@ -11,7 +10,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 
 
 //added Modules
-import { RoutingModule } from './_modules/routing.module';
+import { RoutingModule } from './routing.module';
 
 @NgModule({
 
