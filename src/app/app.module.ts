@@ -10,7 +10,12 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 
 
 //added Modules
-import { RoutingModule } from './routing.module';
+import { RoutingModule } from './modules/routing.module';
+import { ListingListComponent } from './listing-list/listing-list.component';
+import { ListingItemComponent } from './listing-item/listing-item.component';
+
+//added services
+import { ListingService } from  './services/listing.service';
 
 @NgModule({
 
@@ -23,8 +28,11 @@ import { RoutingModule } from './routing.module';
         SignUpComponent,
         LoginComponent,
         HomeComponent,
-        ProfilePageComponent
+        ProfilePageComponent,
+        ListingListComponent,
+        ListingItemComponent
     ],
+    providers: [ListingService],
     bootstrap: [
         AppComponent
     ]

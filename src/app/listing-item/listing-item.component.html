@@ -1,0 +1,11 @@
+
+<div class = "container">
+  <div class="card">
+  <h4 class="card-header">{{ listing.title }}</h4>
+  <div class="card-body">
+    <p class="card-text">{{ listing.description }}</p>
+    Majors:
+    <p class="card-text" *ngFor = "let m of listing.majors;"> {{ m }}</p>
+  </div>
+</div>
+</div>
