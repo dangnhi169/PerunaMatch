@@ -1,0 +1,10 @@
+<h1>Research Listings</h1>
+<div class="row">
+  <div class="col-12">
+    
+    <listing-item
+      *ngFor="let l of listings; let i = index"
+      [listing]="l"
+      [index]="i"></listing-item>
+  </div>
+</div>
