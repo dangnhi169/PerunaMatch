@@ -1,11 +1,17 @@
 
-<div class = "container">
-  <div class="card">
-  <h4 class="card-header">{{ listing.title }}</h4>
-  <div class="card-body">
-    <p class="card-text">{{ listing.description }}</p>
-    Majors:
-    <p class="card-text" *ngFor = "let m of listing.majors;"> {{ m }}</p>
+
+<a
+  style="cursor: pointer;"
+  class="list-group-item clearfix">
+<div class="float-left">
+    <h4 class="list-group-item-heading">{{ listing.title }}</h4>
+    <p class="list-group-item-text">{{ listing.description }}</p>
   </div>
-</div>
-</div>
+  <span class="float-right">
+    Majors:
+    <ul class="list-group"*ngFor = "let m of listing.majors;">
+      <li> {{ m }}</li>
+    </ul>
+    </span>
+
+  </a>
