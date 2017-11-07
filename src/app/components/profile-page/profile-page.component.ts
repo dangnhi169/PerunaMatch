@@ -17,6 +17,7 @@ export class ProfilePageComponent implements OnInit {
 
   logout(){
         this.authenticationService.logout();
+        
   }
 
 }
