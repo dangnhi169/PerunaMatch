@@ -1,45 +1,47 @@
 
 <div class = "container">
- <div class = "row">
+  <div class = "row">
    <div class = "col-md-12">
       <h1>Login</h1>
-
-      <div class = "form-group">
-        <div class="input-group mb-2 mb-sm-0">
-          <span class="input-group-addon">Username</span>
+      <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <div class = "form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <div class="input-group mb-2 mb-sm-0">
+            <span class="input-group-addon">Username</span>
             <input type = "text"
-                  id = "userName"
-                  class = "form-control"/>
-      </div>
-    </div>
-
-      <div class = "form-group">
-        <div class="input-group mb-2 mb-sm-0">
-          <div class="input-group-addon">Password</div>
+                    id = "userName"
+                    name="userName"
+                    class = "form-control"
+                    [(ngModel)]="model.username"
+                    required/>
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+          </div>
+        </div>
+        <div class = "form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+          <div class="input-group mb-2 mb-sm-0">
+            <div class="input-group-addon">Password</div>
             <input type = "text"
-                  id = "password"
-                  class = "form-control"/>
-      </div>
+                    id = "password"
+                    name="password"
+                    class = "form-control"
+                    [(ngModel)]="model.password"
+                    required/>
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+          </div>
+        </div>
+        <div class = "form-group">
+          <label for = "Login"></label>
+          <button type="submit" class="btn btn-secondary" [disabled]="loading" 
+                (click)="login()"> Login</button>
+        </div>
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+      </form>
     </div>
-      <div class = "form-group">
-        <label for = "Login">
-            </label>
-            <button type="submit"
-             class="btn btn-secondary">
-             Login</button>
-      </div>
-</div>
-
-<!--Path to sign up page-->
-<div class = "container">
+  </div>
   <div class = "row">
     <div class = "col-md-12">
       <p> Don't have an account?
         <!--<a class="nav-link" href="/signup">Register Here</a>-->
         <a routerLink = "/signup" routerLinkActive="active">Register Here</a></p>
     </div>
-
-</div>
-</div>
-</div>
+  </div>
 </div>

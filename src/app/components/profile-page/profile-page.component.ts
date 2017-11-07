@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -7,15 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ProfilePageComponent implements OnInit {
-  dummyUser = {
-    name: 'Kevin Queenan',
-    userName: 'kqueenan',
-    profilePictureUrl: '../../../assets/dummyProfilePic.jpeg',
-    strengths: ['machine learning', 'python', 'data science']
-  };
 
-  constructor() { }
+  constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() { }
+
+  logout(){
+        this.authenticationService.logout();
+        
+  }
 
 }
