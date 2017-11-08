@@ -9,6 +9,13 @@ h1{
 p{
     text-align: center;
 }
+
 a{
    text-align: center;
+}
+
+.loginButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
 }
