@@ -7,3 +7,7 @@
 .navbar-brand {
     color: white;
 }
+
+a img {
+    cursor: pointer;
+}
