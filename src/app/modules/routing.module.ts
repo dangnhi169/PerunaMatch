@@ -7,8 +7,7 @@ import { HomeComponent } from '../home/home.component';
 import { ListingListComponent } from '../listing-list/listing-list.component';
 import { ProfilePageComponent } from '../components/profile-page/profile-page.component';
 import { AuthGuard } from '../_guard/index';
-//object containing of all of the Routes
-//path 'xxx' means add /xxx to end of url
+
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
