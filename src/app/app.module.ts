@@ -16,6 +16,7 @@ import { ListingItemComponent } from './listing-item/listing-item.component';
 
 //added Modules
 import { RoutingModule } from './modules/routing.module';
+import { NgbModule, } from '@ng-bootstrap/ng-bootstrap';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helper/fake-backend';
@@ -23,9 +24,11 @@ import { AuthGuard } from './_guard/auth.guard';
 
 //added services
 import { ListingService } from  './services/listing.service';
-import {UserService} from './services/user.service';
+import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ListingDetailsComponent } from './listing-details/listing-details.component';
+import { ModalComponent, NgbdModalContent } from './modal/modal.component';
+
 
 @NgModule({
 
@@ -35,6 +38,7 @@ import { ListingDetailsComponent } from './listing-details/listing-details.compo
         FormsModule,
         HttpModule,
         ReactiveFormsModule,
+        NgbModule.forRoot(),
 
     ],
     declarations: [
@@ -45,7 +49,10 @@ import { ListingDetailsComponent } from './listing-details/listing-details.compo
         ProfilePageComponent,
         ListingListComponent,
         ListingItemComponent,
-        ListingDetailsComponent
+        ListingDetailsComponent,
+        ModalComponent,
+        NgbdModalContent
+
     ],
     providers: [
         ListingService,
@@ -56,6 +63,7 @@ import { ListingDetailsComponent } from './listing-details/listing-details.compo
         MockBackend,
         BaseRequestOptions
     ],
+    entryComponents: [NgbdModalContent,ListingDetailsComponent],
     bootstrap: [
         AppComponent
     ]
