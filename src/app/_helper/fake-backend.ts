@@ -1,28 +1,28 @@
 import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+
+import { User } from '../../models/user';
+import { UsersDB } from './user-db'; 
  
 export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOptions) {
     // configure fake backend
     backend.connections.subscribe((connection: MockConnection) => {
-        let testUser = { 
-            username: 'nhidang', 
-            password: 'welcome', 
-            firstName: 'Nhi', 
-            lastName: 'Dang' 
-        };
+        
+        let users: User[] = JSON.parse(localStorage.getItem('users')) || UsersDB;
  
         // wrap in timeout to simulate server api call
         setTimeout(() => {
  
             // fake authenticate api end point
-            if (connection.request.url.endsWith('/api/authenticate') && connection.request.method === RequestMethod.Post) {
+            if (connection.request.url.endsWith('/api/user') && connection.request.method === RequestMethod.Post) {
                 // get parameters from post request
                 let params = JSON.parse(connection.request.getBody());
+                let currentUser: any = getUser(users, params.username, params.password);
  
                 // check user credentials and return fake jwt token if valid
-                if (params.username === testUser.username && params.password === testUser.password) {
+                if (currentUser) {
                     connection.mockRespond(new Response(
-                        new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token' } })
+                        new ResponseOptions({ status: 200, body: {token: currentUser.userID}})
                     ));
                 } else {
                     connection.mockRespond(new Response(
@@ -37,7 +37,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                 // in a real application
                 if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                     connection.mockRespond(new Response(
-                        new ResponseOptions({ status: 200, body: [testUser] })
+                        new ResponseOptions({ status: 200, body: users })
                     ));
                 } else {
                     // return 401 not authorised if token is null or invalid
@@ -60,3 +60,14 @@ export let fakeBackendProvider = {
     useFactory: fakeBackendFactory,
     deps: [MockBackend, BaseRequestOptions]
 };
+
+function getUser(users: User[], username: string, password: string){
+    let currentUser;
+    users.forEach(element => {
+        if(element.username === username && element.password === password){
+            currentUser = element;
+        }
+    });
+
+    return currentUser || null;
+}
