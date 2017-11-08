@@ -14,14 +14,18 @@ export class ListingService {
       new Date(),
       ['all'],
       ['hardworker', 'attention to detail'],
-      'come highlight documents for me'),
+      'come highlight documents for me',
+      'Professor Lawrimore',
+      '1234@smu.edu'),
     new Listing(
       'Breaking Bad',
        new Date(),
         new Date(),
         ['Chemistry', 'Law'],
         ['mixing','discreteness', 'attention to detail'],
-        'need help in my 100% legal lab'),
+        'need help in my 100% legal lab',
+        'Mr.White',
+        'crystal@gmail.com'),
 
   ];
 

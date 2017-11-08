@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormGroup,FormsModule, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { HttpModule } from '@angular/http';
@@ -25,6 +25,7 @@ import { AuthGuard } from './_guard/auth.guard';
 import { ListingService } from  './services/listing.service';
 import {UserService} from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
+import { ListingDetailsComponent } from './listing-details/listing-details.component';
 
 @NgModule({
 
@@ -32,7 +33,9 @@ import { AuthenticationService } from './services/authentication.service';
         BrowserModule,
         RoutingModule,
         FormsModule,
-        HttpModule
+        HttpModule,
+        ReactiveFormsModule,
+
     ],
     declarations: [
         AppComponent,
@@ -41,7 +44,8 @@ import { AuthenticationService } from './services/authentication.service';
         HomeComponent,
         ProfilePageComponent,
         ListingListComponent,
-        ListingItemComponent
+        ListingItemComponent,
+        ListingDetailsComponent
     ],
     providers: [
         ListingService,

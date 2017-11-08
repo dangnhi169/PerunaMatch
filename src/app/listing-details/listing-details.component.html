@@ -1,0 +1,30 @@
+<div class = "row">
+  <div class = "col-md-12">
+    <h1>
+        {{ item.title }}
+      </h1>
+      <p> Description:{{ item.description }} </p>
+      <div class ="row">
+      <div class = "col-md-6">
+        Start Date: {{ item.start | date: 'shortDate' }}<br>
+        Majors:
+        <ul class="list-group"*ngFor = "let m of item.majors;">
+          <li> {{ m }}</li>
+        </ul>
+      </div>
+      <div class = "col-md-6">
+        End Date: {{ item.end | date: 'shortDate' }}<br>
+        Perfered Skills:
+        <ul class="list-group"*ngFor = "let s of item.skills;">
+          <li> {{ s }}</li>
+        </ul>
+      </div>
+    </div>
+      <br>
+    <div class = "row">
+      <div class = "col-md-12">
+        Contact: {{ item.contactName }} {{ item.contactEmail}}
+      </div>
+  </div>
+</div>
+</div>

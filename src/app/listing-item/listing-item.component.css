@@ -1,3 +1,11 @@
 .container {
     padding: 5% ;
 }
+
+.modal-body{
+  padding: 5%;
+}
+
+#exampleModalLabel{
+  color: white;
+}
