@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { User } from '../models/user';
 import { UserService } from './services/user.service';
+import { Router } from '@angular/router';
+import { AuthGuard } from './_guard/index';
 
 @Component({
     selector: 'app-root',
@@ -10,16 +12,24 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
 
-    users: User[] = [];
+    //users: User[] = [];
     
-       constructor(private userService: UserService) { }
+       constructor(private userService: UserService, private authGuard: AuthGuard, private router: Router) { }
     
        ngOnInit() {
-           // get users from secure api end point
-           this.userService.getUsers()
-               .subscribe(users => {
-                   this.users = users;
-               });
+        //    // get users from secure api end point
+        //    this.userService.getUsers()
+        //        .subscribe(users => {
+        //            this.users = users;
+        //        });
+       }
+
+       changeRoute(){
+            if(this.authGuard.canActivate()){
+                this.router.navigate(['/profile']);
+            } else {
+                this.router.navigate(['/login']);
+            }
        }
 
 }
