@@ -1,93 +1,7 @@
-<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header"style="background-color: #009688;">
-        <h5 class="modal-title" id="exampleModalLabel">Project Listing</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
 
-      <div class="modal-body">
-      <!--  <listing-details
-          [item]="listing"
-          [id]="index"></listing-details>-->
-        <!--  <div class = "row">
-            <div class = "col-md-12">
-              <h1>
-                  {{ item.title }}
-                </h1>
-                <p> Description:{{ item.description }} </p>
-                <div class ="row">
-                <div class = "col-md-6">
-                  Start Date: {{ item.start | date: 'shortDate' }}<br>
-                  Majors:
-                  <ul class="list-group"*ngFor = "let m of item.majors;">
-                    <li> {{ m }}</li>
-                  </ul>
-                </div>
-                <div class = "col-md-6">
-                  End Date: {{ item.end | date: 'shortDate' }}<br>
-                  Perfered Skills:
-                  <ul class="list-group"*ngFor = "let s of item.skills;">
-                    <li> {{ s }}</li>
-                  </ul>
-                </div>
-              </div>
-                <br>
-              <div class = "row">
-                <div class = "col-md-12">
-                  Contact: {{ item.contactName }} {{ item.contactEmail}}
-                </div>
-            </div>
-          </div>
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary">Add to Favorites</button>
-        <button type="button" class="btn btn-secondary"
-        data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="modal-header">
+<div class="modal-header"style="background-color: #009688;">
 <h4 class="modal-title">Listing Details</h4>
-<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+<button type="button" class="close" aria-label="Close" (click)="activeModal.close('Close click')">
   <span aria-hidden="true">&times;</span>
 </button>
 </div>
@@ -125,8 +39,6 @@
 </div>
 </div>
 <div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark">Add to Favorites</button>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-  <button type="button" class="btn btn-secondary">Add to Favorites</button>
-  <button type="button" class="btn btn-secondary"
-  data-dismiss="modal">Close</button>
 </div>
