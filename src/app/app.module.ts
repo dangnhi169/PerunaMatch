@@ -1,3 +1,13 @@
+
+import 'rxjs';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'jquery/dist/jquery.min.js';
+import 'bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css';
+import 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js';
+import 'bootstrap-timepicker/css/bootstrap-timepicker.min.css';
+import 'bootstrap-timepicker/js/bootstrap-timepicker.js';
+import * as $ from 'jquery';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
@@ -17,7 +27,11 @@ import { ListingItemComponent } from './listing-item/listing-item.component';
 //added Modules
 import { RoutingModule } from './modules/routing.module';
 import { NgbModule, } from '@ng-bootstrap/ng-bootstrap';
-
+import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
+import { DatePickerModule } from 'angular-io-datepicker';
+import { OverlayModule } from 'angular-io-overlay';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 // used to create fake backend
 import { fakeBackendProvider } from './_helper/fake-backend';
 import { AuthGuard } from './_guard/auth.guard';
@@ -28,6 +42,7 @@ import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ListingDetailsComponent } from './listing-details/listing-details.component';
 import { ModalComponent, NgbdModalContent } from './modal/modal.component';
+import { ListingAddComponent } from './listing-add/listing-add.component';
 
 
 @NgModule({
@@ -38,6 +53,11 @@ import { ModalComponent, NgbdModalContent } from './modal/modal.component';
         FormsModule,
         HttpModule,
         ReactiveFormsModule,
+        NKDatetimeModule,
+        OverlayModule,
+        DatePickerModule,
+        MultiselectDropdownModule,
+        AngularFontAwesomeModule,
         NgbModule.forRoot(),
 
     ],
@@ -51,7 +71,8 @@ import { ModalComponent, NgbdModalContent } from './modal/modal.component';
         ListingItemComponent,
         ListingDetailsComponent,
         ModalComponent,
-        NgbdModalContent
+        NgbdModalContent,
+        ListingAddComponent
 
     ],
     providers: [

@@ -1,0 +1,98 @@
+<p>
+  listing-add works!
+</p>
+<div class = "row">
+  <div class = "col-md-12">
+  <!--  <form (ngSubmit) = "onSubmit(f)" #f = "ngForm">
+      <label for = "title">Title</label>
+      <input
+            type="text"
+            id="title"
+            class="form-control"
+            name="title"
+            ngModel
+            required
+          >
+          <label for = "desc">Description</label>
+          <input
+                type="text"
+                id="desc"
+                class="form-control"
+                name="desc"
+                ngModel
+                required
+              >
+
+              Start Date: <datetime [ngModel]="dateFrom"
+              [timepicker]="false"></datetime>
+
+              End Date: <datetime [(ngModel)]="dateTo"
+              [timepicker]="false"
+              [datepicker]="datepickerToOpts"></datetime>
+
+
+    </form>-->
+    <form [formGroup] = "form" (ngSubmit) = "onSubmit()">
+      <div class = "row">
+      <div class = "col-md-6">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              formControlName="title"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class = "row">
+      <div class = "col-md-6">
+        <div class="form-group">
+            <label for="des">Description</label>
+            <input
+              type="text"
+              id="des"
+              formControlName="des"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class = "row">
+      <div class = "col-md-3">
+       Start Date <date-picker formControlName="sdate"></date-picker>
+     </div>
+     <div class = "col-md-3">
+      End Date <date-picker formControlName="edate"></date-picker>
+    </div>
+  </div>
+
+
+   Majors<ss-multiselect-dropdown [options]="myOptions"
+    formControlName="majors"></ss-multiselect-dropdown>
+ 
+
+  <div class = "row">
+  <div class = "col-md-3">
+    <div class="form-group">
+        <label for="cname">Contact Name:</label>
+        <input
+          type="text"
+          id="cname"
+          formControlName="cname"
+          class="form-control">
+      </div>
+ </div>
+ <div class = "col-md-3">
+   <div class="form-group">
+       <label for="cemail">Email</label>
+       <input
+         type="text"
+         id="cemail"
+         formControlName="cemail"
+         class="form-control">
+     </div>
+</div>
+</div>
+    </form>
+  </div>
+</div>
