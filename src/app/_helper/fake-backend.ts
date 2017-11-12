@@ -51,6 +51,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                         isProfessor: params.isProfessor
                     }
                     users.push(newUser);
+                    localStorage.setItem('users', JSON.stringify(users));                    
                     connection.mockRespond(new Response(
                         new ResponseOptions({ status: 200, body: {token: newUser.userID}})
                     ));
