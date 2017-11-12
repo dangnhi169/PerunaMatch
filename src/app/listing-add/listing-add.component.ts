@@ -1,7 +1,7 @@
 
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Component, OnInit } from '@angular/core';
-import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
+//import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 import { NgForm,FormControl, NgModel, FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { ListingService } from '../services/listing.service';
 import { Listing } from '../listing';

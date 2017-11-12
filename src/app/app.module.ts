@@ -20,7 +20,7 @@ import { ListingItemComponent } from './listing-item/listing-item.component';
 //added Modules
 import { RoutingModule } from './modules/routing.module';
 import { NgbModule, } from '@ng-bootstrap/ng-bootstrap';
-import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
+//import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 import { DatePickerModule } from 'angular-io-datepicker';
 import { OverlayModule } from 'angular-io-overlay';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
@@ -50,7 +50,7 @@ import { ModalAddComponent } from './modal-add/modal-add.component';
         FormsModule,
         HttpModule,
         ReactiveFormsModule,
-        NKDatetimeModule,
+        //NKDatetimeModule,
         OverlayModule,
         DatePickerModule,
         MultiselectDropdownModule,
