@@ -10,6 +10,7 @@ import { User } from '../../models/user';
 export class UserService {
     constructor(private http: Http, private authenticationService: AuthenticationService) {}
  
+    //to get all users
     getUsers(): Observable<User[]> {
         // add authorization header with jwt token
         let headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticationService.token });

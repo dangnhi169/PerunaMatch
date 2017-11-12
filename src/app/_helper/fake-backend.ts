@@ -13,7 +13,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         // wrap in timeout to simulate server api call
         setTimeout(() => {
  
-            // fake authenticate api end point
+            // API: To get a user
             if (connection.request.url.endsWith('/api/user') && connection.request.method === RequestMethod.Post) {
                 // get parameters from post request
                 let params = JSON.parse(connection.request.getBody());
@@ -30,8 +30,35 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                     ));
                 }
             }
+
+            // API: To create a user
+            if (connection.request.url.endsWith('/api/user') && connection.request.method === RequestMethod.Put) {
+                // get parameters from post request
+                let params = JSON.parse(connection.request.getBody());
+                let existedUser: any = getUser(users, params.username, params.password);              
+    
+                // user exist. can't create same user
+                if (existedUser) {
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 401 })
+                    ));
+                } else {
+                    let newUser: User = {
+                        userID: params.userID,
+                        username: params.username,
+                        password: params.password,
+                        email: params.email,
+                        isProfessor: params.isProfessor
+                    }
+                    users.push(newUser);
+                    localStorage.setItem('users', JSON.stringify(users));                    
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 200, body: {token: newUser.userID}})
+                    ));
+                }
+            }
  
-            // fake users api end point
+            // to get all users
             if (connection.request.url.endsWith('/api/users') && connection.request.method === RequestMethod.Get) {
                 // check for fake auth token in header and return test users if valid, this security is implemented server side
                 // in a real application
