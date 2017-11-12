@@ -9,14 +9,15 @@ export class Listing{
   public contactEmail:string
 
 
-constructor(title: string, start: Date, end: Date, majors: string[],
-  skills: string[], description:string, contactName: string, contactEmail: string) {
+constructor(title: string,description:string, start: Date, end: Date, majors: string[]
+  , contactName: string, contactEmail: string) {
     this.title = title;
+    this.description = description;
     this.start = start;
     this.end = end;
     this.majors = majors;
-    this.skills = skills;
-    this.description = description;
+  //  this.skills = skills;
+  //  this.description = description;
     this.contactName = contactName;
     this.contactEmail = contactEmail;
   }

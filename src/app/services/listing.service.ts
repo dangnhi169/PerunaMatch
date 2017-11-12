@@ -10,20 +10,18 @@ export class ListingService {
   private listings: Listing[] = [
     new Listing(
       'Highlight Documents',
+      'come highlight documents for me',
        new Date(),
       new Date(),
       ['all'],
-      ['hardworker', 'attention to detail'],
-      'come highlight documents for me',
       'Professor Lawrimore',
       '1234@smu.edu'),
     new Listing(
       'Breaking Bad',
+      'need help in my 100% legal lab',
        new Date(),
         new Date(),
         ['Chemistry', 'Law'],
-        ['mixing','discreteness', 'attention to detail'],
-        'need help in my 100% legal lab',
         'Mr.White',
         'crystal@gmail.com'),
 
@@ -49,7 +47,7 @@ export class ListingService {
     this.listingsChanged.next(this.listings.slice());
   }
 
-  deleteRecipe(index: number) {
+  deleteListing(index: number) {
     this.listings.splice(index, 1);
     this.listingsChanged.next(this.listings.slice());
   }
