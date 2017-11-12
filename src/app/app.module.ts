@@ -28,6 +28,7 @@ import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ListingDetailsComponent } from './listing-details/listing-details.component';
 import { ModalComponent, NgbdModalContent } from './modal/modal.component';
+import { SignUpService} from './services/sign-up.service';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { ModalComponent, NgbdModalContent } from './modal/modal.component';
         UserService,
         fakeBackendProvider,
         MockBackend,
-        BaseRequestOptions
+        BaseRequestOptions,
+        SignUpService
     ],
     entryComponents: [NgbdModalContent,ListingDetailsComponent],
     bootstrap: [

@@ -11,13 +11,15 @@ import { AuthenticationService } from '../services/authentication.service';
 })
  
 export class LoginComponent implements OnInit {
-    model: any = {username: '', password: ''};
-    loading = false;
-    error = '';
+    private model: any = {username: '', password: ''};
+    private loading: boolean;
+    private error: string;
  
     constructor(private router: Router, private authenticationService: AuthenticationService) { }
  
     ngOnInit() {
+        this.error = '';
+        this.loading = false;
         // reset login status
         this.authenticationService.logout();
     }
@@ -34,4 +36,8 @@ export class LoginComponent implements OnInit {
                 }
             });
     }
+
+    isLoading(){
+        return this.loading;
+    }
 }

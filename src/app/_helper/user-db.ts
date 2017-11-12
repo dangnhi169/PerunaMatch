@@ -1,16 +1,17 @@
 
 export let UsersDB = [
     {
-        userID: 1,
+        userID: 46911111,
         username: "nhidang",
         password: "welcome",
-        firstname: "nhi",
-        lastname: "dang"
+        email: "fakeEmal@gmail.com",
+        isProfessor: false
+
     }, {
-        userID: 2,
+        userID: 45622222,
         username: "nina",
         password: "GUIGO",
-        firstname: "nina",
-        lastname: "nina"
+        email: "nina@gmail.com",
+        isProfessor: true
     }
 ]

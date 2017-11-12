@@ -1,54 +1,58 @@
 <div class="container">
     <h1 class="title">Sign Up</h1>        
     <div class="signUpForm">
-        <form>
+        <form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
             <div class="form-group">
                 <div class="input-group mb-2 mb-sm-0">
                         <div class="input-group-addon">Username</div>
                         <input type="text" class="form-control" id="username" 
-                            name="username">
+                            name="username" [(ngModel)]="model.username" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group mb-2 mb-sm-0">
                     <div class="input-group-addon">Password</div>
                     <input type="password" class="form-control" id="password" 
-                            name="password">
+                            name="password" [(ngModel)]="model.password" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group mb-2 mb-sm-0">
                     <div class="input-group-addon">SMU Email</div>
                     <input type="email" class="form-control" id="email" 
-                            name="email">
+                            name="email" [(ngModel)]="model.email" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group mb-2 mb-sm-0">
                     <div class="input-group-addon">SMU ID</div>
                     <input type="text" class="form-control" id="id" 
-                            name="id">
+                            name="id" [(ngModel)]="model.userID" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="type">Are you a student or a professor?</label>
-                <select class="form-control" id="type" name="type">
-                    <option>Student</option>
-                    <option>Professor</option>
+                <select class="form-control" id="type" name="type" [(ngModel)]="model.isProfessor" required>
+                    <option [ngValue]="false">Student</option>
+                    <option [ngValue]="true">Professor</option>
                 </select>
             </div>
             <div class="termOfUse">
                 <a href="#">Term of use</a>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
+                        <input type="checkbox" class="form-check-input" required>
                         I have read the terms of use and agree
                     </label>
                 </div>
             </div>
             <div class="submitButton">
-                <button type="submit" class="btn btn-primary">Register</button>                
+                <button type="submit" class="btn btn-primary" 
+                        (click)="signup()" [disabled]="!isLoading()">
+                        Register
+                </button>                
             </div>
+            <div class="error" *ngIf="error" class="alert alert-danger">{{error}}</div>            
         </form>
     </div>
 </div>
