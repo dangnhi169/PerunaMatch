@@ -1,12 +1,5 @@
 
-import 'rxjs';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'jquery/dist/jquery.min.js';
-import 'bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css';
-import 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js';
-import 'bootstrap-timepicker/css/bootstrap-timepicker.min.css';
-import 'bootstrap-timepicker/js/bootstrap-timepicker.js';
-import * as $ from 'jquery';
+
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -43,6 +36,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { ListingDetailsComponent } from './listing-details/listing-details.component';
 import { ModalComponent, NgbdModalContent } from './modal/modal.component';
 import { ListingAddComponent } from './listing-add/listing-add.component';
+import { ModalAddComponent } from './modal-add/modal-add.component';
 
 
 @NgModule({
@@ -72,7 +66,8 @@ import { ListingAddComponent } from './listing-add/listing-add.component';
         ListingDetailsComponent,
         ModalComponent,
         NgbdModalContent,
-        ListingAddComponent
+        ListingAddComponent,
+        ModalAddComponent
 
     ],
     providers: [

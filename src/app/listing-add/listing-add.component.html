@@ -1,40 +1,18 @@
-<p>
-  listing-add works!
-</p>
+
+
+<div class="modal-header"style="background-color: #009688;">
+<h4 class="modal-title">Add Listing</h4>
+<button type="button" class="close" aria-label="Close" (click)="activeModal.close('Close click')">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+<div class="modal-body">
 <div class = "row">
   <div class = "col-md-12">
-  <!--  <form (ngSubmit) = "onSubmit(f)" #f = "ngForm">
-      <label for = "title">Title</label>
-      <input
-            type="text"
-            id="title"
-            class="form-control"
-            name="title"
-            ngModel
-            required
-          >
-          <label for = "desc">Description</label>
-          <input
-                type="text"
-                id="desc"
-                class="form-control"
-                name="desc"
-                ngModel
-                required
-              >
-
-              Start Date: <datetime [ngModel]="dateFrom"
-              [timepicker]="false"></datetime>
-
-              End Date: <datetime [(ngModel)]="dateTo"
-              [timepicker]="false"
-              [datepicker]="datepickerToOpts"></datetime>
-
-
-    </form>-->
     <form [formGroup] = "form" (ngSubmit) = "onSubmit()">
       <div class = "row">
-      <div class = "col-md-6">
+      <div class = "col-md-12">
         <div class="form-group">
             <label for="title">Title</label>
             <input
@@ -46,33 +24,35 @@
         </div>
       </div>
       <div class = "row">
-      <div class = "col-md-6">
+      <div class = "col-md-12">
         <div class="form-group">
             <label for="des">Description</label>
-            <input
-              type="text"
+            <textarea
+              rows = 4
               id="des"
               formControlName="des"
-              class="form-control">
+              class="form-control"></textarea>
           </div>
         </div>
       </div>
       <div class = "row">
-      <div class = "col-md-3">
+      <div class = "col-md-6">
        Start Date <date-picker formControlName="sdate"></date-picker>
      </div>
-     <div class = "col-md-3">
+     <div class = "col-md-6">
       End Date <date-picker formControlName="edate"></date-picker>
     </div>
   </div>
 
-
+<div class = "row">
+  <div class = "col-md-6">
    Majors<ss-multiselect-dropdown [options]="myOptions"
     formControlName="majors"></ss-multiselect-dropdown>
- 
+</div>
+</div>
 
   <div class = "row">
-  <div class = "col-md-3">
+  <div class = "col-md-6">
     <div class="form-group">
         <label for="cname">Contact Name:</label>
         <input
@@ -82,7 +62,7 @@
           class="form-control">
       </div>
  </div>
- <div class = "col-md-3">
+ <div class = "col-md-6">
    <div class="form-group">
        <label for="cemail">Email</label>
        <input
@@ -93,6 +73,14 @@
      </div>
 </div>
 </div>
+<button
+            type="submit"
+            class="btn btn-secondary"
+            [disabled]="!form.valid">Sumbit</button>
     </form>
   </div>
+</div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 </div>
