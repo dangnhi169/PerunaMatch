@@ -38,8 +38,8 @@
         <div class = "form-group">
           <label for = "Login"></label>
           <div class="loginButton col-md-12">
-            <button type="submit" class="btn btn-primary" id="myButton" [disabled]="loading" 
-                (click)="login()"> Login</button>
+            <button type="submit" class="btn btn-primary" id="myButton" 
+                (click)="login()" [disabled]="!f.form.valid"> Login</button>
           </div>
         </div>
         <div class="error" *ngIf="error" class="alert alert-danger">{{error}}</div>
