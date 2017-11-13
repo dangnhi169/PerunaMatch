@@ -2,13 +2,14 @@ import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } fr
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { User } from '../../models/user';
-import { UsersDB } from './user-db'; 
+import { UserDB } from './user-db'; 
+import { projectsDB } from './project-db'; 
  
 export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOptions) {
     // configure fake backend
     backend.connections.subscribe((connection: MockConnection) => {
         
-        let users: User[] = JSON.parse(localStorage.getItem('users')) || UsersDB;
+        let users: User[] = JSON.parse(localStorage.getItem('users')) || UserDB;
  
         // wrap in timeout to simulate server api call
         setTimeout(() => {
@@ -56,6 +57,19 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                         new ResponseOptions({ status: 200, body: {token: newUser.userID}})
                     ));
                 }
+            }
+
+            // API: To get all projects
+            if (connection.request.url.endsWith('/api/projects') && connection.request.method === RequestMethod.Get) {
+                if(!projectsDB){
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 400 })
+                    ));
+                } else {
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 200, body: {projects: projectsDB}})
+                    ));
+                }         
             }
  
             // to get all users
