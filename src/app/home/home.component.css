@@ -2,5 +2,27 @@
     text-align: center;
 }
 
+#search {
+    text-align: center;
+}
+
+#search-form {
+    display: inline-block;
+    text-align: center;
+}
+
+th {
+    text-align: center;
+}
+
+input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
 
 
