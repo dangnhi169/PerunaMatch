@@ -20,11 +20,11 @@ import { RoutingModule } from './modules/routing.module';
 import { NgbModule, } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
-//import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 import { DatePickerModule } from 'angular-io-datepicker';
 import { OverlayModule } from 'angular-io-overlay';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 // used to create fake backend
 import { fakeBackendProvider } from './_helper/fake-backend';
 import { AuthGuard } from './_guard/auth.guard';
@@ -49,7 +49,6 @@ import { ModalAddComponent } from './modal-add/modal-add.component';
         FormsModule,
         HttpModule,
         ReactiveFormsModule,
-        //NKDatetimeModule,
         OverlayModule,
         DatePickerModule,
         MultiselectDropdownModule,
