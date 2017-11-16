@@ -4,7 +4,6 @@
 
 #search {
     text-align: center;
-    margin: 5%;
 }
 
 #search-form {
@@ -12,18 +11,27 @@
     text-align: center;
 }
 
-#search-form {
-
+th {
+    text-align: center;
 }
 
-#search-label {
-
+td {
+    text-align:center;
+    font-weight:bold;
 }
 
-#search-text {
-
+input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
 }
 
-#submit-button {
-    
+input[type=text]:focus {
+    width: 100%;
 }
+
+.card-img {
+    opacity: 0.25;
+}
+
+
