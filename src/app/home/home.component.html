@@ -1,19 +1,42 @@
 
-<div class="card">
-    <div class="card-header" id="welcome-message">
-        <h2>Peruna Projects</h2>
-    </div>
-        
-    
-    <div id="search">
-        <form id="search-form" class="form-horizontal">
-            <div class="form-group">
-                <input class="form-control" type="text" id="search-text" placeholder="Search"><br>
+<div class="card card-inverse">
+    <img class="card-img" src="../../assets/images/smu.png" alt="Card image">
+    <div class="card-img-overlay">
+        <div class="card-header" id="welcome-message">
+                <h2>Peruna Projects</h2>
             </div>
+            <div id="search">
+                <form id="search-form" class="form-horizontal">
+                    <div class="container">
+                        <div class="row">
+                            <nav class="navbar">
+                                    <input class="form-control" placeholder="Search..." type="text" name="search" [(ngModel)]="filter">
+                            </nav>
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-hover">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Tags</th>
+                            <th>Poster ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let project of projects | filter:filter" >
 
-            <div class="form-group">
-                <input type="submit" id="submit-button" value="Submit" class="btn btn-default">
-            </div>
-        </form>
+                            <td>{{project.name}}</td>
+                            <td>
+                                <div *ngFor="let tag of project.tag">
+                                    {{tag}}
+                                </div>
+                            </td>
+                          <!--  <td>{{project.posterID}}</td>-->
+                            <a routerLink = "/listing/{{project.projectID}}" routerLinkActive = "active"> View Listings</a>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
     </div>
 </div>

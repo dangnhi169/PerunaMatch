@@ -8,6 +8,7 @@ import { ListingListComponent } from '../listing-list/listing-list.component';
 import { ProfilePageComponent } from '../components/profile-page/profile-page.component';
 import { FavoritesListComponent } from '../favorites-list/favorites-list.component';
 
+import { ListingAddComponent } from '../listing-add/listing-add.component';
 import { AuthGuard } from '../_guard/index';
 
 const appRoutes: Routes = [
@@ -15,9 +16,11 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignUpComponent},
   { path: 'home', component: HomeComponent},
-  { path: 'listings', component: ListingListComponent, canActivate: [AuthGuard]},
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
   { path: 'favorites', component: FavoritesListComponent, canActivate: [AuthGuard]}
+  //{ path: 'listings', component: ListingListComponent, canActivate: [AuthGuard]},
+  { path: 'listing/:id', component: ListingListComponent},
+  { path: 'add', component: ListingAddComponent},
 ]
 @NgModule({
     imports: [

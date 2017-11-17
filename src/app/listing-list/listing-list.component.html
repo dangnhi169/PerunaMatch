@@ -1,10 +1,37 @@
-<h1>Research Listings</h1>
+<h1>Listings for Project</h1>
 <div class="row">
   <div class="col-12">
-    
+    <!--<modal-add></modal-add>-->
+    <!--<a routerLink = "/add"
+    routerLinkActive = "active"
+
+    class="btn btn-secondary">Add Listing</a>-->
+    <div class = "container" *ngIf = "listings.length > 0; else default">
     <listing-item
       *ngFor="let l of listings; let i = index"
       [listing]="l"
       [index]="i"></listing-item>
   </div>
+</div>
+
+<!--else display default message-->
+<ng-template #default>
+  <div class = "container">
+      <div class = "row">
+        <div class= "col-md-12">
+        <h3> There are no listings for this Project!</h3>
+        </div>
+      </div>
+  </div>
+</ng-template>
+<br/>
+
+<div class = "container">
+<div class = "row">
+  <div class= "col-md-12">
+  <a routerLink = "/home" routerLinkActive = "active"> Back to Projects Page</a>
+  </div>
+</div>
+</div>
+
 </div>

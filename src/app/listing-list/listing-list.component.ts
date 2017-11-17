@@ -1,33 +1,41 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy,Input } from '@angular/core';
 import { Listing } from '../listing';
 import { Subscription } from 'rxjs/Subscription';
 import { ListingService } from '../services/listing.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'listing-list',
   templateUrl: './listing-list.component.html',
   styleUrls: ['./listing-list.component.css']
 })
-export class ListingListComponent implements OnInit, OnDestroy {
+export class ListingListComponent implements OnInit{
   listings: Listing[];
   subscription: Subscription;
 
+  @Input() projectId: number
+
+
 //import ListingService
-  constructor(private listingService: ListingService) {
+  constructor(private listingService: ListingService, private route: ActivatedRoute,
+  private router:Router) {
   }
 
   ngOnInit() {
-    //listen to see if listings changed, use ListingService to get Listings
-    this.subscription = this.listingService.listingsChanged
+    //get projectID from route
+    this.route.params
       .subscribe(
-        (listings: Listing[]) => {
-          this.listings = listings;
+        (params: Params) => {
+          this.projectId = +params['id'];
         }
       );
-    this.listings = this.listingService.getListings();
-  }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+      //get all listings matching project id
+    this.listingService.getListingsbyProjectId(this.projectId)
+                .subscribe(result => {
+                      console.log(result);
+                      this.listings = result;
+                });
   }
 }
+  

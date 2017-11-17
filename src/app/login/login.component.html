@@ -1,22 +1,25 @@
-
 <div class = "container">
   <div class = "row">
    <div class = "col-md-12">
       <h1>Login</h1>
       <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-        <div class = "form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-          <div class="input-group mb-2 mb-sm-0">
+        <div class = "form-group">
+          <div class="input-group mb-2 mb-lg-0">
             <span class="input-group-addon">Username</span>
             <input type = "text"
                     id = "userName"
                     name="userName"
                     class = "form-control"
                     [(ngModel)]="model.username"
+                    #name="ngModel"
                     required/>
-            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+          </div>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+              class="text-danger">
+              Name is required
           </div>
         </div>
-        <div class = "form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <div class = "form-group" >
           <div class="input-group mb-2 mb-sm-0">
             <div class="input-group-addon">Password</div>
             <input type = "password"
@@ -24,15 +27,19 @@
                     name="password"
                     class = "form-control"
                     [(ngModel)]="model.password"
+                    #password="ngModel"
                     required/>
-            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+          </div>
+          <div *ngIf="password.invalid && (password.dirty || password.touched)"
+              class="text-danger">
+              Password is required
           </div>
         </div>
         <div class = "form-group">
           <label for = "Login"></label>
           <div class="loginButton col-md-12">
-            <button type="submit" class="btn btn-primary" id="myButton" [disabled]="loading" 
-                (click)="login()"> Login</button>
+            <button type="submit" class="btn btn-primary" id="myButton" 
+                (click)="login()" [disabled]="!f.form.valid"> Login</button>
           </div>
         </div>
         <div class="error" *ngIf="error" class="alert alert-danger">{{error}}</div>
