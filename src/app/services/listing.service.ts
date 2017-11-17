@@ -42,6 +42,7 @@ export class ListingService {
       ['all'],
       'Professor Lawrimore',
       '1234@smu.edu'),
+      
     new Listing(
       'Breaking Bad',
       'need help in my 100% legal lab',
@@ -50,7 +51,6 @@ export class ListingService {
         ['Chemistry', 'Law'],
         'Mr.White',
         'crystal@gmail.com'),
-
   ];
 
   constructor(){}
@@ -78,5 +78,4 @@ export class ListingService {
     this.listingsChanged.next(this.listings.slice());
   }
 */
-
 }
