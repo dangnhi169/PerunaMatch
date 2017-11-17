@@ -10,7 +10,7 @@ import { Project } from '../../models/project';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent implements OnInit{ 
+export class HomeComponent implements OnInit{
     private projects: Project[];
     constructor(private searchService: SearchService) {
 
@@ -25,5 +25,7 @@ export class HomeComponent implements OnInit{
     }
 
     
+
+
 
 }

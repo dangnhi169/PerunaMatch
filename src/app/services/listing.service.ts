@@ -1,13 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-
+import { Http, Headers, Response } from '@angular/http';
 import { Listing } from '../listing';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ListingService {
-  listingsChanged = new Subject<Listing[]>();
+  private listings: Listing[];
 
-  private listings: Listing[] = [
+  constructor(private http: Http){}
+
+  getListings(): Observable<Listing[]>{
+    return this.http.get('/api/listing', JSON.stringify({}))
+    .map((response: Response) => {
+        // set token property (which is userid)
+        this.listings = response.json().listings;
+        console.log(this.listings);
+        return this.listings;
+    });
+
+  }
+
+  getListingsbyProjectId(id:number): Observable<Listing[]>{
+    return this.http.get('/api/listing/' + id, JSON.stringify({}))
+    .map((response: Response) => {
+        this.listings = response.json().listings;
+        return this.listings;
+    });
+
+  }
+
+  //listingsChanged = new Subject<Listing[]>();
+
+  /*private listings: Listing[] = [
     new Listing(
       'Highlight Documents',
       'come highlight documents for me',
@@ -37,11 +63,11 @@ export class ListingService {
     this.listings.push(listing);
     this.listingsChanged.next(this.listings.slice());
   }
-
+*/
   getListing(index: number) {
     return this.listings[index];
   }
-
+/*
   updateListing(index: number, newListing: Listing) {
     this.listings[index] = newListing;
     this.listingsChanged.next(this.listings.slice());
@@ -51,6 +77,6 @@ export class ListingService {
     this.listings.splice(index, 1);
     this.listingsChanged.next(this.listings.slice());
   }
-
+*/
 
 }

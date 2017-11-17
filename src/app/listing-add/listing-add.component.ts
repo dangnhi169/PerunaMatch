@@ -57,7 +57,7 @@ export class ListingAddComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.form.value);
+  /*  console.log(this.form.value);
     const newListing = new Listing(
       this.form.value['title'],
       this.form.value['des'],
@@ -65,10 +65,10 @@ export class ListingAddComponent implements OnInit {
       this.form.value['edate'],
       this.form.value['majors'],
       this.form.value['cname'],
-      this.form.value['cemail'],
- );
-    this.listingService.addListing(newListing);
-    this.form.reset();
+      this.form.value['cemail'],)*/
+ ;
+  /*  this.listingService.addListing(newListing);
+    this.form.reset();*/
   }
 
 }
