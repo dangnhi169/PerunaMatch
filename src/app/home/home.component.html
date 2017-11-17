@@ -4,14 +4,14 @@
     <div class="card-img-overlay">
         <div class="card-header" id="welcome-message">
                 <h2>Peruna Projects</h2>
-            </div> 
+            </div>
             <div id="search">
                 <form id="search-form" class="form-horizontal">
                     <div class="container">
                         <div class="row">
                             <nav class="navbar">
-                                    <input class="form-control" placeholder="Search..." type="text" name="search" [(ngModel)]="filter">      
-                            </nav>     
+                                    <input class="form-control" placeholder="Search..." type="text" name="search" [(ngModel)]="filter">
+                            </nav>
                         </div>
                     </div>
                 </form>
@@ -24,14 +24,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let project of projects | filter:filter">
+                        <tr *ngFor="let project of projects | filter:filter" >
+
                             <td>{{project.name}}</td>
                             <td>
                                 <div *ngFor="let tag of project.tag">
                                     {{tag}}
                                 </div>
                             </td>
-                            <td>{{project.posterID}}</td>
+                          <!--  <td>{{project.posterID}}</td>-->
+                            <a routerLink = "/listing/{{project.projectID}}" routerLinkActive = "active"> View Listings</a>
                         </tr>
                     </tbody>
             </table>

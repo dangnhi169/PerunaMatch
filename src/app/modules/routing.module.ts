@@ -14,7 +14,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignUpComponent},
   { path: 'home', component: HomeComponent},
-  { path: 'listings', component: ListingListComponent, canActivate: [AuthGuard]},
+  //{ path: 'listings', component: ListingListComponent, canActivate: [AuthGuard]},
+  { path: 'listing/:id', component: ListingListComponent},
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
   { path: 'add', component: ListingAddComponent},
 ]

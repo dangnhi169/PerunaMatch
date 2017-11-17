@@ -13,6 +13,7 @@ export class ListingItemComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.listing);
   }
 
 
