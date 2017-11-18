@@ -14,7 +14,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         let users: User[] = JSON.parse(localStorage.getItem('users')) || UserDB;
         let listings: Listing[] = listingDB;
-      //  console.log(listings);
+        console.log(listings);
       //JSON.parse(localStorage.getItem('listings')) ||
         let projects: Project[] = JSON.parse(localStorage.getItem('projects')) || projectsDB;
         // wrap in timeout to simulate server api call
@@ -165,7 +165,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         }, 500);
 
        // create employee
-    /*if (connection.request.url.endsWith('/api/dash/addListing') &&
+    if (connection.request.url.endsWith('/api/dash/addListing') &&
         connection.request.method === RequestMethod.Post) {
         let receivedListing = JSON.parse(connection.request.getBody());
         //let newEmployee = Object.assign(receivedEmployee, {id: uuid.generate()});
@@ -179,7 +179,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         })));
 
         return;
-    }*/
+    }
 
 
 

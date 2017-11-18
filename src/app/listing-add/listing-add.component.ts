@@ -58,7 +58,7 @@ export class ListingAddComponent implements OnInit {
     });
   }
 
-  /*onSubmit(){
+  onSubmit(){
     console.log(this.form.value);
 
     const newListing = {
@@ -76,9 +76,9 @@ export class ListingAddComponent implements OnInit {
       this.form.reset();
     }
 
-  }*/
+  }
   /*  this.listingService.addListing(newListing);
     this.form.reset();
   }
 
-}*/}
+}*/
