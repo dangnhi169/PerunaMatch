@@ -4,15 +4,41 @@
   Dashboard
 </h1>
 <h3>Your Projects:</h3>
-<div class = "container" *ngIf = "projects.length > 0; else default">
-<a
-  style="cursor: pointer;"
-  class="list-group-item clearfix" *ngFor="let p of projects;">
-<div class="float-left">
+<!--<div class = "container" *ngIf = "projects.length > 0; else default">-->
+<!--<div class = "card-deck">-->
+<div class="card" *ngFor="let p of projects;" >
+ <div class="card-body">
+   <h4 class="card-title">Project: {{ p.name }}</h4>
+   <div class = "float-right">
+   <!--<button class= "btn btn-secondary"> Add Listing</button>
+   <button class= "btn btn-secondary"> Delete</button>-->
+   <!--<modal-add [projectId] = "p.projectID"></modal-add>-->
+ </div>
+ </div>
+
+ <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
+   <div class = "col-md-12" *ngIf = "p.projectID === l.projectId;">
+   <li class="list-group-item">Listing: {{ l.title }}
+   </li>
+ </div>
+ </ul>
+</div>
+<!--</div>-->
+
+<!--<div class="container" *ngFor="let p of projects;">
+<div class="row">
     <h4 class="list-group-item-heading">{{ p.name }}</h4>
   </div>
-  </a>
+  <div class = "row" *ngFor = "let l of listings;">
+  <div class = "col-md-12" *ngIf = "p.projectID === l.projectId;">
+    <p>{{ l.title }}</p>
+  </div>
 </div>
+</div>-->
+
+
+
+<!--</div>
 
 <ng-template #default>
   <div class = "container">
@@ -27,7 +53,11 @@
 
 
 <h3>Your Listings:</h3>
-<div class = "container" *ngIf = "projects.length > 0; else default1">
+<!--<div class = "row" (change) = "getListings(p.projectID)"></div>
+<p *ngFor="let l of listings;">
+  {{ l.title}}
+</p>-->
+<!---<div class = "container" *ngIf = "projects.length > 0; else default1">
 <h3>{{p.name}}:</h3>
 <a
   style="cursor: pointer;"
@@ -45,4 +75,4 @@
       </div>
   </div>
 </ng-template>
-<br/>
+<br/>-->

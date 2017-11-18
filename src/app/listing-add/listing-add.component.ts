@@ -1,6 +1,6 @@
 
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 import { NgForm,FormControl, NgModel, FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { ListingService } from '../services/listing.service';
@@ -15,6 +15,8 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
 export class ListingAddComponent implements OnInit {
   form: FormGroup;
   model:number[];
+  @Input() projectId: number;
+
   myOptions: IMultiSelectOption[] = [
     { id: 'Computer Science', name: 'Computer Science' },
     { id: 'Math', name: 'Math' },
@@ -56,19 +58,27 @@ export class ListingAddComponent implements OnInit {
     });
   }
 
-  onSubmit(){
-  /*  console.log(this.form.value);
-    const newListing = new Listing(
-      this.form.value['title'],
-      this.form.value['des'],
-      this.form.value['sdate'],
-      this.form.value['edate'],
-      this.form.value['majors'],
-      this.form.value['cname'],
-      this.form.value['cemail'],)*/
- ;
+  /*onSubmit(){
+    console.log(this.form.value);
+
+    const newListing = {
+      projectId: this.projectId,
+      title: this.form.value['title'],
+      description: this.form.value['des'],
+      start: this.form.value['sdate'],
+      end: this.form.value['edate'],
+      majors: this.form.value['majors'],
+      contactName: this.form.value['cname'],
+      contactEmail:this.form.value['cemail']
+    }
+      //console.log(newListing);
+      this.listingService.addListing(newListing);
+      this.form.reset();
+    }
+
+  }*/
   /*  this.listingService.addListing(newListing);
-    this.form.reset();*/
+    this.form.reset();
   }
 
-}
+}*/}

@@ -31,15 +31,19 @@ export class DashComponent implements OnInit {
     this.searchService.getProjectsbyPosterId(this.posterId)
                 .subscribe(result => {
                       console.log(result);
-                      this.projects = result;
+                      this.projects = result[0];
+                      this.listings = result[1];
+                      console.log(this.projects);
+                      console.log(this.listings);
                 });
   }
 
-getListings(projectId:number){
+/*getListings(projectId:number){
+  console.log('herh');
   this.listingService.getListingsbyProjectId(this.projectId)
               .subscribe(result => {
                     console.log(result);
                     this.listings = result;
               });
-}
+}*/
   }

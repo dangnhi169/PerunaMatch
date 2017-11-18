@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ListingService {
   private listings: Listing[];
-
+  private listingAdded: boolean;
   constructor(private http: Http){}
 
   getListings(): Observable<Listing[]>{
@@ -30,6 +30,15 @@ export class ListingService {
     });
 
   }
+
+  addListing(listing:Listing): Observable<Listing> {
+      return this.http.post('/api/dash/addListing', listing)
+        .map(response => response.json() as Listing)
+
+
+              }
+
+
 
   //listingsChanged = new Subject<Listing[]>();
 

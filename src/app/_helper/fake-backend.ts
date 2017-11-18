@@ -122,9 +122,24 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                   let id = parseInt(urlParts[urlParts.length-1]);
                   let matchedProjects = projects.filter(project => {return project.posterID === id;});
 
+                  var matchedListings = [];
+                  var ml;
+                  for (var i  = 0; i < matchedProjects.length; i++){
+                    let projectId = matchedProjects[i].projectID;
+                    //var matchedListings;
+                    console.log(projectId);
+                    let id = +projectId;
+                    ml = listings.filter(listing => {return listing.projectId === projectId;});
+                    console.log(ml);
+                    if(ml.length > 0)
+                    for(var k = 0; k < ml.length;k++)
+                    matchedListings.push(ml[k]);
+                    console.log(matchedListings);
+                  }
+                  //console.log(matchedListings);
                   //respond with listings that match the project ID
                   connection.mockRespond(new Response(
-                      new ResponseOptions({ status: 200, body: {projects: matchedProjects}})
+                      new ResponseOptions({ status: 200, body: {projects: matchedProjects,listings: matchedListings }})
                   ));
           }
         }
@@ -147,30 +162,26 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         }, 500);
 
-        // create project
-            if (connection.request.url.endsWith('/api/users') && connection.request.method === RequestMethod.Post) {
-                // get new user object from post body
-                let newUser = JSON.parse(connection.request.getBody());
+    /*    // create employee
+    if (connection.request.url.endsWith('/api/dash/addListing') &&
+        connection.request.method === RequestMethod.Post) {
+        let receivedListing = JSON.parse(connection.request.getBody());
+        //let newEmployee = Object.assign(receivedEmployee, {id: uuid.generate()});
+        //data[data.length] = newEmployee;
 
-                // validation
-                let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
-                if (duplicateUser) {
-                    return connection.mockError(new Error('Username "' + newUser.username + '" is already taken'));
-                }
+        localStorage.setItem('listings', JSON.stringify(receivedListing));
 
-                // save new user
-                newUser.id = users.length + 1;
-                users.push(newUser);
-                localStorage.setItem('users', JSON.stringify(users));
+        connection.mockRespond(new Response(new ResponseOptions({
+            status: 200,
+            body: {new: receivedListing }
+        })));
 
-                // respond 200 OK
-                connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
+        return;
+    }
 
-                return;
-            }
+*/
 
-
-    });
+  });
 
     return new Http(backend, options);
 }

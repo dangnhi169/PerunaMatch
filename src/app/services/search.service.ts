@@ -3,11 +3,11 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { Project } from '../../models/project';
-
+import { Listing } from '../listing';
 @Injectable()
 export class SearchService {
   private projects: Project[];
-
+  private listings: Listing[];
   constructor(private http: Http) {
 
   }
@@ -21,11 +21,14 @@ export class SearchService {
         return this.projects;
     });
   }
-  getProjectsbyPosterId(id:number): Observable<Project[]>{
+  getProjectsbyPosterId(id:number): Observable<any[]>{
     return this.http.get('/api/dash/' + id, JSON.stringify({}))
     .map((response: Response) => {
         this.projects = response.json().projects;
-        return this.projects;
+        this.listings = response.json().listings;
+        console.log(this.projects);
+        console.log(this.listings);
+        return [this.projects, this.listings];
     });
 
   }

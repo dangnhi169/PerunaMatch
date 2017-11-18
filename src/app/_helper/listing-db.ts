@@ -33,6 +33,17 @@ export let listingDB: Listing[] =[
   contactName:'Micheal Scott',
   contactEmail:'1234@dundermifflin.com'
 
+},
+{
+  projectId:8,
+  title: "Trojan Horse Maker",
+  description:"make trojan horses",
+  start: new Date(),
+  end:new Date(),
+  majors:['Computer Engineering'],
+  contactName:'Mitnick',
+  contactEmail:'1234@aol.com'
+
 }
 
 
