@@ -13,7 +13,9 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
     backend.connections.subscribe((connection: MockConnection) => {
 
         let users: User[] = JSON.parse(localStorage.getItem('users')) || UserDB;
-        let listings: Listing[] = JSON.parse(localStorage.getItem('listings')) || listingDB;
+        let listings: Listing[] = listingDB;
+      //  console.log(listings);
+      //JSON.parse(localStorage.getItem('listings')) ||
         let projects: Project[] = JSON.parse(localStorage.getItem('projects')) || projectsDB;
         // wrap in timeout to simulate server api call
         setTimeout(() => {
@@ -123,7 +125,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                   let matchedProjects = projects.filter(project => {return project.posterID === id;});
 
                   var matchedListings = [];
-                  var ml = [];
+                  var ml;
                   for (var i  = 0; i < matchedProjects.length; i++){
                     let projectId = matchedProjects[i].projectID;
                     //var matchedListings;
@@ -162,14 +164,14 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         }, 500);
 
-    /*    // create employee
-    if (connection.request.url.endsWith('/api/dash/addListing') &&
+       // create employee
+    /*if (connection.request.url.endsWith('/api/dash/addListing') &&
         connection.request.method === RequestMethod.Post) {
         let receivedListing = JSON.parse(connection.request.getBody());
         //let newEmployee = Object.assign(receivedEmployee, {id: uuid.generate()});
         //data[data.length] = newEmployee;
-
-        localStorage.setItem('listings', JSON.stringify(receivedListing));
+        listings.push(receivedListing);
+        //localStorage.setItem('listings', JSON.stringify(receivedListing));
 
         connection.mockRespond(new Response(new ResponseOptions({
             status: 200,
@@ -177,9 +179,9 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         })));
 
         return;
-    }
+    }*/
 
-*/
+
 
   });
 
