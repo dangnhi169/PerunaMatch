@@ -15,6 +15,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { ListingListComponent } from './listing-list/listing-list.component';
 import { ListingItemComponent } from './listing-item/listing-item.component';
 
+
 //added Modules
 import { RoutingModule } from './modules/routing.module';
 import { NgbModule, } from '@ng-bootstrap/ng-bootstrap';
@@ -40,6 +41,7 @@ import { SearchService } from './services/search.service';
 
 import { ListingAddComponent } from './listing-add/listing-add.component';
 import { ModalAddComponent } from './modal-add/modal-add.component';
+import { DashComponent } from './dash/dash.component';
 
 @NgModule({
 
@@ -69,7 +71,8 @@ import { ModalAddComponent } from './modal-add/modal-add.component';
         ModalComponent,
         NgbdModalContent,
         ListingAddComponent,
-        ModalAddComponent
+        ModalAddComponent,
+        DashComponent
 
     ],
     providers: [

@@ -7,8 +7,8 @@ import { Project } from '../../models/project';
 @Injectable()
 export class SearchService {
   private projects: Project[];
-    
-  constructor(private http: Http) { 
+
+  constructor(private http: Http) {
 
   }
 
@@ -21,5 +21,14 @@ export class SearchService {
         return this.projects;
     });
   }
+  getProjectsbyPosterId(id:number): Observable<Project[]>{
+    return this.http.get('/api/dash/' + id, JSON.stringify({}))
+    .map((response: Response) => {
+        this.projects = response.json().projects;
+        return this.projects;
+    });
+
+  }
+
 
 }

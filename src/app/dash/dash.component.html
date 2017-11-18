@@ -1,0 +1,48 @@
+
+
+<h1>
+  Dashboard
+</h1>
+<h3>Your Projects:</h3>
+<div class = "container" *ngIf = "projects.length > 0; else default">
+<a
+  style="cursor: pointer;"
+  class="list-group-item clearfix" *ngFor="let p of projects;">
+<div class="float-left">
+    <h4 class="list-group-item-heading">{{ p.name }}</h4>
+  </div>
+  </a>
+</div>
+
+<ng-template #default>
+  <div class = "container">
+      <div class = "row">
+        <div class= "col-md-12">
+        <h3> You have no Projects!</h3>
+        </div>
+      </div>
+  </div>
+</ng-template>
+<br/>
+
+
+<h3>Your Listings:</h3>
+<div class = "container" *ngIf = "projects.length > 0; else default1">
+<h3>{{p.name}}:</h3>
+<a
+  style="cursor: pointer;"
+  class="list-group-item clearfix" *ngFor="let p of projects;">
+<div class = "row" (change) = "getListings(p.projectID)"></div>
+  </a>
+
+</div>
+<ng-template #default1>
+  <div class = "container">
+      <div class = "row">
+        <div class= "col-md-12">
+        <h3> You have no Listings!</h3>
+        </div>
+      </div>
+  </div>
+</ng-template>
+<br/>

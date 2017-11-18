@@ -3,6 +3,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { User } from '../../models/user';
 import { Listing } from '../listing';
+import { Project } from '../../models/project';
 import { UserDB } from './user-db';
 import { projectsDB } from './project-db';
 import { listingDB } from './listing-db';
@@ -13,11 +14,12 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         let users: User[] = JSON.parse(localStorage.getItem('users')) || UserDB;
         let listings: Listing[] = JSON.parse(localStorage.getItem('listings')) || listingDB;
+        let projects: Project[] = JSON.parse(localStorage.getItem('projects')) || projectsDB;
         // wrap in timeout to simulate server api call
         setTimeout(() => {
 
             // API: To get a user
-            if (connection.request.url.endsWith('/api/user') && connection.request.method === RequestMethod.Post) {
+            if (connection.request.url.endsWith('/api/login') && connection.request.method === RequestMethod.Post) {
                 // get parameters from post request
                 let params = JSON.parse(connection.request.getBody());
                 let currentUser: any = getUser(users, params.username, params.password);
@@ -107,6 +109,26 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
             }
           }
 
+          // API: To get all projects with specific product id
+          if (connection.request.url.match(/\/api\/dash\/\d+$/) && connection.request.method === RequestMethod.Get) {
+          /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
+            if(!projectsDB){
+                  connection.mockRespond(new Response(
+                      new ResponseOptions({ status: 400 })
+                  ));
+              }else{
+                  //find matching id in Projects Array
+                  let urlParts = connection.request.url.split('/');
+                  let id = parseInt(urlParts[urlParts.length-1]);
+                  let matchedProjects = projects.filter(project => {return project.posterID === id;});
+
+                  //respond with listings that match the project ID
+                  connection.mockRespond(new Response(
+                      new ResponseOptions({ status: 200, body: {projects: matchedProjects}})
+                  ));
+          }
+        }
+
             // to get all users
             if (connection.request.url.endsWith('/api/users') && connection.request.method === RequestMethod.Get) {
                 // check for fake auth token in header and return test users if valid, this security is implemented server side
@@ -124,6 +146,29 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
             }
 
         }, 500);
+
+        // create project
+            if (connection.request.url.endsWith('/api/users') && connection.request.method === RequestMethod.Post) {
+                // get new user object from post body
+                let newUser = JSON.parse(connection.request.getBody());
+
+                // validation
+                let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
+                if (duplicateUser) {
+                    return connection.mockError(new Error('Username "' + newUser.username + '" is already taken'));
+                }
+
+                // save new user
+                newUser.id = users.length + 1;
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+
+                // respond 200 OK
+                connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
+
+                return;
+            }
+
 
     });
 
