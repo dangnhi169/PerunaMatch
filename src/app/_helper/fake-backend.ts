@@ -123,7 +123,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                   let matchedProjects = projects.filter(project => {return project.posterID === id;});
 
                   var matchedListings = [];
-                  var ml;
+                  var ml = [];
                   for (var i  = 0; i < matchedProjects.length; i++){
                     let projectId = matchedProjects[i].projectID;
                     //var matchedListings;
