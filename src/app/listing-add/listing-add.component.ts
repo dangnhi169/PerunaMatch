@@ -1,7 +1,7 @@
 
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Component, OnInit,Input } from '@angular/core';
-
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm,FormControl, NgModel, FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { ListingService } from '../services/listing.service';
 import { Listing } from '../listing';
@@ -27,14 +27,11 @@ export class ListingAddComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private listingService: ListingService,
-  public activeModal: NgbActiveModal) { }
+  public activeModal: NgbActiveModal,private router: Router) { }
 
   ngOnInit() {
     this.initForm();
-    this.form.controls['optionsModel'].valueChanges
-            .subscribe((selectedOptions) => {
-                // changes
-            });
+
   }
 
   private initForm() {
@@ -74,6 +71,10 @@ export class ListingAddComponent implements OnInit {
       //console.log(newListing);
       this.listingService.addListing(newListing);
       this.form.reset();
+
+    //  this.router.navigateByUrl('');
+    //  this.router.navigateByUrl('/dash/' + this.projectId);
+
     }
 
   }
