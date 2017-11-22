@@ -1,4 +1,5 @@
 export class Listing{
+  id:number
   projectId:number
 //  projectName:string
   title:string

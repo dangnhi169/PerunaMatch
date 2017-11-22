@@ -171,12 +171,16 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         //let newEmployee = Object.assign(receivedEmployee, {id: uuid.generate()});
         //data[data.length] = newEmployee;
         listings.push(receivedListing);
+
         //localStorage.setItem('listings', JSON.stringify(receivedListing));
 
-        connection.mockRespond(new Response(new ResponseOptions({
+        connection.mockRespond(new Response(
+            new ResponseOptions({ status: 200, body: {listings: listings}})
+        ));
+        /*connection.mockRespond(new Response(new ResponseOptions({
             status: 200,
-            body: {new: receivedListing }
-        })));
+            body: {{listings: listingDB}}
+        })));*/
 
         return;
     }

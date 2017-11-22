@@ -3,13 +3,16 @@ import { Subject } from 'rxjs/Subject';
 import { Http, Headers, Response } from '@angular/http';
 import { Listing } from '../listing';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ListingService {
   private listings: Listing[];
   private listingAdded: boolean;
-  constructor(private http: Http){}
+  listingsChanged = new Subject<Listing[]>();
+
+  constructor(private http: Http, protected httpClient: HttpClient){}
 
   getListings(): Observable<Listing[]>{
     return this.http.get('/api/listing', JSON.stringify({}))
@@ -31,12 +34,37 @@ export class ListingService {
 
   }
 
-  addListing(listing:Listing): Observable<Listing> {
+  addListing(listing:Listing): Observable<Listing[]> {
       return this.http.post('/api/dash/addListing', listing)
-        .map(response => response.json() as Listing)
+      .map((response: Response) => {
+          // set token property (which is userid)
+          this.listings = response.json().listings;
+          console.log(this.listings);
+          return this.listings;
+      });
+    }
 
+      getByProjectId(id: number): Observable<Listing[]> {
+          return this.httpClient
+              .get<Listing[]>(`${'api/listings'}/?projectId=${id}`)
+              .catch(x => this.handleException(x));
+      }
 
-              }
+      add(item: Listing): Observable<Listing> {
+        console.log(item);
+        return this.httpClient
+            .post('api/listings', item)
+            .catch(x => this.handleException(x));
+    }
+
+      protected handleException(exception: any) {
+          var message = `${exception.status} : ${exception.statusText}\r\n${exception.body.error}`;
+          alert(message);
+          return Observable.throw(message);
+      }
+    //
+
+          //    }
 
 
 
@@ -63,16 +91,16 @@ export class ListingService {
   ];
 
   constructor(){}
-
-  getListings() {
+*/
+/*  getListingsChanged() {
     return this.listings.slice();
   }
 
-  addListing(listing: Listing) {
+  /*addListing(listing: Listing) {
     this.listings.push(listing);
     this.listingsChanged.next(this.listings.slice());
-  }
-*/
+  }*/
+
   getListing(index: number) {
     return this.listings[index];
   }

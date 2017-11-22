@@ -10,9 +10,18 @@
 <div class="modal-body">
 <div class = "row">
   <div class = "col-md-12">
+
     <form [formGroup] = "form" (ngSubmit) = "onSubmit()">
       <div class = "row">
       <div class = "col-md-12">
+
+        <div class = "row">
+          <div class = "col-md-6">
+           Select Project<ss-multiselect-dropdown [options]="apl"
+            formControlName="pl" [settings]="mySettings"></ss-multiselect-dropdown>
+        </div>
+        </div>
+
         <div class="form-group">
             <label for="title">Title</label>
             <input

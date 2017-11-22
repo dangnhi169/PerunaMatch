@@ -3,25 +3,46 @@
 <h1>
   Dashboard
 </h1>
-<h3>Your Projects:</h3>
+<h3>Manage Projects:</h3>
 <!--<div class = "container" *ngIf = "projects.length > 0; else default">-->
 <!--<div class = "card-deck">-->
 <div class="card" *ngFor="let p of projects;" >
  <div class="card-body">
    <h4 class="card-title">Project: {{ p.name }}</h4>
-   <div class = "float-right">
+  <!-- <div class = "float-right">
    <!--<button class= "btn btn-secondary"> Add Listing</button>
    <button class= "btn btn-secondary"> Delete</button>-->
-   <modal-add [projectId] = "p.projectID"></modal-add>
- </div>
- </div>
+  <!-- <modal-add [projectId] = "p.projectID"></modal-add>-->
+ <!--</div>
+ </div>-->
 
- <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
+ <!--<ul class="list-group list-group-flush" *ngFor = "let l of listings;">
    <div class = "col-md-12" *ngIf = "p.projectID === l.projectId;">
    <li class="list-group-item">Listing: {{ l.title }}
    </li>
  </div>
- </ul>
+</ul>-->
+</div>
+</div>
+<br>
+<br>
+
+
+<!--<div class = "container" *ngIf = "projects.length > 0; else default">-->
+<!--<div class = "card-deck">-->
+<div class = " container">
+<div class = "row">
+<h3>Manage Listings:</h3>
+<div class = "float-right">
+<modal-add [activeProjects] = "projects"></modal-add>
+</div>
+</div>
+<div class="card" *ngFor="let l of listings;" >
+
+ <div class="card-body">
+   <h4 class="card-title">Listing: {{ l.title }}</h4>
+ </div>
+</div>
 </div>
 <!--</div>-->
 

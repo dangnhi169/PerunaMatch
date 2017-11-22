@@ -43,6 +43,10 @@ import { ListingAddComponent } from './listing-add/listing-add.component';
 import { ModalAddComponent } from './modal-add/modal-add.component';
 import { DashComponent } from './dash/dash.component';
 
+import { MockApi } from './services/mock-api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+
 @NgModule({
 
     imports: [
@@ -57,6 +61,8 @@ import { DashComponent } from './dash/dash.component';
         AngularFontAwesomeModule,
         Ng2SearchPipeModule,
         NgbModule.forRoot(),
+        InMemoryWebApiModule.forFeature(MockApi),
+        HttpClientModule,
 
     ],
     declarations: [
