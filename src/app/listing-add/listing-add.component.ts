@@ -114,7 +114,7 @@ private apl: IMultiSelectOption[] = [];
     }
 public onListingSaved(listing:Listing){
   console.log(listing);
-  this.router.navigateByUrl('/login');
+  this.router.navigateByUrl('');
 }
       /*// Subscribe to observable
        listingOperation.subscribe(

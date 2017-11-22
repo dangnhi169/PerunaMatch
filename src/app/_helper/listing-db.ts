@@ -2,6 +2,7 @@ import { Listing } from '../listing';
 
 export let listingDB: Listing[] =[
 {
+  id:99,
   projectId:0,
   title: "Highight Documents",
   description:"Come highlight documents",
@@ -13,6 +14,7 @@ export let listingDB: Listing[] =[
 
 },
 {
+  id:99,
   projectId:1,
 
   title: "Breaking Bad",
@@ -24,6 +26,7 @@ export let listingDB: Listing[] =[
   contactEmail:'12345@gmail.com'
 },
 {
+  id:99,
   projectId:0,
   title: "Assistant to the Regional Manager",
   description:"stapling papers",
@@ -35,6 +38,7 @@ export let listingDB: Listing[] =[
 
 },
 {
+  id:99,
   projectId:8,
   title: "Trojan Horse Maker",
   description:"make trojan horses",
