@@ -41,8 +41,10 @@ export class ListingAddComponent implements OnInit{
     this.route.params
       .subscribe(
         (params: Params) => {
+
           this.posterId = +params['pid'];
           this.projectId = +params['id'];
+
         }
       );
 
@@ -87,6 +89,7 @@ export class ListingAddComponent implements OnInit{
       this.nextid++;
       this.listingService.addListing(newListing);
       this.form.reset();
+      this.router.navigateByUrl('/dash/' + this.posterId);
 
     //  this.router.navigateByUrl('');
     //  this.router.navigateByUrl('/dash/' + this.projectId);
@@ -96,13 +99,13 @@ export class ListingAddComponent implements OnInit{
   //  refresh(){
   //    this.myDC.refreshFromParent();
   //  }
-    close(){
-    this.router.navigateByUrl('/dash/' + this.posterId);
+    //close(){
+  //  this.router.navigateByUrl('/dash/' + this.posterId);
     //  console.log("close");
     //  this.activeModal.close('Close click');
   //    this.refresh();
   //    this.comp.reloadListings();
-    }
+  //  }
 
   }
   /*  this.listingService.addListing(newListing);

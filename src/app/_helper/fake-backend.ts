@@ -14,9 +14,10 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         let users: User[] = JSON.parse(localStorage.getItem('users')) || UserDB;
         let listings: Listing[] = listingDB;
+      //  let projects: Project[] = projectsDB;
         console.log(listings);
       //JSON.parse(localStorage.getItem('listings')) ||
-        let projects: Project[] = JSON.parse(localStorage.getItem('projects')) || projectsDB;
+        let projects: Project[] =  projectsDB;
         // wrap in timeout to simulate server api call
         setTimeout(() => {
 
@@ -111,6 +112,29 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
             }
           }
 
+          // API: To get listing with specific id
+          if (connection.request.url.match(/\/api\/listing\/edit\/\d+$/) && connection.request.method === RequestMethod.Get) {
+          /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
+            if(!listingDB){
+                  connection.mockRespond(new Response(
+                      new ResponseOptions({ status: 400 })
+                  ));
+              }else{
+                  //find matching id in Listings Array
+                  console.log("edit");
+                  let urlParts = connection.request.url.split('/');
+                  let id = parseInt(urlParts[urlParts.length-1]);
+                  let matchedListings = listings.filter(listing => {return listing.id === id;});
+                  console.log(matchedListings);
+                  let listing = matchedListings.length ? matchedListings[0] : null;
+                  console.log(listing);
+                  //respond with listings that match the project ID
+                  connection.mockRespond(new Response(
+                      new ResponseOptions({ status: 200, body: {listing: listing}})
+                  ));
+          }
+        }
+
           // API: To get all projects with specific product id and corsponding listings
           if (connection.request.url.match(/\/api\/dash\/\d+$/) && connection.request.method === RequestMethod.Get) {
           /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
@@ -193,7 +217,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         }, 500);
 
-       // create Listing
+       // add Listing
     if (connection.request.url.endsWith('/api/dash/addListing') &&
         connection.request.method === RequestMethod.Post) {
         let receivedListing = JSON.parse(connection.request.getBody());
@@ -209,6 +233,55 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         return;
     }
+
+//update lisitng
+if (connection.request.url.endsWith('/api/update') &&
+    connection.request.method === RequestMethod.Put) {{
+      console.log("in update");
+    let receivedListing = JSON.parse(connection.request.getBody());
+    //let clonedListing = receivedListing;
+    console.log("cloned listing" , receivedListing);
+    receivedListing.start = new Date(receivedListing.start);
+    receivedListing.end = new Date(receivedListing.end);
+    let listingWasFound = false;
+    listings.some((element: Listing, index: number) => {
+        if (element.id === receivedListing.id) {
+          console.log("found");
+            listings[index] = receivedListing;
+            listingWasFound = true;
+            return true;
+        }
+    });
+    if (!listingWasFound) {
+            connection.mockRespond(new Response(new ResponseOptions({
+                status: 400,
+                body: 'Employee could not be updated because was not found'
+            })));
+        } else {
+          //  localStorage.setItem('employees', JSON.stringify(data));
+            //listings[index] =
+            connection.mockRespond(new Response(new ResponseOptions({status: 200})));
+        }
+
+        return;
+  }}
+
+    // add Project
+ if (connection.request.url.endsWith('/api/dash/addProject') &&
+     connection.request.method === RequestMethod.Post) {
+     let receivedProject = JSON.parse(connection.request.getBody());
+     //let newEmployee = Object.assign(receivedEmployee, {id: uuid.generate()});
+     //data[data.length] = newEmployee;
+     projects.push(receivedProject);
+     //localStorage.setItem('listings', JSON.stringify(receivedListing));
+
+     connection.mockRespond(new Response(new ResponseOptions({
+         status: 200,
+         body: {projects: projectsDB }
+     })));
+
+     return;
+ }
 
 
 
