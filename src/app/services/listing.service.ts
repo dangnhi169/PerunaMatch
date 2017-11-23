@@ -8,9 +8,10 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ListingService {
   private listings: Listing[];
-
+  private listingAdded: boolean;
   constructor(private http: Http){}
-
+  listingsChanged = new Subject<Listing[]>();
+  private listing: Listing;
   getListings(): Observable<Listing[]>{
     return this.http.get('/api/listing', JSON.stringify({}))
     .map((response: Response) => {
@@ -30,6 +31,42 @@ export class ListingService {
     });
 
   }
+
+  getListingsbyId(id:number): Observable<Listing>{
+    return this.http.get('/api/listing/edit/' + id, JSON.stringify({}))
+    .map((response: Response) => {
+        this.listing = response.json().listing;
+        return this.listing;
+    });
+
+  }
+
+  /*addListing(listing:Listing): Observable<Listing> {
+      return this.http.post('/api/dash/addListing', listing)
+        .map(response => response.json() as Listing)
+      }*/
+      addListing(listing:Listing): Observable<Listing[]> {
+          return this.http.post('/api/dash/addListing', listing)
+          .map((response: Response) => {
+              this.listings = response.json().listing;
+            //  this.listingsChanged.next(this.listings.slice());
+              return this.listings;
+          });}
+
+      updateListing(listing: Listing): Observable<Listing> {
+        console.log("in update lissting");
+              return this.http.put('/api/update',listing)
+                  .map(response => response.json())
+                //  .catch(EmployeeService.handleError);
+          }
+  deleteListing(id: number): Observable<Listing> {
+            return this.http.delete('/api/listing/' + id)
+                        .map(response => response.json());
+
+                      //  .//catch(EmployeeService.handleError);
+                }
+
+
 
   //listingsChanged = new Subject<Listing[]>();
 

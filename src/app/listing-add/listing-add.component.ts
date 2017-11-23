@@ -1,20 +1,28 @@
 
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit,Input, ViewChild} from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm,FormControl, NgModel, FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { ListingService } from '../services/listing.service';
 import { Listing } from '../listing';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+//import { ActivatedRoute, Params, Router } from '@angular/router';
+//import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { DashComponent } from '../dash/dash.component';
 @Component({
+  providers:[DashComponent],
   selector: 'listing-add',
   templateUrl: './listing-add.component.html',
   styleUrls: ['./listing-add.component.css']
 })
-export class ListingAddComponent implements OnInit {
+export class ListingAddComponent implements OnInit{
+  nextid = 4;
   form: FormGroup;
   model:number[];
+  projectId: number;
+  posterId:number;
+  //@Input( projectId: number;
+//  @ViewChild(DashComponent) myDC: DashComponent;
+
   myOptions: IMultiSelectOption[] = [
     { id: 'Computer Science', name: 'Computer Science' },
     { id: 'Math', name: 'Math' },
@@ -25,14 +33,21 @@ export class ListingAddComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private listingService: ListingService,
-  public activeModal: NgbActiveModal) { }
+  /*public activeModal: NgbActiveModal,*/private router: Router, private comp: DashComponent,
+  private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.initForm();
-    this.form.controls['optionsModel'].valueChanges
-            .subscribe((selectedOptions) => {
-                // changes
-            });
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+
+          this.posterId = +params['pid'];
+          this.projectId = +params['id'];
+
+        }
+      );
+
   }
 
   private initForm() {
@@ -57,18 +72,44 @@ export class ListingAddComponent implements OnInit {
   }
 
   onSubmit(){
-  /*  console.log(this.form.value);
-    const newListing = new Listing(
-      this.form.value['title'],
-      this.form.value['des'],
-      this.form.value['sdate'],
-      this.form.value['edate'],
-      this.form.value['majors'],
-      this.form.value['cname'],
-      this.form.value['cemail'],)*/
- ;
+    console.log(this.form.value);
+
+    const newListing = {
+      id:this.nextid,
+      projectId: this.projectId,
+      title: this.form.value['title'],
+      description: this.form.value['des'],
+      start: this.form.value['sdate'],
+      end: this.form.value['edate'],
+      majors: this.form.value['majors'],
+      contactName: this.form.value['cname'],
+      contactEmail:this.form.value['cemail']
+    }
+      //console.log(newListing);
+      this.nextid++;
+      this.listingService.addListing(newListing);
+      this.form.reset();
+      this.router.navigateByUrl('/dash/' + this.posterId);
+
+    //  this.router.navigateByUrl('');
+    //  this.router.navigateByUrl('/dash/' + this.projectId);
+
+    }
+
+  //  refresh(){
+  //    this.myDC.refreshFromParent();
+  //  }
+    //close(){
+  //  this.router.navigateByUrl('/dash/' + this.posterId);
+    //  console.log("close");
+    //  this.activeModal.close('Close click');
+  //    this.refresh();
+  //    this.comp.reloadListings();
+  //  }
+
+  }
   /*  this.listingService.addListing(newListing);
-    this.form.reset();*/
+    this.form.reset();
   }
 
-}
+}*/
