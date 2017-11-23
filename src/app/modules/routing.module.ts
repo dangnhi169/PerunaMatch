@@ -6,6 +6,8 @@ import { SignUpComponent } from '../SignUp/sign-up.component';
 import { HomeComponent } from '../home/home.component';
 import { ListingListComponent } from '../listing-list/listing-list.component';
 import { ProfilePageComponent } from '../components/profile-page/profile-page.component';
+import { FavoritesListComponent } from '../favorites-list/favorites-list.component';
+
 import { ListingAddComponent } from '../listing-add/listing-add.component';
 import { DashComponent } from '../dash/dash.component';
 import { AuthGuard } from '../_guard/index';
@@ -21,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
   { path: 'add/:pid/:id', component: ListingAddComponent},
   { path: 'edit/:pid/:id', component: ListingEditComponent},
+
 
 ]
 @NgModule({

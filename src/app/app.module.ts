@@ -35,6 +35,9 @@ import { ListingService } from  './services/listing.service';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ListingDetailsComponent } from './listing-details/listing-details.component';
+import { FavoritesItemComponent } from './favorites-item/favorites-item.component';
+import { FavoritesListComponent } from './favorites-list/favorites-list.component';
+import { FavoritesDetailsComponent } from './favorites-details/favorites-details.component';
 import { ModalComponent, NgbdModalContent } from './modal/modal.component';
 import { SignUpService} from './services/sign-up.service';
 import { SearchService } from './services/search.service';
@@ -70,6 +73,9 @@ import { ListingEditComponent } from './listing-edit/listing-edit.component';
         ListingListComponent,
         ListingItemComponent,
         ListingDetailsComponent,
+        FavoritesItemComponent,
+        FavoritesListComponent,
+        FavoritesDetailsComponent
         ModalComponent,
         NgbdModalContent,
         ListingAddComponent,
@@ -77,6 +83,7 @@ import { ListingEditComponent } from './listing-edit/listing-edit.component';
         DashComponent,
         ProjectAddComponent,
         ListingEditComponent
+
 
     ],
     providers: [
