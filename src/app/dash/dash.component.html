@@ -6,42 +6,14 @@
 <h3>Manage:</h3>
 <a routerLink = ""
    routerLinkActive = "active" > Add Project</a>
-<!--<div class = "container" *ngIf = "projects.length > 0; else default">-->
-<!--<div class = "card-deck">-->
-<!--div class="card" *ngFor="let p of projects;" >
- <div class="card-block">
-   <h4 class="card-title">Project: {{ p.name }}</h4>
-   <p class = "float-right">
-   <a routerLink = "/add/{{p.posterID}}/{{p.projectID}}" routerLinkActive = "active" > Add Listing</a>
- </p>
-</div>
 
-
- <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
-   <div class = "row" *ngIf = "p.projectID === l.projectId;">
-   <li class="list-group-item">Listing: {{ l.title }}
-       <button class= "btn btn-link" (click) = "delete(l.id)"> Delete</button>
-   </li>
-
- </div>
- </ul>
-</div>-->
-<!--</div>-->
-<!--</div>-->
 <div class = "card-deck">
 
 <div class="card mt-3 card-inverse card-primary mb-3"  *ngFor="let p of projects;">
   <div class="card-header">
     <h4 class="card-title">Project: {{ p.name }}</h4>
   </div>
-  <!--<div class = "card-block">
-    <p class="card-text">
-    <!--  <a routerLink = "/add/{{p.posterID}}/{{p.projectID}}"
-       routerLinkActive = "active" > Add Listing</a>
 
-     </p>-->
-
-  <!--</div>-->
   <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
     <div *ngIf = "p.projectID === l.projectId;">
     <li class="list-group-item">Listing: {{ l.title }}
@@ -58,64 +30,6 @@
      routerLinkActive = "active" > Add Listing</a>
 
   </div>
-  <!--<div class="card-block">
-    <!--<a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>-->
-  <!--</div>-->
-</div>
-</div>
-
-
-
-
-<!--<div class="container" *ngFor="let p of projects;">
-<div class="row">
-    <h4 class="list-group-item-heading">{{ p.name }}</h4>
-  </div>
-  <div class = "row" *ngFor = "let l of listings;">
-  <div class = "col-md-12" *ngIf = "p.projectID === l.projectId;">
-    <p>{{ l.title }}</p>
-  </div>
-</div>
-</div>-->
-
-
-
-<!--</div>
-
-<ng-template #default>
-  <div class = "container">
-      <div class = "row">
-        <div class= "col-md-12">
-        <h3> You have no Projects!</h3>
-        </div>
-      </div>
-  </div>
-</ng-template>
-<br/>
-
-
-<h3>Your Listings:</h3>
-<!--<div class = "row" (change) = "getListings(p.projectID)"></div>
-<p *ngFor="let l of listings;">
-  {{ l.title}}
-</p>-->
-<!---<div class = "container" *ngIf = "projects.length > 0; else default1">
-<h3>{{p.name}}:</h3>
-<a
-  style="cursor: pointer;"
-  class="list-group-item clearfix" *ngFor="let p of projects;">
-<div class = "row" (change) = "getListings(p.projectID)"></div>
-  </a>
 
 </div>
-<ng-template #default1>
-  <div class = "container">
-      <div class = "row">
-        <div class= "col-md-12">
-        <h3> You have no Listings!</h3>
-        </div>
-      </div>
-  </div>
-</ng-template>
-<br/>-->
+</div>

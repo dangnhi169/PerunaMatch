@@ -10,23 +10,23 @@ import { ListingService } from '../services/listing.service';
 })
 export class FavoritesListComponent implements OnInit {
 
-  favorites: Listing[];
+/*  favorites: Listing[];
   subscription: Subscription;
-  
-  constructor(private listingService: ListingService) { }
+
+  constructor(private listingService: ListingService) { }*/
 
   ngOnInit() {
     //listen to see if listings changed, use ListingService to get Listings
-    this.subscription = this.listingService.listingsChanged
+    /*this.subscription = this.listingService.listingsChanged
     .subscribe(
       (favorites: Listing[]) => {
         this.favorites = favorites;
       }
     );
-    this.favorites = this.listingService.getListings();
+    this.favorites = this.listingService.getListings();*/
   }
 
-  ngOnDestroy() {
+/*  ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
+  }*/
 }

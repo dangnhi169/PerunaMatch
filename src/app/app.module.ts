@@ -48,6 +48,8 @@ import { DashComponent } from './dash/dash.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
 import { ListingEditComponent } from './listing-edit/listing-edit.component';
 
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
 
     imports: [
@@ -75,7 +77,7 @@ import { ListingEditComponent } from './listing-edit/listing-edit.component';
         ListingDetailsComponent,
         FavoritesItemComponent,
         FavoritesListComponent,
-        FavoritesDetailsComponent
+        FavoritesDetailsComponent,
         ModalComponent,
         NgbdModalContent,
         ListingAddComponent,
@@ -95,7 +97,8 @@ import { ListingEditComponent } from './listing-edit/listing-edit.component';
         MockBackend,
         BaseRequestOptions,
         SignUpService,
-        SearchService
+        SearchService,
+        //NgbActiveModal
     ],
     entryComponents: [NgbdModalContent,ListingDetailsComponent],
     bootstrap: [
