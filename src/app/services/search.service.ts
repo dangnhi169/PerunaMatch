@@ -33,5 +33,13 @@ export class SearchService {
 
   }
 
+  addProject(project:Project): Observable<Project[]> {
+      return this.http.post('/api/dash/addProject', project)
+      .map((response: Response) => {
+          this.projects = response.json().projects;
+        //  this.listingsChanged.next(this.listings.slice());
+          return this.projects;
+      });}
+
 
 }

@@ -1,21 +1,27 @@
 
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm,FormControl, NgModel, FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { ListingService } from '../services/listing.service';
 import { Listing } from '../listing';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+//import { ActivatedRoute, Params, Router } from '@angular/router';
+//import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { DashComponent } from '../dash/dash.component';
 @Component({
+  providers:[DashComponent],
   selector: 'listing-add',
   templateUrl: './listing-add.component.html',
   styleUrls: ['./listing-add.component.css']
 })
-export class ListingAddComponent implements OnInit {
+export class ListingAddComponent implements OnInit{
+  nextid = 4;
   form: FormGroup;
   model:number[];
-  @Input() projectId: number;
+  projectId: number;
+  posterId:number;
+  //@Input( projectId: number;
+//  @ViewChild(DashComponent) myDC: DashComponent;
 
   myOptions: IMultiSelectOption[] = [
     { id: 'Computer Science', name: 'Computer Science' },
@@ -27,10 +33,18 @@ export class ListingAddComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private listingService: ListingService,
-  public activeModal: NgbActiveModal,private router: Router) { }
+  /*public activeModal: NgbActiveModal,*/private router: Router, private comp: DashComponent,
+  private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.initForm();
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.posterId = +params['pid'];
+          this.projectId = +params['id'];
+        }
+      );
 
   }
 
@@ -59,6 +73,7 @@ export class ListingAddComponent implements OnInit {
     console.log(this.form.value);
 
     const newListing = {
+      id:this.nextid,
       projectId: this.projectId,
       title: this.form.value['title'],
       description: this.form.value['des'],
@@ -69,12 +84,24 @@ export class ListingAddComponent implements OnInit {
       contactEmail:this.form.value['cemail']
     }
       //console.log(newListing);
+      this.nextid++;
       this.listingService.addListing(newListing);
       this.form.reset();
 
     //  this.router.navigateByUrl('');
     //  this.router.navigateByUrl('/dash/' + this.projectId);
 
+    }
+
+  //  refresh(){
+  //    this.myDC.refreshFromParent();
+  //  }
+    close(){
+    this.router.navigateByUrl('/dash/' + this.posterId);
+    //  console.log("close");
+    //  this.activeModal.close('Close click');
+  //    this.refresh();
+  //    this.comp.reloadListings();
     }
 
   }

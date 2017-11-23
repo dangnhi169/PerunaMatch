@@ -3,28 +3,49 @@
 <h1>
   Dashboard
 </h1>
-<h3>Your Projects:</h3>
+<h3>Manage:</h3>
 <!--<div class = "container" *ngIf = "projects.length > 0; else default">-->
 <!--<div class = "card-deck">-->
-<div class="card" *ngFor="let p of projects;" >
- <div class="card-body">
+<!--div class="card" *ngFor="let p of projects;" >
+ <div class="card-block">
    <h4 class="card-title">Project: {{ p.name }}</h4>
-   <div class = "float-right">
-   <!--<button class= "btn btn-secondary"> Add Listing</button>
-   <button class= "btn btn-secondary"> Delete</button>-->
-   <modal-add [projectId] = "p.projectID"></modal-add>
- </div>
- </div>
+   <p class = "float-right">
+   <a routerLink = "/add/{{p.posterID}}/{{p.projectID}}" routerLinkActive = "active" > Add Listing</a>
+ </p>
+</div>
+
 
  <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
-   <div class = "col-md-12" *ngIf = "p.projectID === l.projectId;">
+   <div class = "row" *ngIf = "p.projectID === l.projectId;">
    <li class="list-group-item">Listing: {{ l.title }}
+       <button class= "btn btn-link" (click) = "delete(l.id)"> Delete</button>
    </li>
+
  </div>
  </ul>
-</div>
+</div>-->
+<!--</div>-->
 <!--</div>-->
 
+<div class="card mt-3 card-outline-success mb-3"  *ngFor="let p of projects;">
+  <div class="card-block">
+    <h4 class="card-title">Project: {{ p.name }}</h4>
+    <p class="card-text"><a routerLink = "/add/{{p.posterID}}/{{p.projectID}}"
+       routerLinkActive = "active" > Add Listing</a></p>
+  </div>
+  <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
+    <div *ngIf = "p.projectID === l.projectId;">
+    <li class="list-group-item">Listing: {{ l.title }}
+      <button class= "btn btn-link" (click) = "delete(l.id)"> Delete</button>
+    </li>
+  </div>
+
+  </ul>
+  <!--<div class="card-block">
+    <!--<a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>-->
+  <!--</div>-->
+</div>
 <!--<div class="container" *ngFor="let p of projects;">
 <div class="row">
     <h4 class="list-group-item-heading">{{ p.name }}</h4>

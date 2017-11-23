@@ -10,7 +10,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./listing-list.component.css']
 })
 export class ListingListComponent implements OnInit{
-  listings: Listing[];
+  listings: Listing[] = [];
   subscription: Subscription;
 
   @Input() projectId: number
@@ -38,4 +38,3 @@ export class ListingListComponent implements OnInit{
                 });
   }
 }
-  

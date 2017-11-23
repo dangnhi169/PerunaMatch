@@ -111,7 +111,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
             }
           }
 
-          // API: To get all projects with specific product id
+          // API: To get all projects with specific product id and corsponding listings
           if (connection.request.url.match(/\/api\/dash\/\d+$/) && connection.request.method === RequestMethod.Get) {
           /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
             if(!projectsDB){
@@ -146,6 +146,35 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
           }
         }
 
+        // delete listing
+            if (connection.request.url.match(/\/api\/listing\/\d+$/) && connection.request.method === RequestMethod.Delete) {
+                // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
+                //if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                    // find user by id in users array
+                    console.log("delete");
+                    let urlParts = connection.request.url.split('/');
+                    let id = parseInt(urlParts[urlParts.length - 1]);
+                    for (let i = 0; i < listings.length; i++) {
+                        let listing = listings[i];
+                        if (listing.id === id) {
+                            // delete user
+                            listings.splice(i, 1);
+                            //localStorage.setItem('users', JSON.stringify(users));
+                            break;
+                        }
+                  //  }
+                    console.log(listings);
+
+                    // respond 200 OK
+                    connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
+                } //else {
+                    // return 401 not authorised if token is null or invalid
+                  //  connection.mockRespond(new Response(new ResponseOptions({ status: 401 })));
+              //  }
+
+                return;
+            }
+
             // to get all users
             if (connection.request.url.endsWith('/api/users') && connection.request.method === RequestMethod.Get) {
                 // check for fake auth token in header and return test users if valid, this security is implemented server side
@@ -164,7 +193,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         }, 500);
 
-       // create employee
+       // create Listing
     if (connection.request.url.endsWith('/api/dash/addListing') &&
         connection.request.method === RequestMethod.Post) {
         let receivedListing = JSON.parse(connection.request.getBody());
@@ -175,7 +204,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         connection.mockRespond(new Response(new ResponseOptions({
             status: 200,
-            body: {new: receivedListing }
+            body: {listing: listingDB }
         })));
 
         return;

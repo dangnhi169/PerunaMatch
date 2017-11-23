@@ -10,6 +10,7 @@ export class ListingService {
   private listings: Listing[];
   private listingAdded: boolean;
   constructor(private http: Http){}
+  listingsChanged = new Subject<Listing[]>();
 
   getListings(): Observable<Listing[]>{
     return this.http.get('/api/listing', JSON.stringify({}))
@@ -31,12 +32,24 @@ export class ListingService {
 
   }
 
-  addListing(listing:Listing): Observable<Listing> {
+  /*addListing(listing:Listing): Observable<Listing> {
       return this.http.post('/api/dash/addListing', listing)
         .map(response => response.json() as Listing)
+      }*/
+      addListing(listing:Listing): Observable<Listing[]> {
+          return this.http.post('/api/dash/addListing', listing)
+          .map((response: Response) => {
+              this.listings = response.json().listing;
+            //  this.listingsChanged.next(this.listings.slice());
+              return this.listings;
+          });}
 
+  deleteListing(id: number): Observable<Listing> {
+            return this.http.delete('/api/listing/' + id)
+                        .map(response => response.json());
 
-              }
+                      //  .//catch(EmployeeService.handleError);
+                }
 
 
 

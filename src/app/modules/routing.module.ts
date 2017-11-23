@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: 'listing/:id', component: ListingListComponent},
   { path: 'dash/:id', component: DashComponent},
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
-  { path: 'add', component: ListingAddComponent},
+  { path: 'add/:pid/:id', component: ListingAddComponent},
 ]
 @NgModule({
     imports: [
