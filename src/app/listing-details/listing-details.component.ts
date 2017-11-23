@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./listing-details.component.css']
 })
 export class ListingDetailsComponent implements OnInit {
-  @Input() item: Listing;
+  //@Input()
+  item: Listing;
   @Input() id:number;
   subscription: Subscription;
 
@@ -18,7 +19,9 @@ export class ListingDetailsComponent implements OnInit {
   /*public activeModal: NgbActiveModal*/) { }
 
   ngOnInit() {
-  //  this.item = this.listingService.getListing(this.id);
+    this.item = this.listingService.getListing(this.id);
   }
+
+
 
 }
