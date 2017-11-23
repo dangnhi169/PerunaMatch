@@ -98,7 +98,7 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
         BaseRequestOptions,
         SignUpService,
         SearchService,
-        //NgbActiveModal
+        NgbActiveModal
     ],
     entryComponents: [NgbdModalContent,ListingDetailsComponent],
     bootstrap: [
