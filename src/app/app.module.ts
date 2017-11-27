@@ -45,6 +45,7 @@ import { FavoritesDetailsComponent } from './favorites-details/favorites-details
 import { ModalComponent, NgbdModalContent } from './modal/modal.component';
 import { SignUpService} from './services/sign-up.service';
 import { SearchService } from './services/search.service';
+import { ProjectService } from './services/project.service';
 
 import { ListingAddComponent } from './listing-add/listing-add.component';
 import { ModalAddComponent } from './modal-add/modal-add.component';
@@ -103,6 +104,7 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
         BaseRequestOptions,
         SignUpService,
         SearchService,
+        ProjectService
         //NgbActiveModal
     ],
     entryComponents: [NgbdModalContent,ListingDetailsComponent],

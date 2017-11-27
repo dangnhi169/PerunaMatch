@@ -2,7 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ListingService } from '../services/listing.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+
+import { ProjectService } from '../services/project.service';
 import { SearchService } from '../services/search.service';
+
 import { Project } from '../../models/project';
 import { Listing } from '../listing';
 import { ListingAddComponent } from '../listing-add/listing-add.component';
@@ -27,7 +30,8 @@ export class DashComponent implements OnInit {
 
     //myLC : ListingAddComponent;
   constructor(private searchService: SearchService, private route: ActivatedRoute,
-  private router:Router, private listingService: ListingService) { }
+  private router:Router, private listingService: ListingService,
+  private projectService: ProjectService) { }
 
   ngOnInit() {
     console.log("init");
@@ -95,8 +99,8 @@ export class DashComponent implements OnInit {
 
   addProject(): void {
     var curUserID = localStorage.getItem('currentUser');
-    if(curUserID == this.posterId){
-
+    if(Number(curUserID) == this.posterId){
+      this.projectService.addNewProject(this.newProject);
     }
   }
 

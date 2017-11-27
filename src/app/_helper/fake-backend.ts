@@ -270,14 +270,19 @@ if (connection.request.url.endsWith('/api/update') &&
  if (connection.request.url.endsWith('/api/dash/addProject') &&
      connection.request.method === RequestMethod.Post) {
      let receivedProject = JSON.parse(connection.request.getBody());
-     //let newEmployee = Object.assign(receivedEmployee, {id: uuid.generate()});
-     //data[data.length] = newEmployee;
      projects.push(receivedProject);
-     //localStorage.setItem('listings', JSON.stringify(receivedListing));
+
+     // return projects for the current poster
+     let projectsForCurUser;
+     projectsDB.forEach(element => {
+        if(element.posterID === receivedProject.posterID ){
+            projectsForCurUser.push(element);
+        }
+    });
 
      connection.mockRespond(new Response(new ResponseOptions({
          status: 200,
-         body: {projects: projectsDB }
+         body: {projects: projectsForCurUser }
      })));
 
      return;
