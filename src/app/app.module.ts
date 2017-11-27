@@ -104,7 +104,6 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
         BaseRequestOptions,
         SignUpService,
         SearchService,
-        addEditDeleteProjects,
         ProjectService,
         NgbActiveModal
     ],
