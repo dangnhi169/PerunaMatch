@@ -1,8 +1,7 @@
 export class User {
-    userID ?: string;
+    userID ?: number;
     username?: string;
     password?: string;
     email?: string;
     isProfessor?: boolean;
 }
-  

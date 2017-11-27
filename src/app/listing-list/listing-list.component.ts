@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy,Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Listing } from '../listing';
 import { Subscription } from 'rxjs/Subscription';
 import { ListingService } from '../services/listing.service';
@@ -9,20 +9,18 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   templateUrl: './listing-list.component.html',
   styleUrls: ['./listing-list.component.css']
 })
-export class ListingListComponent implements OnInit{
+export class ListingListComponent implements OnInit {
   listings: Listing[];
   subscription: Subscription;
 
-  @Input() projectId: number
+  @Input() projectId: number;
 
 
-//import ListingService
+  // import ListingService
   constructor(private listingService: ListingService, private route: ActivatedRoute,
-  private router:Router) {
-  }
-
+  private router: Router) { }
   ngOnInit() {
-    //get projectID from route
+    // get projectID from route
     this.route.params
       .subscribe(
         (params: Params) => {
@@ -30,7 +28,7 @@ export class ListingListComponent implements OnInit{
         }
       );
 
-      //get all listings matching project id
+      // get all listings matching project id
     this.listingService.getListingsbyProjectId(this.projectId)
                 .subscribe(result => {
                       console.log(result);
@@ -38,4 +36,3 @@ export class ListingListComponent implements OnInit{
                 });
   }
 }
-  

@@ -14,17 +14,18 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignUpComponent},
   { path: 'home', component: HomeComponent},
-  //{ path: 'listings', component: ListingListComponent, canActivate: [AuthGuard]},
   { path: 'listing/:id', component: ListingListComponent},
+  // duplicate for now, remove /profile in the future
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
+  { path: 'user/:id', component: ProfilePageComponent, canActivate: [AuthGuard]},
   { path: 'add', component: ListingAddComponent},
-]
+];
 @NgModule({
     imports: [
         RouterModule.forRoot(appRoutes)
     ],
-    exports:[RouterModule]
+    exports: [RouterModule]
 
 })
 
-export class RoutingModule{}
+export class RoutingModule { }
