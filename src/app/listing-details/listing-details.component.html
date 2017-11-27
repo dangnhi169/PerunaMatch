@@ -10,10 +10,10 @@
 <div class = "row">
   <div class = "col-md-12">
     <h1>
-        {{ item.title }}
-      </h1>
-      <p> Description:{{ item.description }} </p>
-      <div class ="row">
+      {{ item.title }}
+    </h1>
+    <p> Description:{{ item.description }} </p>
+    <div class ="row">
       <div class = "col-md-6">
         Start Date: {{ item.start | date: 'shortDate' }}<br>
         Majors:
@@ -29,15 +29,16 @@
         </ul>-->
       </div>
     </div>
-      <br>
+    <br>
     <div class = "row">
       <div class = "col-md-12">
         Contact: {{ item.contactName }} {{ item.contactEmail}}
       </div>
+    </div>
   </div>
 </div>
 </div>
-</div>
+
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark">Add to Favorites</button>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

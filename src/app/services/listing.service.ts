@@ -10,9 +10,12 @@ export class ListingService {
 
   private listings: Listing[];
 
-  constructor(private http: Http) { }
+  private listingAdded: boolean;
+  constructor(private http: Http){}
+  listingsChanged = new Subject<Listing[]>();
+  private listing: Listing;
+  getListings(): Observable<Listing[]>{
 
-  getListings(): Observable<Listing[]> {
     return this.http.get('/api/listing', JSON.stringify({}))
     .map((response: Response) => {
         // set token property (which is userid)
@@ -32,6 +35,42 @@ export class ListingService {
 
   }
 
+  getListingsbyId(id:number): Observable<Listing>{
+    return this.http.get('/api/listing/edit/' + id, JSON.stringify({}))
+    .map((response: Response) => {
+        this.listing = response.json().listing;
+        return this.listing;
+    });
+
+  }
+
+  /*addListing(listing:Listing): Observable<Listing> {
+      return this.http.post('/api/dash/addListing', listing)
+        .map(response => response.json() as Listing)
+      }*/
+      addListing(listing:Listing): Observable<Listing[]> {
+          return this.http.post('/api/dash/addListing', listing)
+          .map((response: Response) => {
+              this.listings = response.json().listing;
+            //  this.listingsChanged.next(this.listings.slice());
+              return this.listings;
+          });}
+
+      updateListing(listing: Listing): Observable<Listing> {
+        console.log("in update lissting");
+              return this.http.put('/api/update',listing)
+                  .map(response => response.json())
+                //  .catch(EmployeeService.handleError);
+          }
+  deleteListing(id: number): Observable<Listing> {
+            return this.http.delete('/api/listing/' + id)
+                        .map(response => response.json());
+
+                      //  .//catch(EmployeeService.handleError);
+                }
+
+
+
   //listingsChanged = new Subject<Listing[]>();
 
   /*private listings: Listing[] = [
@@ -43,6 +82,7 @@ export class ListingService {
       ['all'],
       'Professor Lawrimore',
       '1234@smu.edu'),
+      
     new Listing(
       'Breaking Bad',
       'need help in my 100% legal lab',
@@ -51,7 +91,6 @@ export class ListingService {
         ['Chemistry', 'Law'],
         'Mr.White',
         'crystal@gmail.com'),
-
   ];
 
   constructor(){}
@@ -79,5 +118,4 @@ export class ListingService {
     this.listingsChanged.next(this.listings.slice());
   }
 */
-
 }

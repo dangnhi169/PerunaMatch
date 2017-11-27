@@ -10,15 +10,18 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
   styleUrls: ['./listing-details.component.css']
 })
 export class ListingDetailsComponent implements OnInit {
+  //@Input()
   item: Listing;
   @Input() id:number;
   subscription: Subscription;
 
   constructor(private listingService: ListingService,
-    public activeModal: NgbActiveModal) { }
+  public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
     this.item = this.listingService.getListing(this.id);
   }
+
+
 
 }

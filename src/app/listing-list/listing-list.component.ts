@@ -9,8 +9,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   templateUrl: './listing-list.component.html',
   styleUrls: ['./listing-list.component.css']
 })
-export class ListingListComponent implements OnInit {
-  listings: Listing[];
+
+export class ListingListComponent implements OnInit{
+  listings: Listing[] = [];
+  
   subscription: Subscription;
 
   @Input() projectId: number;

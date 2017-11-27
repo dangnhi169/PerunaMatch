@@ -29,11 +29,13 @@
                             <td>{{project.name}}</td>
                             <td>
                                 <div *ngFor="let tag of project.tag">
-                                    {{tag}}
+                                    <span class="badge badge-pill badge-success">{{tag}}</span>
                                 </div>
                             </td>
                           <!--  <td>{{project.posterID}}</td>-->
-                            <a routerLink = "/listing/{{project.projectID}}" routerLinkActive = "active"> View Listings</a>
+                          <button type="button" class="btn btn-outline-primary waves-effect">
+                                <a routerLink = "/listing/{{project.projectID}}" routerLinkActive = "active"> View Listings</a>
+                          </button>
                         </tr>
                     </tbody>
             </table>

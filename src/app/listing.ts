@@ -1,5 +1,7 @@
 export class Listing{
+  id: number
   projectId:number
+//  projectName:string
   title:string
   description:string
   start:Date
@@ -7,6 +9,7 @@ export class Listing{
   majors:string[]
   contactName:string
   contactEmail:string
+  // projectName:string
 
 
 /*constructor(projectId: number,title: string,description:string, start: Date,

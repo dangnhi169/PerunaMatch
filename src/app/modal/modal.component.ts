@@ -26,6 +26,7 @@ export class ModalComponent {
   constructor(private modalService: NgbModal) {}
 
   open() {
+    console.log('In Modal Component');
     const modalRef = this.modalService.open(ListingDetailsComponent);
     modalRef.componentInstance.id = this.id;
   }

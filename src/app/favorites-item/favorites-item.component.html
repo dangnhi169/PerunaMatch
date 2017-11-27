@@ -1,0 +1,14 @@
+<div class="card">
+  <div id="fav-details" class="card-block">
+    <div class="panel">
+        <h4>{{favorite.title}}</h4><br>
+        
+        <p class="card-text">Start date: {{favorite.start | date:'shortDate'}}</p>
+        <p class="card-text">End date: {{favorite.end | date:'shortDate'}}</p>
+        
+        <button type="button" class="btn btn-danger">Remove</button>
+    </div>
+  </div>
+</div>
+
+<br>
