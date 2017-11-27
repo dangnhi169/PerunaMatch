@@ -8,13 +8,13 @@
 </h1>
 <div class="container">
       <div class="row">
-      <div class="col-sm-4 mb-5" *ngFor="let p of projects;">
+      <div class="col-sm-4 mb-5" *ngFor="let p of projects; let i = index">
       <div class="card h-100 d-flex flex-column justify-content-between" >
-        <div class="card-header text-center">
-          <h4 class="card-title">{{ p.name }}</h4>
-          <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+        <div class="card-header">
+            <button type="button" class="close" aria-label="Close" (click)="deleteProject(i)">
+                <span aria-hidden="true">&times;</span>
             </button>
+          <h4 class="card-title text-center">{{ p.name }}</h4>
         </div>
         <div class="card-block">
           <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
