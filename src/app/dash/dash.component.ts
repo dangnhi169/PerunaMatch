@@ -105,7 +105,6 @@ export class DashComponent implements OnInit {
       this.projectService.addNewProject(this.newProject)
             .subscribe(result => {
               this.projects = result;
-              console.log("=========" + result);
             });
     }
   }

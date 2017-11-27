@@ -1,40 +1,38 @@
 
 
 <h1>
-  Dashboard
+    Dashboard
+  <div class="mybutton float-right">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="openModal()">Add a New Project</button>    
+  </div>
 </h1>
-<h3>Manage:</h3>
-<!-- <a routerLink = ""
-   routerLinkActive = "active" > Add Project</a> -->
+<div class="container">
+  <div class = "card-deck border-info">
+    <div class="card mt-3 card-inverse card-primary mb-3"  *ngFor="let p of projects;">
+      <div class="card-header text-center border-info">
+        <h4 class="card-title">{{ p.name }}</h4>
+      </div>
+      <div class="card-body border-info">
+        <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
+          <div *ngIf = "p.projectID === l.projectId;">
+            <li class="list-group-item">Listing: {{ l.title }}
+              <div class = "row">
+              <button class= "btn btn-danger" (click) = "delete(l.id)">Delete</button>
+              <a routerLink = "/edit/{{p.posterID}}/{{l.id}}"
+                routerLinkActive = "active" class= "btn btn-info" > Edit</a>
+              </div>
+            </li>
+          </div>
+        </ul>
+      </div>
+      <div class = "card-footer text-center border-info">
+        <a routerLink = "/add/{{p.posterID}}/{{p.projectID}}"
+        routerLinkActive = "active" class="btn btn-info"> Add Listing</a>
 
-<div class = "card-deck">
-
-<div class="card mt-3 card-inverse card-primary mb-3"  *ngFor="let p of projects;">
-  <div class="card-header">
-    <h4 class="card-title">Project: {{ p.name }}</h4>
+      </div>
+    </div>
   </div>
-
-  <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
-    <div *ngIf = "p.projectID === l.projectId;">
-    <li class="list-group-item">Listing: {{ l.title }}
-      <div class = "row">
-      <button class= "btn btn-link" (click) = "delete(l.id)"> Delete</button>
-      <a routerLink = "/edit/{{p.posterID}}/{{l.id}}"
-         routerLinkActive = "active" class= "btn btn-link" > Edit</a>
-       </div>
-    </li>
-  </div>
-  </ul>
-  <div class = "card-footer">
-    <a routerLink = "/add/{{p.posterID}}/{{p.projectID}}"
-     routerLinkActive = "active" > Add Listing</a>
-
-  </div>
-
 </div>
-</div>
-<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="openModal()">Add a New Project</button>
-
 <section>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">

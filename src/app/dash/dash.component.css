@@ -1,7 +1,26 @@
+
+h1 {
+  padding-left: 2%;
+}
+.card-header {
+  background-color: #00bcd4;
+}
+
 .card-footer{
 position:absolute;
   bottom:0;
   width:100%;
+}
+
+.btn.btn-danger{
+  margin: 3%;
+}
+.btn.btn-info {
+  margin: 3%;  
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 .card-deck .card{
@@ -14,4 +33,8 @@ position:absolute;
 
 .modal-title {
   color: white;
+}
+
+.mybutton {
+  padding-right: 1%;
 }
