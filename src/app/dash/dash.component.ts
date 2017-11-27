@@ -19,9 +19,7 @@ export class DashComponent implements OnInit {
     listings: Listing[];
     subscription: Subscription;
 
-    showAddForm: boolean;
     newProject: Project;
-    projectTags = [];
 
       //  myLC : ListingAddComponent;
   //  @ViewChild(this.myLC);
@@ -35,7 +33,6 @@ export class DashComponent implements OnInit {
     console.log("init");
     this.start();
 
-    this.showAddForm = false;
     this.newProject = new Project();
   }
   start(){
@@ -89,8 +86,18 @@ export class DashComponent implements OnInit {
               });
 }*/
 
+  openModal(): void {
+    $('#myModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var modal = $(this);
+     })
+  }
+
   addProject(): void {
-    this.showAddForm = true;
+    var curUserID = localStorage.getItem('currentUser');
+    if(curUserID == this.posterId){
+
+    }
   }
 
 }

@@ -7,3 +7,11 @@ position:absolute;
 .card-deck .card{
   padding-bottom:50px;
   }
+
+.modal-header {
+  background-color: #009688;
+}
+
+.modal-title {
+  color: white;
+}

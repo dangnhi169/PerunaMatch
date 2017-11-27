@@ -7,6 +7,8 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { HttpModule } from '@angular/http';
 
+import * as $ from 'jquery';
+
 //added components
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './SignUp/sign-up.component';
