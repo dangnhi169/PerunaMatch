@@ -16,7 +16,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         let listings: Listing[] = listingDB;
       //  let projects: Project[] = projectsDB;
         console.log(listings);
-      //JSON.parse(localStorage.getItem('listings')) ||
+      // JSON.parse(localStorage.getItem('listings')) ||
         let projects: Project[] =  projectsDB;
         // wrap in timeout to simulate server api call
         setTimeout(() => {

@@ -4,8 +4,8 @@
   Dashboard
 </h1>
 <h3>Manage:</h3>
-<a routerLink = ""
-   routerLinkActive = "active" > Add Project</a>
+<!-- <a routerLink = ""
+   routerLinkActive = "active" > Add Project</a> -->
 
 <div class = "card-deck">
 
@@ -33,3 +33,24 @@
 
 </div>
 </div>
+<button class="btn btn-primary" (click)="addProject()">Add a New Project</button>
+<form class="AddForm" *ngIf="showAddForm" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+  <div class = "form-group">
+    <div class="input-group mb-2 mb-lg-0">
+      <span class="input-group-addon">Project Name</span>
+      <input type = "text"
+              id = "projectName"
+              name="projectName"
+              class = "form-control"
+              [(ngModel)]="newProject.name"
+              #projectName="ngModel"
+              required/>
+    </div>
+    <div *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)"
+        class="text-danger">
+        Name is required
+    </div>
+  </div>
+  <tag-input name="tags" [(ngModel)]='projectTags' theme='bootstrap3-info'></tag-input>
+</form>
+

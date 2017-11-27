@@ -6,6 +6,7 @@ import { SearchService } from '../services/search.service';
 import { Project } from '../../models/project';
 import { Listing } from '../listing';
 import { ListingAddComponent } from '../listing-add/listing-add.component';
+import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
@@ -17,7 +18,12 @@ export class DashComponent implements OnInit {
     posterId:number;
     listings: Listing[];
     subscription: Subscription;
-  //  myLC : ListingAddComponent;
+
+    showAddForm: boolean;
+    newProject: Project;
+    projectTags = [];
+
+      //  myLC : ListingAddComponent;
   //  @ViewChild(this.myLC);
     //@ViewChild(ListingAddComponent) myLC: ListingAddComponent;
 
@@ -29,28 +35,29 @@ export class DashComponent implements OnInit {
     console.log("init");
     this.start();
 
-
+    this.showAddForm = false;
+    this.newProject = new Project();
   }
-start(){
- console.log("start");
+  start(){
+  console.log("start");
 
-  this.route.params
-    .subscribe(
-      (params: Params) => {
-        this.posterId = +params['id'];
-      }
-    );
-  console.log("id", this.posterId);
-    //get all listings matching project id
-  this.searchService.getProjectsbyPosterId(this.posterId)
-              .subscribe(result => {
-                //    console.log(result);
-                    this.projects = result[0];
-                    this.listings = result[1];
-                  //  console.log(this.projects);
-                  //  console.log(this.listings);
-              });
-}
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.posterId = +params['id'];
+        }
+      );
+    console.log("id", this.posterId);
+      //get all listings matching project id
+    this.searchService.getProjectsbyPosterId(this.posterId)
+                .subscribe(result => {
+                  //    console.log(result);
+                      this.projects = result[0];
+                      this.listings = result[1];
+                    //  console.log(this.projects);
+                    //  console.log(this.listings);
+                });
+  }
 /*reloadListings(){
   console.log("reloadListings");
   this.subscription = this.listingService.listingsChanged
@@ -61,11 +68,11 @@ start(){
     );
     this.start();
 }*/
-delete(id:number){
-  console.log("delete");
-  this.listingService.deleteListing(id);
-  this.start();
-}
+  delete(id:number){
+    console.log("delete");
+    this.listingService.deleteListing(id);
+    this.start();
+  }
 
 
 
@@ -81,4 +88,9 @@ delete(id:number){
                     this.listings = result;
               });
 }*/
+
+  addProject(): void {
+    this.showAddForm = true;
   }
+
+}

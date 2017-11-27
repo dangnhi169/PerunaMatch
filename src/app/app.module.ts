@@ -25,6 +25,8 @@ import { DatePickerModule } from 'angular-io-datepicker';
 import { OverlayModule } from 'angular-io-overlay';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helper/fake-backend';
@@ -63,8 +65,9 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
         MultiselectDropdownModule,
         AngularFontAwesomeModule,
         Ng2SearchPipeModule,
+        TagInputModule,
+        BrowserAnimationsModule,
         NgbModule.forRoot(),
-
     ],
     declarations: [
         AppComponent,
