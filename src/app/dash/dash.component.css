@@ -2,15 +2,21 @@
 h1 {
   padding-left: 2%;
 }
+
 .card-header {
   background-color: #00bcd4;
+  height: 120px;
 }
 
-.card-footer{
+.card-block {
+  min-height: 100px;
+}
+
+/* .card-footer{
 position:absolute;
   bottom:0;
   width:100%;
-}
+} */
 
 .btn.btn-danger{
   margin: 3%;
