@@ -95,12 +95,12 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
             // API: To get all listings with specific product id
             if (connection.request.url.match(/\/api\/listing\/\d+$/) && connection.request.method === RequestMethod.Get) {
             /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
-              if(!listingDB){
+              if (!listingDB) {
                     connection.mockRespond(new Response(
                         new ResponseOptions({ status: 400 })
                     ));
-                }else{
-                    //find matching id in Listings Array
+                }else {
+                    // find matching id in Listings Array
                     let urlParts = connection.request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length-1]);
                     let matchedListings = listings.filter(listing => {return listing.projectId === id;});
@@ -215,6 +215,29 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                 }
             }
 
+
+            // to get a SINGLE user from userId appended to end of URL
+            if (connection.request.url.match(/\/api\/user\/\d+$/) && connection.request.method === RequestMethod.Get) {
+
+                  if (!listingDB) {
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 400 })
+                        ));
+                    }else {
+                        // find matching id in Listings Array
+                        const urlParts = connection.request.url.split('/');
+                        const id = parseInt(urlParts[urlParts.length-1]);
+                        const matchedUsers = users.filter(user => {return user.userID === id; });
+                        const user = matchedUsers.length ? matchedUsers[0] : null;
+                        console.log(user);
+                        // respond with user that matches the userId
+                        connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 200, body: {matchedUser: user} })
+                        ));
+                }
+              }
+
+
         }, 500);
 
        // add Listing
@@ -304,7 +327,7 @@ export let fakeBackendProvider = {
     deps: [MockBackend, BaseRequestOptions]
 };
 
-function getUser(users: User[], username: string, password: string){
+function getUser(users: User[], username: string, password: string) {
     let currentUser;
     users.forEach(element => {
         if(element.username === username && element.password === password){

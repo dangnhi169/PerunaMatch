@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
             });
     }
 
-    isLoading(){
+    isLoading() {
         return this.loading;
     }
 }
