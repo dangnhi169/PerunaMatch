@@ -30,6 +30,10 @@ input[type=text]:focus {
     width: 100%;
 }
 
+button:hover a{
+    color: white;
+}
+
 .card-img {
     opacity: 0.25;
 }

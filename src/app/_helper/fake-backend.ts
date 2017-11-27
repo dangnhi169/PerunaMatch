@@ -16,8 +16,8 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         let listings: Listing[] = listingDB;
       //  let projects: Project[] = projectsDB;
         console.log(listings);
-      //JSON.parse(localStorage.getItem('listings')) ||
-        let projects: Project[] =  projectsDB;
+      // JSON.parse(localStorage.getItem('listings')) ||
+        let projects: Project[] = JSON.parse(localStorage.getItem('projects')) || projectsDB;
         // wrap in timeout to simulate server api call
         setTimeout(() => {
 
@@ -269,15 +269,22 @@ if (connection.request.url.endsWith('/api/update') &&
     // add Project
  if (connection.request.url.endsWith('/api/dash/addProject') &&
      connection.request.method === RequestMethod.Post) {
-     let receivedProject = JSON.parse(connection.request.getBody());
-     //let newEmployee = Object.assign(receivedEmployee, {id: uuid.generate()});
-     //data[data.length] = newEmployee;
+    let receivedProject = JSON.parse(connection.request.getBody());
+    receivedProject.projectID = projects.length;
      projects.push(receivedProject);
-     //localStorage.setItem('listings', JSON.stringify(receivedListing));
+     localStorage.setItem('projects', JSON.stringify(projects));
+
+     // return projects for the current poster
+     let projectsForCurUser: Project[] = [];
+     projectsDB.forEach(element => {
+        if(element.posterID === receivedProject.posterID ){
+            projectsForCurUser.push(element);
+        }
+    });
 
      connection.mockRespond(new Response(new ResponseOptions({
          status: 200,
-         body: {projects: projectsDB }
+         body: {projects: projectsForCurUser }
      })));
 
      return;
