@@ -13,11 +13,12 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
     backend.connections.subscribe((connection: MockConnection) => {
 
         let users: User[] = JSON.parse(localStorage.getItem('users')) || UserDB;
-        let listings: Listing[] = listingDB;
+        let listings: Listing[] = JSON.parse(localStorage.getItem('listings')) || listingDB;
       //  let projects: Project[] = projectsDB;
         console.log(listings);
       // JSON.parse(localStorage.getItem('listings')) ||
         let projects: Project[] = JSON.parse(localStorage.getItem('projects')) || projectsDB;
+        console.log(projects);
         // wrap in timeout to simulate server api call
         setTimeout(() => {
 
@@ -121,13 +122,13 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                   ));
               }else{
                   //find matching id in Listings Array
-                  console.log("edit");
+                  //console.log("edit");
                   let urlParts = connection.request.url.split('/');
                   let id = parseInt(urlParts[urlParts.length-1]);
                   let matchedListings = listings.filter(listing => {return listing.id === id;});
-                  console.log(matchedListings);
+                  //console.log(matchedListings);
                   let listing = matchedListings.length ? matchedListings[0] : null;
-                  console.log(listing);
+                //  console.log(listing);
                   //respond with listings that match the project ID
                   connection.mockRespond(new Response(
                       new ResponseOptions({ status: 200, body: {listing: listing}})
@@ -153,14 +154,14 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                   for (var i  = 0; i < matchedProjects.length; i++){
                     let projectId = matchedProjects[i].projectID;
                     //var matchedListings;
-                    console.log(projectId);
+                  //  console.log(projectId);
                     let id = +projectId;
                     ml = listings.filter(listing => {return listing.projectId === projectId;});
-                    console.log(ml);
+                  //  console.log(ml);
                     if(ml.length > 0)
                     for(var k = 0; k < ml.length;k++)
                     matchedListings.push(ml[k]);
-                    console.log(matchedListings);
+                  //  console.log(matchedListings);
                   }
                   //console.log(matchedListings);
                   //respond with listings that match the project ID
@@ -175,15 +176,14 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                 // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
                 //if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                     // find user by id in users array
-                    console.log("delete");
+                    //console.log("delete");
                     let urlParts = connection.request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);
                     for (let i = 0; i < listings.length; i++) {
                         let listing = listings[i];
                         if (listing.id === id) {
-                            // delete user
                             listings.splice(i, 1);
-                            //localStorage.setItem('users', JSON.stringify(users));
+                            localStorage.setItem('listings', JSON.stringify(listings));
                             break;
                         }
                   //  }
@@ -221,10 +221,8 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
     if (connection.request.url.endsWith('/api/dash/addListing') &&
         connection.request.method === RequestMethod.Post) {
         let receivedListing = JSON.parse(connection.request.getBody());
-        //let newEmployee = Object.assign(receivedEmployee, {id: uuid.generate()});
-        //data[data.length] = newEmployee;
         listings.push(receivedListing);
-        //localStorage.setItem('listings', JSON.stringify(receivedListing));
+        localStorage.setItem('listings', JSON.stringify(listings));
 
         connection.mockRespond(new Response(new ResponseOptions({
             status: 200,
@@ -237,29 +235,28 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 //update lisitng
 if (connection.request.url.endsWith('/api/update') &&
     connection.request.method === RequestMethod.Put) {{
-      console.log("in update");
+    //  console.log("in update");
     let receivedListing = JSON.parse(connection.request.getBody());
     //let clonedListing = receivedListing;
-    console.log("cloned listing" , receivedListing);
+  //  console.log("cloned listing" , receivedListing);
     receivedListing.start = new Date(receivedListing.start);
     receivedListing.end = new Date(receivedListing.end);
     let listingWasFound = false;
     listings.some((element: Listing, index: number) => {
         if (element.id === receivedListing.id) {
-          console.log("found");
+      //    console.log("found");
             listings[index] = receivedListing;
             listingWasFound = true;
+            localStorage.setItem('listings', JSON.stringify(listings));
             return true;
         }
     });
     if (!listingWasFound) {
             connection.mockRespond(new Response(new ResponseOptions({
                 status: 400,
-                body: 'Employee could not be updated because was not found'
+                body: 'Listing not found'
             })));
         } else {
-          //  localStorage.setItem('employees', JSON.stringify(data));
-            //listings[index] =
             connection.mockRespond(new Response(new ResponseOptions({status: 200})));
         }
 
