@@ -98,9 +98,14 @@ export class DashComponent implements OnInit {
   }
 
   addProject(): void {
-    var curUserID = localStorage.getItem('currentUser');
-    if(Number(curUserID) == this.posterId){
-      this.projectService.addNewProject(this.newProject);
+    var curUserID = JSON.parse(localStorage.getItem('currentUser'));
+    // make sure only the current user can post new project
+    if(Number(curUserID.token) == this.posterId){
+      this.projectService.addNewProject(this.newProject)
+            .subscribe(result => {
+              this.projects = result;
+              console.log("=========" + result);
+            });
     }
   }
 

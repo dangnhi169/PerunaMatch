@@ -273,7 +273,7 @@ if (connection.request.url.endsWith('/api/update') &&
      projects.push(receivedProject);
 
      // return projects for the current poster
-     let projectsForCurUser;
+     let projectsForCurUser = projects;
      projectsDB.forEach(element => {
         if(element.posterID === receivedProject.posterID ){
             projectsForCurUser.push(element);
