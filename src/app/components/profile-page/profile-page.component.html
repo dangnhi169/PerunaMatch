@@ -6,8 +6,8 @@
   <h1>{{user?.username}}</h1>
   <p class="title">Student</p>
   <p>Southern Methodist University</p>
-  <a href="#"><i class="fa fa-linkedin icon"></i></a> 
-  <a href="#"><i class="fa fa-facebook icon"></i></a> 
-  <p><a [href]="'mailto:' + user.email">Contact</a></p>
+  <a href="#"><i class="fa fa-linkedin icon"></i></a>
+  <a href="#"><i class="fa fa-facebook icon"></i></a>
+  <p><a [href]="'mailto:' + user?.email">Contact</a></p>
   <button class="btn btn-primary" (click)="logout()">Log out</button>
 </div>
