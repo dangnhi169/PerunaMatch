@@ -24,18 +24,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let project of projects | filter:filter" >
+                        <tr *ngFor="let project of projects | filter:filter" routerLink = "/listing/{{project.projectID}}" routerLinkActive = "active">
 
-                            <td>{{project.name}}</td>
+                            <td><a routerLink = "/listing/{{project.projectID}}" routerLinkActive = "active">{{project.name}}</a></td>
                             <td>
                                 <div *ngFor="let tag of project.tag">
                                     <span class="badge badge-pill badge-success">{{tag}}</span>
                                 </div>
                             </td>
                           <!--  <td>{{project.posterID}}</td>-->
-                          <button type="button" class="btn btn-outline-primary waves-effect mt-3">
-                                <a routerLink = "/listing/{{project.projectID}}" routerLinkActive = "active"> View Listings</a>
-                          </button>
+                          <button type="button" class="btn btn-outline-primary waves-effect mt-3" routerLink = "/listing/{{project.projectID}}" routerLinkActive = "active">View Listings</button>
                         </tr>
                     </tbody>
             </table>
