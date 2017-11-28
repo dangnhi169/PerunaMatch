@@ -20,15 +20,11 @@ export class ProfilePageComponent implements OnInit {
     private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // get userId from route
-    this.route.params
-    .subscribe(
-      (params: Params) => {
-        this.userId = + params['id'];
-      }
-    );
 
-    this.userService.getUser(this.userId)
+    var currentUser: string = JSON.parse(localStorage.getItem('currentUser')).token;
+    var id: number = parseInt(currentUser);
+
+    this.userService.getUser(id)
     .subscribe(result => {
       // console.log(result);
       this.user = result;
