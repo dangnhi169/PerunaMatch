@@ -105,6 +105,7 @@ export class DashComponent implements OnInit {
       this.projectService.addNewProject(this.newProject)
             .subscribe(result => {
                 this.projects = result;
+                this.refresh();
             });
     }
   }
@@ -117,12 +118,12 @@ export class DashComponent implements OnInit {
       this.projectService.deleteProject(projectID)
             .subscribe(result => {
                 this.projects = result;
-                this.refreshAfterDelete();
+                this.refresh();
             });
     }
   }
 
-  refreshAfterDelete() {
+  refresh() {
     this.searchService.getProjectsbyPosterId(this.posterId)
                 .subscribe(result => {
                       this.projects = result[0];

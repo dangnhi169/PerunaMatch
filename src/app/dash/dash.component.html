@@ -1,6 +1,6 @@
 
 
-<h1>
+<h1 class="myheader text-center mt-3 mb-5">
     Dashboard
   <div class="mybutton float-right">
       <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="openModal()">Add a New Project</button>    
@@ -19,7 +19,7 @@
         <div class="card-block">
           <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
             <div *ngIf = "p.projectID === l.projectId;">
-              <li class="list-group-item">Listing: {{ l.title }}
+              <li class="list-group-item">{{ l.title }}
                 <div class = "row">
                 <button class= "btn btn-danger" (click) = "delete(l.id)">Delete</button>
                 <a routerLink = "/edit/{{p.posterID}}/{{l.id}}"
@@ -65,7 +65,7 @@
                         Name is required
                     </div>
                   </div>
-                  <tag-input name="tags" [(ngModel)]='newProject.tag' theme='bootstrap3-info'></tag-input>
+                  <tag-input name="tags" [(ngModel)]='newProject.tag' theme='bootstrap'></tag-input>
                 </form>
           </div>
           <div class="modal-footer">

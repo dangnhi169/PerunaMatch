@@ -318,10 +318,7 @@ if (connection.request.url.endsWith('/api/update') &&
     }
     return;
 
-
-
-
-  });
+  }, 10);
 
     return new Http(backend, options);
 }
