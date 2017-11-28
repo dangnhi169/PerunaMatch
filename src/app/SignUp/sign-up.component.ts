@@ -27,6 +27,7 @@ export class SignUpComponent {
         this.signupService.signup(this.model)
             .subscribe(result => {
                 if (result === true) {
+                    console.log(localStorage.getItem('currentUser'));
                     this.router.navigate(['/profile']);
                 } else {
                     this.error = 'The above username and/or userid is taken';
