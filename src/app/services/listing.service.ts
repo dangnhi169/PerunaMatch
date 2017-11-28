@@ -7,12 +7,15 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ListingService {
+
   private listings: Listing[];
+
   private listingAdded: boolean;
   constructor(private http: Http){}
   listingsChanged = new Subject<Listing[]>();
   private listing: Listing;
   getListings(): Observable<Listing[]>{
+
     return this.http.get('/api/listing', JSON.stringify({}))
     .map((response: Response) => {
         // set token property (which is userid)
@@ -23,7 +26,7 @@ export class ListingService {
 
   }
 
-  getListingsbyProjectId(id:number): Observable<Listing[]>{
+  getListingsbyProjectId(id: number): Observable<Listing[]> {
     return this.http.get('/api/listing/' + id, JSON.stringify({}))
     .map((response: Response) => {
         this.listings = response.json().listings;

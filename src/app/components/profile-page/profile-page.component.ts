@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Subscription } from 'rxjs/Subscription';
+import { User } from '../../../models/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -10,12 +13,32 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 
 export class ProfilePageComponent implements OnInit {
+  user: User;
+  userId: number;
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) { }
+  constructor(private userService: UserService, private router: Router,
+    private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // get userId from route
+    this.route.params
+    .subscribe(
+      (params: Params) => {
+        this.userId = + params['id'];
+      }
+    );
 
-  logout(){
+    this.userService.getUser(this.userId)
+    .subscribe(result => {
+      // console.log(result);
+      this.user = result;
+      console.log(this.user);
+    });
+
+  }
+
+  logout() {
+    // on logout, return to home
         this.authenticationService.logout();
         localStorage.clear();
         this.router.navigate(['/home']);

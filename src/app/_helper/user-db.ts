@@ -8,7 +8,6 @@ export let UserDB: User[] = [
         password: 'welcome',
         email: 'fakeEmail@gmail.com',
         isProfessor: false
-
     }, {
         userID: 1,
         username: 'nina',
