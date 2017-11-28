@@ -54,6 +54,7 @@ import { ProjectAddComponent } from './project-add/project-add.component';
 import { ListingEditComponent } from './listing-edit/listing-edit.component';
 
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FavoriteService } from './services/favorite.service';
 
 @NgModule({
 
@@ -95,6 +96,7 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
 
     ],
     providers: [
+        FavoriteService,
         ListingService,
         AuthGuard,
         AuthenticationService,

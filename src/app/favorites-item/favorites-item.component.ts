@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild} from '@angular/core';
-import { Listing } from '../listing';
+import { Favorite } from '../favorite';
 
 @Component({
   selector: 'app-favorites-item',
@@ -8,10 +8,14 @@ import { Listing } from '../listing';
 })
 export class FavoritesItemComponent implements OnInit {
 
-  @Input() favorite: Listing;
+  @Input() favorite: Favorite;
   @Input() index: number;
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(this.favorite);
+  }
 
-  remove() { }
+  removeFavorite() {
+    
+  }
 }

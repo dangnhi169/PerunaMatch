@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
   { path: 'add/:pid/:id', component: ListingAddComponent},
   { path: 'edit/:pid/:id', component: ListingEditComponent},
-//   { path: 'favorites', component: FavoritesListComponent}
+  { path: 'favorites', component: FavoritesListComponent}
 
 ]
 @NgModule({
