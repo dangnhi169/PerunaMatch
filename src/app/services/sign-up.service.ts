@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
-let headers = new http_1.Headers({ 'Content-Type': 'application/json' });
 
 @Injectable()
 export class SignUpService {
     private token: string;
     constructor(private http: Http) { }
     signup(userInfo: any): Observable<boolean> {
-        return this.http.put('http://18.216.69.61/signup', JSON.stringify(userInfo))
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        const options = new RequestOptions({headers: headers});
+
+        return this.http.put('http://18.216.69.61/signup', JSON.stringify(userInfo), options)
             .map((response: Response) => {
                 const status = response.status;
                 if (status === 401) {
