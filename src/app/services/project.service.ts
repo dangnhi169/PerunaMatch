@@ -21,4 +21,12 @@ export class ProjectService {
 
   }
 
+  deleteProject(id: number): Observable<Project[]>{
+    return this.http.delete('/api/project/' + id)
+    .map((response: Response) => {
+        this.projectsForCurUser = response.json().projects;
+        return this.projectsForCurUser;
+    });
+  }
+
 }

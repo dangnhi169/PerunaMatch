@@ -1,32 +1,36 @@
-<h1>
+<h1 class="myheader text-center mt-3 mb-5">
     Dashboard
   <div class="mybutton float-right">
       <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="openModal()">Add a New Project</button>
   </div>
 </h1>
 <div class="container">
-  <div class = "card-deck border-info">
-    <div class="card mt-3 card-inverse card-primary mb-3"  *ngFor="let p of projects;">
-      <div class="card-header text-center border-info">
-        <h4 class="card-title">{{ p.name }}</h4>
-      </div>
-      <div class="card-body border-info">
-        <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
-          <div *ngIf = "p.projectID === l.projectId;">
-            <li class="list-group-item">Listing: {{ l.title }}
-              <div class = "row">
-              <button class= "btn btn-danger" (click) = "delete(l.id)">Delete</button>
-              <a routerLink = "/edit/{{p.posterID}}/{{l.id}}"
-                routerLinkActive = "active" class= "btn btn-info" > Edit</a>
-              </div>
-            </li>
-          </div>
-        </ul>
-      </div>
-      <div class = "card-footer text-center border-info">
-        <a routerLink = "/add/{{p.posterID}}/{{p.projectID}}"
-        routerLinkActive = "active" class="btn btn-info"> Add Listing</a>
-
+      <div class="row">
+      <div class="col-sm-4 mb-5" *ngFor="let p of projects; let i = index">
+      <div class="card h-100 d-flex flex-column justify-content-between" >
+        <div class="card-header">
+            <button type="button" class="close" aria-label="Close" (click)="deleteProject(i)">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          <h4 class="card-title text-center">{{ p.name }}</h4>
+        </div>
+        <div class="card-block">
+          <ul class="list-group list-group-flush" *ngFor = "let l of listings;">
+            <div *ngIf = "p.projectID === l.projectId;">
+              <li class="list-group-item">{{ l.title }}
+                <div class = "row">
+                <button class= "btn btn-danger" (click) = "delete(l.id)">Delete</button>
+                <a routerLink = "/edit/{{p.posterID}}/{{l.id}}"
+                  routerLinkActive = "active" class= "btn btn-info" > Edit</a>
+                </div>
+              </li>
+            </div>
+          </ul>
+        </div>
+        <div class = "card-footer text-center">
+          <a routerLink = "/add/{{p.posterID}}/{{p.projectID}}"
+          routerLinkActive = "active" class="btn btn-info"> Add Listing</a>
+        </div>
       </div>
     </div>
   </div>
@@ -59,7 +63,7 @@
                         Name is required
                     </div>
                   </div>
-                  <tag-input name="tags" [(ngModel)]='newProject.tag' theme='bootstrap3-info'></tag-input>
+                  <tag-input name="tags" [(ngModel)]='newProject.tag' theme='bootstrap'></tag-input>
                 </form>
           </div>
           <div class="modal-footer">

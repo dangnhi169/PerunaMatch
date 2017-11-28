@@ -40,6 +40,7 @@ export class ProfilePageComponent implements OnInit {
   logout() {
     // on logout, return to home
         this.authenticationService.logout();
+        localStorage.clear();
         this.router.navigate(['/home']);
   }
 

@@ -290,7 +290,7 @@ if (connection.request.url.endsWith('/api/update') &&
  if (connection.request.url.endsWith('/api/dash/addProject') &&
      connection.request.method === RequestMethod.Post) {
     let receivedProject = JSON.parse(connection.request.getBody());
-    receivedProject.projectID = projects.length;
+    receivedProject.projectID = projects[projects.length - 1].projectID + 1;
      projects.push(receivedProject);
      localStorage.setItem('projects', JSON.stringify(projects));
 
@@ -310,9 +310,35 @@ if (connection.request.url.endsWith('/api/update') &&
      return;
  }
 
+    // delete project
+    if (connection.request.url.match(/\/api\/project\/\d+$/)
+        && connection.request.method === RequestMethod.Delete) {
 
+        let urlParts = connection.request.url.split('/');
+        let id = parseInt(urlParts[urlParts.length - 1]);
 
-  });
+        projects.forEach( function(item, i) {
+            if(item.projectID == id){
+                projects.splice(i, 1);
+                localStorage.setItem('projects', JSON.stringify(projects));
+            }
+        });
+
+        // return projects for the current poster
+        let projectsForCurUser: Project[] = [];
+        var curUserID = JSON.parse(localStorage.getItem('currentUser'));        
+        projectsDB.forEach(element => {
+            if(element.posterID === curUserID.token ){
+                projectsForCurUser.push(element);
+            }
+        });
+
+        // respond 200 OK
+        connection.mockRespond(new Response(new ResponseOptions({ status: 200, body: {projects: projectsForCurUser } })));
+    }
+    return;
+
+  }, 10);
 
     return new Http(backend, options);
 }
