@@ -11,7 +11,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class FavoritesListComponent implements OnInit {
 
-  favorites: Favorite[];
+  favorites: Favorite[] = [];
   subscription: Subscription;
   @Input() projectId: number
 
