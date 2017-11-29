@@ -1,88 +1,68 @@
 <div class="mySignUp">
-<div class="container">
-    <h1 class="title">Sign Up</h1>        
+  <div class="container">
+    <h1 class="title">Sign Up</h1>
     <div class="signUpForm">
-        <form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
-            <div class="form-group">
-                <div class="input-group mb-2 mb-sm-0">
-                        <div class="input-group-addon">Username</div>
-                        <input type="text" class="form-control" id="username" 
-                            name="username" [(ngModel)]="model.username" #name="ngModel" required>
-                </div>
-                <div *ngIf="name.invalid && (name.dirty || name.touched)"
-                    class="text-danger">
-                    Name required
-                </div>
+      <form name="form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
+        <div class="form-group">
+          <div class="input-group mb-2 mb-sm-0">
+            <div class="input-group-addon">Username</div>
+            <input type="text" class="form-control" id="username" name="username" [(ngModel)]="model.username" #name="ngModel" required>
+          </div>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+            Name required
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group mb-2 mb-sm-0">
+            <div class="input-group-addon">Password</div>
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="model.password" #pass="ngModel" required>
+          </div>
+          <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="text-danger">
+            Password required
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group mb-2 mb-sm-0">
+            <div class="input-group-addon">SMU Email</div>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="model.email" #email="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+              required>
+          </div>
+          <div *ngIf="email.errors && email.touched">
+            <div [hidden]="!email.errors.required" class="text-danger">
+              Email required
             </div>
-            <div class="form-group">
-                <div class="input-group mb-2 mb-sm-0">
-                    <div class="input-group-addon">Password</div>
-                    <input type="password" class="form-control" id="password" 
-                            name="password" [(ngModel)]="model.password" #pass="ngModel" required>
-                </div>
-                <div *ngIf="pass.invalid && (pass.dirty || pass.touched)"
-                    class="text-danger">
-                    Password required
-                </div>
+            <div [hidden]="!email.errors.pattern" class="text-danger">
+              Email not valid
             </div>
-            <div class="form-group">
-                <div class="input-group mb-2 mb-sm-0">
-                    <div class="input-group-addon">SMU Email</div>
-                    <input type="email" class="form-control" id="email" 
-                            name="email" [(ngModel)]="model.email" #email="ngModel" 
-                            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required>
-                </div>
-                <div *ngIf="email.errors && email.touched">
-                    <div [hidden]="!email.errors.required"
-                        class="text-danger">
-                        Email required
-                    </div>
-                    <div [hidden]="!email.errors.pattern"
-                        class="text-danger">
-                        Email not valid
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group mb-2 mb-sm-0">
-                    <div class="input-group-addon">SMU ID</div>
-                    <input type="text" class="form-control" id="id" 
-                            name="id" [(ngModel)]="model.userID" #smuID="ngModel" required>
-                </div>
-                <div *ngIf="smuID.invalid && (smuID.dirty || smuID.touched)"
-                    class="text-danger">
-                    SMU ID required
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="type">Are you a student or a professor?</label>
-                <select class="form-control" id="type" name="type" [(ngModel)]="model.isProfessor" #type="ngModel" required>
-                    <option selected></option>
-                    <option [ngValue]="false">Student</option>
-                    <option [ngValue]="true">Professor</option>
-                </select>
-                <div *ngIf="type.invalid && (type.dirty || type.touched)"
-                    class="text-danger">
-                    Type required
-                </div>
-            </div>
-            <div class="termOfUse">
-                <a href="#">Term of use</a>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" required>
-                        I have read the terms of use and agree
-                    </label>
-                </div>
-            </div>
-            <div class="submitButton">
-                <button type="submit" class="btn btn-primary" 
-                        (click)="signup()" [disabled]="!f.form.valid">
-                        Register
-                </button>                
-            </div>
-            <div class="error" *ngIf="error" class="alert alert-danger">{{error}}</div>            
-        </form>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group mb-2 mb-sm-0">
+            <div class="input-group-addon">SMU ID</div>
+            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="model.userID" #smuID="ngModel" required>
+          </div>
+          <div *ngIf="smuID.invalid && (smuID.dirty || smuID.touched)" class="text-danger">
+            SMU ID required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="type">Are you a student or a professor?</label>
+          <select class="form-control" id="type" name="type" [(ngModel)]="model.isProfessor" #type="ngModel" required>
+            <option selected></option>
+            <option [ngValue]="false">Student</option>
+            <option [ngValue]="true">Professor</option>
+          </select>
+          <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-danger">
+            Type required
+          </div>
+        </div>
+        <div class="submitButton">
+          <button type="submit" class="btn btn-primary" (click)="signup()" [disabled]="!f.form.valid">
+            Register
+          </button>
+        </div>
+        <div class="error" *ngIf="error" class="alert alert-danger">{{error}}</div>
+      </form>
     </div>
-</div>
+  </div>
 </div>
