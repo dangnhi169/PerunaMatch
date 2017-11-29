@@ -135,7 +135,10 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                   let matchedListings = listings.filter(listing => {return listing.id === id;});
                   //console.log(matchedListings);
                   let listing = matchedListings.length ? matchedListings[0] : null;
-                //  console.log(listing);
+                  listing.start = new Date(listing.start);
+                  listing.end = new Date(listing.end);
+
+                  console.log(listing);
                   //respond with listings that match the project ID
                   connection.mockRespond(new Response(
                       new ResponseOptions({ status: 200, body: {listing: listing}})
@@ -268,7 +271,7 @@ if (connection.request.url.endsWith('/api/update') &&
     //  console.log("in update");
     let receivedListing = JSON.parse(connection.request.getBody());
     //let clonedListing = receivedListing;
-  //  console.log("cloned listing" , receivedListing);
+    console.log("dates" , receivedListing.start,receivedListing.end) ;
     receivedListing.start = new Date(receivedListing.start);
     receivedListing.end = new Date(receivedListing.end);
     let listingWasFound = false;
@@ -333,7 +336,7 @@ if (connection.request.url.endsWith('/api/update') &&
 
         // return projects for the current poster
         let projectsForCurUser: Project[] = [];
-        var curUserID = JSON.parse(localStorage.getItem('currentUser'));        
+        var curUserID = JSON.parse(localStorage.getItem('currentUser'));
         projectsDB.forEach(element => {
             if(element.posterID === curUserID.token ){
                 projectsForCurUser.push(element);
