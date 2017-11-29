@@ -29,6 +29,7 @@ export class UserService {
         return this.http.get('/api/user/' + id, JSON.stringify({}))
         .map((response: Response) => {
             this.user = response.json().matchedUser;
+            console.log(this.user);
             return this.user;
         });
     }

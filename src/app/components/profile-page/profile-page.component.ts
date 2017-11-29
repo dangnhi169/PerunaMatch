@@ -37,6 +37,9 @@ export class ProfilePageComponent implements OnInit {
 
   }
 
+  dash(){
+    this.router.navigateByUrl('/dash/' + this.userId);
+  }
   logout() {
     // on logout, return to home
         this.authenticationService.logout();

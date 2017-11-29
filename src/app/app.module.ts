@@ -54,6 +54,7 @@ import { ProjectAddComponent } from './project-add/project-add.component';
 import { ListingEditComponent } from './listing-edit/listing-edit.component';
 
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
 
@@ -90,7 +91,8 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
         ModalAddComponent,
         DashComponent,
         ProjectAddComponent,
-        ListingEditComponent
+        ListingEditComponent,
+        NavComponent
 
 
     ],
