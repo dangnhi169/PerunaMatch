@@ -1,0 +1,51 @@
+
+h1 {
+  padding-left: 2%;
+}
+
+.card-header {
+  background-color: #00798C;
+  height: 140px;
+  color: white;
+}
+
+.card-block {
+  min-height: 100px;
+}
+
+.card-footer{
+  background-color: #E1E5F2
+}
+
+.btn.btn-danger{
+  margin: 3%;
+  min-width: 40%;
+}
+.btn.btn-info {
+  margin: 3%;
+  min-width: 40%;  
+}
+
+.list-group-item {
+  font-weight: bold;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.card-deck .card{
+  padding-bottom:50px;
+  }
+
+.modal-header {
+  background-color: #009688;
+}
+
+.modal-title {
+  color: white;
+}
+
+.mybutton {
+  padding-right: 1%;
+}
