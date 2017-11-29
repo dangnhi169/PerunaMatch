@@ -1,0 +1,22 @@
+
+ss-multiselect-dropdown {
+    width: 100%;
+    padding: 2%;
+  }
+  
+  form{
+    padding: 5%;
+  }
+  
+  h1{
+    text-align: center;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  .bold {
+    font-weight: bold;  
+  }
+  
