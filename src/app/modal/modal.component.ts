@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Listing } from '../listing';
 import { ListingDetailsComponent } from '../listing-details/listing-details.component';
-import { Favorite } from '../favorite';
-import { FavoritesDetailsComponent } from '../favorites-details/favorites-details.component';
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -30,21 +28,6 @@ export class ModalComponent {
   open() {
     console.log('In Modal Component');
     const modalRef = this.modalService.open(ListingDetailsComponent);
-    modalRef.componentInstance.id = this.id;
-  }
-}
-
-@Component({
-  selector: 'fav-modal-component',
-  templateUrl: './modal.component.html'
-})
-export class FavoriteModalComponent {
-  @Input() id:number;
-  constructor(private modalService: NgbModal) {}
-
-  open() {
-    console.log('In Modal Component');
-    const modalRef = this.modalService.open(FavoritesDetailsComponent);
     modalRef.componentInstance.id = this.id;
   }
 }

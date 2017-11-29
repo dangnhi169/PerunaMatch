@@ -25,7 +25,7 @@ const appRoutes: Routes = [
   { path: 'dash/:id', component: DashComponent},
   { path: 'add/:pid/:id', component: ListingAddComponent},
   { path: 'edit/:pid/:id', component: ListingEditComponent},
-  { path: 'favorites', component: FavoritesListComponent}
+//   { path: 'favorites', component: FavoritesListComponent}
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-<!-- <div class="card">
+<div class="card">
   <div id="fav-details" class="card-block">
     <div class="panel">
         <h4>{{favorite.title}}</h4><br>
@@ -11,42 +11,4 @@
   </div>
 </div>
 
-<br> -->
-
-<a
-style="cursor: pointer;"
-class="list-group-item clearfix">
-  <div class="float-left">
-    <h4 class="list-group-item-heading">{{ favorite.title }}</h4>
-    <p class="list-group-item-text">{{ favorite.description }}</p>
-
-  </div>
-  <span class="float-right">
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header"style="background-color: #009688;">
-            <h5 class="modal-title" id="exampleModalLabel">Project Listing</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-              <app-favorites-details
-                [id]="index">
-              </app-favorites-details>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary"
-            data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <fav-modal-component [id]="index"></fav-modal-component>
-  </span>
-
-</a>
+<br>
