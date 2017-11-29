@@ -53,7 +53,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                     ));
                 } else {
                     let newUser: User = {
-                        userID: params.userID,
+                        userID: Number(params.userID),
                         username: params.username,
                         password: params.password,
                         email: params.email,

@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormGroup,FormsModule, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { BaseRequestOptions } from '@angular/http';
+// import { MockBackend, MockConnection } from '@angular/http/testing';
+// import { BaseRequestOptions } from '@angular/http';
 import { HttpModule } from '@angular/http';
 
 import * as $ from 'jquery';
@@ -31,7 +31,7 @@ import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helper/fake-backend';
+// import { fakeBackendProvider } from './_helper/fake-backend';
 import { AuthGuard } from './_guard/auth.guard';
 
 //added services
@@ -99,9 +99,9 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
         AuthGuard,
         AuthenticationService,
         UserService,
-        fakeBackendProvider,
-        MockBackend,
-        BaseRequestOptions,
+        // fakeBackendProvider,
+        // MockBackend,
+        // BaseRequestOptions,
         SignUpService,
         SearchService,
         ProjectService,
