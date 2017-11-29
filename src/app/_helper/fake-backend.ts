@@ -82,7 +82,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                     ));
                 } else {
                     connection.mockRespond(new Response(
-                        new ResponseOptions({ status: 200, body: {projects: projectsDB}})
+                        new ResponseOptions({ status: 200, body: {projects: projects}})
                     ));
                 }
             }
@@ -303,7 +303,7 @@ if (connection.request.url.endsWith('/api/update') &&
     receivedProject.projectID = projects[projects.length - 1].projectID + 1;
      projects.push(receivedProject);
      localStorage.setItem('projects', JSON.stringify(projects));
-
+     console.log(projects);
      // return projects for the current poster
      let projectsForCurUser: Project[] = [];
      projectsDB.forEach(element => {

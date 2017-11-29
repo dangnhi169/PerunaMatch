@@ -102,6 +102,12 @@ export class DashComponent implements OnInit {
     // make sure only the current user can post new project
     if(Number(curUserID.token) == this.posterId){
       this.newProject.posterID = this.posterId;
+      //console.log(this.newProject.tag);
+      for(var k = 0; k < this.newProject.tag.length; k++){
+        this.newProject.tag[k] = this.newProject.tag[k]["display"];
+      }
+      //console.log(this.newProject.tag);
+      //console.log(this.newProject);
       this.projectService.addNewProject(this.newProject)
             .subscribe(result => {
                 this.projects = result;
