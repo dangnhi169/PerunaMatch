@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from '../login/login.component';
 import { SignUpComponent } from '../SignUp/sign-up.component';
@@ -19,19 +19,21 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignUpComponent},
   { path: 'home', component: HomeComponent},
   { path: 'listing/:id', component: ListingListComponent},
-  { path: 'dash/:id', component: DashComponent},
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
+  { path: 'user/:id', component: ProfilePageComponent, canActivate: [AuthGuard]},
+  { path: 'add', component: ListingAddComponent},
+  { path: 'dash/:id', component: DashComponent},
   { path: 'add/:pid/:id', component: ListingAddComponent},
   { path: 'edit/:pid/:id', component: ListingEditComponent},
   { path: 'favorites', component: FavoritesListComponent}
+];
 
-]
 @NgModule({
     imports: [
         RouterModule.forRoot(appRoutes)
     ],
-    exports:[RouterModule]
+    exports: [RouterModule]
 
 })
 
-export class RoutingModule{}
+export class RoutingModule { }

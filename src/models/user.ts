@@ -5,4 +5,3 @@ export class User {
     email?: string;
     isProfessor?: boolean;
 }
-  

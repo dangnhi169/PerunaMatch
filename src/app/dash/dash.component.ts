@@ -104,9 +104,31 @@ export class DashComponent implements OnInit {
       this.newProject.posterID = this.posterId;
       this.projectService.addNewProject(this.newProject)
             .subscribe(result => {
-              this.projects = result;
+                this.projects = result;
+                this.refresh();
             });
     }
+  }
+
+  deleteProject(id: number): void {
+    var curUserID = JSON.parse(localStorage.getItem('currentUser'));
+    var projectID = this.projects[id].projectID;
+    // make sure only the current user can post new project
+    if(Number(curUserID.token) == this.posterId){
+      this.projectService.deleteProject(projectID)
+            .subscribe(result => {
+                this.projects = result;
+                this.refresh();
+            });
+    }
+  }
+
+  refresh() {
+    this.searchService.getProjectsbyPosterId(this.posterId)
+                .subscribe(result => {
+                      this.projects = result[0];
+                      this.listings = result[1];
+                });
   }
 
 }

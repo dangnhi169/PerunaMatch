@@ -31,7 +31,7 @@
     "jquery": "^3.2.1",
     "ng2-datetime": "^1.4.0",
     "ng2-search-filter": "^0.3.1",
-    "ngx-chips": "^1.5.10",
+    "ngx-chips": "^1.5.11",
     "portfinder": "^1.0.13",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.2",
