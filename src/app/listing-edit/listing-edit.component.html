@@ -1,15 +1,5 @@
+<h3 class="bold text-center mt-4"> Edit Listing </h3>
 
-
-<!--<div class="modal-header"style="background-color: #009688;">
-<h4 class="modal-title">Edit Listing</h4>
-<!--<button type="button" class="close" aria-label="Close" (click)="activeModal.close('Close click')">
-  <span aria-hidden="true">&times;</span>
-</button>-->
-<!--</div>-->
-
-<h3> Edit Listing </h3>
-
-<!--<div class="modal-body">-->
 <div class = "container">
 <div class = "row">
   <div class = "col-md-12">
@@ -40,22 +30,22 @@
         </div>
       </div>
       <div class = "row">
-      <div class = "col-md-6">
+      <div class = "bold col-md-6">
        Start Date <date-picker formControlName="sdate"></date-picker>
      </div>
-     <div class = "col-md-6">
+     <div class = "bold col-md-6">
       End Date <date-picker formControlName="edate"></date-picker>
     </div>
   </div>
 
-<div class = "row">
-  <div class = "col-md-6">
+<div class = "row mt-3">
+  <div class = "bold col-md-6">
    Majors<ss-multiselect-dropdown [options]="myOptions"
     formControlName="majors"></ss-multiselect-dropdown>
 </div>
 </div>
 
-  <div class = "row">
+  <div class = "row mt-2">
   <div class = "col-md-6">
     <div class="form-group">
         <label for="cname">Contact Name:</label>
@@ -79,7 +69,7 @@
 </div>
 <button
             type="submit"
-            class="btn btn-secondary"
+            class="btn btn-primary btn-block mt-4"
             [disabled]="!form.valid">Submit Changes</button>
     </form>
   </div>
