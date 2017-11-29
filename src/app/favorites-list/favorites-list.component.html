@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <h1 id="fav-header" class="title">Favorites</h1>
 
   <div class="row">
@@ -8,6 +8,39 @@
           [favorite]="f"
           [index]="i">
       </app-favorites-item>
+    </div>
+  </div>
+</div> -->
+
+<h1>Favorites</h1>
+<div class="row">
+  <div class="col-12">
+    <div class = "container" *ngIf = "favorites.length > 0; else default">
+      <app-favorites-item
+        *ngFor="let f of favorites; let i = index"
+        [favorite]="f"
+        [index]="i">
+      </app-favorites-item>
+    </div>
+  </div>
+
+  <!--else display default message-->
+  <ng-template #default>
+    <div class = "container">
+        <div class = "row">
+          <div class= "col-md-12">
+          <h3>You have no favorite projects!</h3>
+          </div>
+        </div>
+    </div>
+  </ng-template>
+  <br/>
+
+  <div class = "container">
+    <div class = "row">
+      <div class= "col-md-12">
+        <a routerLink = "/home" routerLinkActive = "active"> Back to Projects Page</a>
+      </div>
     </div>
   </div>
 </div>

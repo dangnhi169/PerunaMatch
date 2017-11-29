@@ -3,24 +3,197 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { User } from '../../models/user';
 import { Listing } from '../listing';
+import { Favorite } from '../favorite';
 import { Project } from '../../models/project';
 import { UserDB } from './user-db';
 import { projectsDB } from './project-db';
 import { listingDB } from './listing-db';
+import { favoriteDB } from './favorite-db'
 
 export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOptions) {
     // configure fake backend
     backend.connections.subscribe((connection: MockConnection) => {
 
         let users: User[] = JSON.parse(localStorage.getItem('users')) || UserDB;
-        let listings: Listing[] = JSON.parse(localStorage.getItem('listings')) || listingDB;
+        let listings: Listing[] = listingDB;
+        let favorites: Favorite[] = favoriteDB;
       //  let projects: Project[] = projectsDB;
         console.log(listings);
+        console.log(favorites);
       // JSON.parse(localStorage.getItem('listings')) ||
         let projects: Project[] = JSON.parse(localStorage.getItem('projects')) || projectsDB;
         console.log(projects);
         // wrap in timeout to simulate server api call
         setTimeout(() => {
+
+            // API: To get all favorites
+            if (connection.request.url.endsWith('/api/favorites') && connection.request.method === RequestMethod.Get) {
+                if(!favoriteDB){
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 400 })
+                    ));
+                } else {
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 200, body: {favorites: favoriteDB}})
+                    ));
+                }
+            }
+
+            // API: To get all favorites with specific product id
+            if (connection.request.url.match(/\/api\/favorites\/\d+$/) && connection.request.method === RequestMethod.Get) {
+                /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
+                if(!favoriteDB){
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 400 })
+                    ));
+                }else{
+                    //find matching id in Favorites Array
+                    let urlParts = connection.request.url.split('/');
+                    let id = parseInt(urlParts[urlParts.length-1]);
+                    let matchedFavorites = favorites.filter(favorite => {return favorite.projectId === id;});
+
+                    //respond with favorites that match the project ID
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 200, body: {favorites: matchedFavorites}})
+                    ));
+                }
+            }
+    
+            // API: To get favorite with specific id
+            if (connection.request.url.match(/\/api\/favorites\/edit\/\d+$/) && connection.request.method === RequestMethod.Get) {
+                /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
+                if(!favoriteDB){
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 400 })
+                    ));
+                }else{
+                    //find matching id in Favorites Array
+                    console.log("edit");
+                    let urlParts = connection.request.url.split('/');
+                    let id = parseInt(urlParts[urlParts.length-1]);
+                    let matchedFavorites = favorites.filter(favorite => {return favorite.id === id;});
+                    console.log(matchedFavorites);
+                    let favorite = matchedFavorites.length ? matchedFavorites[0] : null;
+                    console.log(favorite);
+                    //respond with favorites that match the project ID
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 200, body: {favorite: Favorite}})
+                    ));
+                }
+            }
+    
+              // API: To get all projects with specific product id and corsponding favorites
+              if (connection.request.url.match(/\/api\/dash\/\d+$/) && connection.request.method === RequestMethod.Get) {
+              /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
+                if(!projectsDB){
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 400 })
+                    ));
+                }else{
+                    //find matching id in Projects Array
+                    let urlParts = connection.request.url.split('/');
+                    let id = parseInt(urlParts[urlParts.length-1]);
+                    let matchedProjects = projects.filter(project => {return project.posterID === id;});
+
+                    var matchedFavorites = [];
+                    var ml;
+                    for (var i  = 0; i < matchedProjects.length; i++){
+                        let projectId = matchedProjects[i].projectID;
+                        //var matchedFavorites;
+                        console.log(projectId);
+                        let id = +projectId;
+                        ml = favorites.filter(favorite => {return favorite.projectId === projectId;});
+                        console.log(ml);
+                        if(ml.length > 0)
+                        for(var k = 0; k < ml.length;k++)
+                            matchedFavorites.push(ml[k]);
+                        console.log(matchedFavorites);
+                    }
+                    //console.log(matchedFavorites);
+                    //respond with favorites that match the project ID
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 200, body: {projects: matchedProjects,favorites: matchedFavorites }})
+                    ));
+                }
+            }
+    
+            // delete favorite
+            if (connection.request.url.match(/\/api\/favorites\/\d+$/) && connection.request.method === RequestMethod.Delete) {
+                // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
+                //if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                    // find user by id in users array
+                    console.log("delete");
+                    let urlParts = connection.request.url.split('/');
+                    let id = parseInt(urlParts[urlParts.length - 1]);
+                    for (let i = 0; i < favorites.length; i++) {
+                        let favorite = favorites[i];
+                        if (favorite.id === id) {
+                            // delete user
+                            favorites.splice(i, 1);
+                            //localStorage.setItem('users', JSON.stringify(users));
+                            break;
+                        }
+                    //  }
+                    console.log(favorites);
+
+                    // respond 200 OK
+                    connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
+                } //else {
+                    // return 401 not authorised if token is null or invalid
+                    //  connection.mockRespond(new Response(new ResponseOptions({ status: 401 })));
+                //  }
+
+                return;
+            }
+
+                // add Favorite
+            if (connection.request.url.endsWith('/api/dash/addFavorite') &&
+            connection.request.method === RequestMethod.Post) {
+                let receivedFavorite = JSON.parse(connection.request.getBody());
+                //let newEmployee = Object.assign(receivedEmployee, {id: uuid.generate()});
+                //data[data.length] = newEmployee;
+                favorites.push(receivedFavorite);
+                //localStorage.setItem('favorites', JSON.stringify(receivedFavorite));
+
+                connection.mockRespond(new Response(new ResponseOptions({
+                    status: 200,
+                    body: {favorite: favoriteDB }
+                })));
+
+                return;
+            }
+
+            //update favorite
+            if (connection.request.url.endsWith('/api/update') &&
+            connection.request.method === RequestMethod.Put) {{
+            console.log("in update");
+            let receivedFavorite = JSON.parse(connection.request.getBody());
+            //let clonedFavorite = receivedFavorite;
+            console.log("cloned favorite" , receivedFavorite);
+            receivedFavorite.start = new Date(receivedFavorite.start);
+            receivedFavorite.end = new Date(receivedFavorite.end);
+            let favoriteWasFound = false;
+            favorites.some((element: Favorite, index: number) => {
+                if (element.id === receivedFavorite.id) {
+                console.log("found");
+                    favorites[index] = receivedFavorite;
+                    favoriteWasFound = true;
+                    return true;
+                }
+            });
+            if (!favoriteWasFound) {
+                    connection.mockRespond(new Response(new ResponseOptions({
+                        status: 400,
+                        body: 'Employee could not be updated because was not found'
+                    })));
+                } else {
+                //  localStorage.setItem('employees', JSON.stringify(data));
+                    //favorites[index] =
+                    connection.mockRespond(new Response(new ResponseOptions({status: 200})));
+                }
+
+                return;
+            }}
 
             // API: To get a user
             if (connection.request.url.endsWith('/api/login') && connection.request.method === RequestMethod.Post) {
@@ -87,6 +260,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                 }
             }
 
+            
             // API: To get all listings
             if (connection.request.url.endsWith('/api/listing') && connection.request.method === RequestMethod.Get) {
                 if(!listingDB){

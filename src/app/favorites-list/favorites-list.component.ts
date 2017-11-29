@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Listing } from '../listing';
+import { Component, OnInit, Input } from '@angular/core';
+import { Favorite } from '../favorite';
 import { Subscription } from 'rxjs/Subscription';
-import { ListingService } from '../services/listing.service';
+import { FavoriteService } from '../services/favorite.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorites-list',
@@ -10,23 +11,31 @@ import { ListingService } from '../services/listing.service';
 })
 export class FavoritesListComponent implements OnInit {
 
-/*  favorites: Listing[];
+  favorites: Favorite[] = [];
   subscription: Subscription;
+  @Input() projectId: number
 
-  constructor(private listingService: ListingService) { }*/
+  constructor(private favoriteService: FavoriteService, private route: ActivatedRoute,
+    private router:Router) { }
 
   ngOnInit() {
-    //listen to see if listings changed, use ListingService to get Listings
-    /*this.subscription = this.listingService.listingsChanged
+    this.route.params
     .subscribe(
-      (favorites: Listing[]) => {
-        this.favorites = favorites;
+      (params: Params) => {
+        this.projectId = +params['id'];
       }
     );
-    this.favorites = this.listingService.getListings();*/
+
+    // Listen to see if favorites changed, use FavoriteService to get Favorites
+    this.subscription = this.favoriteService.getFavorites()
+    .subscribe(favorites => {
+        this.favorites = favorites;
+        console.log(this.favorites);
+      }
+    );
   }
 
-/*  ngOnDestroy() {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
-  }*/
+  }
 }
