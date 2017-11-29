@@ -14,5 +14,17 @@ export let UserDB: User[] = [
         password: 'GUIGO',
         email: 'nina@gmail.com',
         isProfessor: true
+    }, {
+        userID: 2,
+        username: 'Fontenot',
+        password: 'fontenot',
+        email: 'fontenot@aws.com',
+        isProfessor: true
+    }, {
+        userID: 3,
+        username: 'Lawrimore',
+        password: 'lawrimore',
+        email: 'lawrimore@youtube.com',
+        isProfessor: true
     }
-]
+];

@@ -8,7 +8,7 @@ export let projectsDB: Project[] = [
             "Larson",
             "Machine Learning"
         ],
-        posterID: 0
+        posterID: 1
     },
     {
         projectID: 1,
@@ -35,7 +35,7 @@ export let projectsDB: Project[] = [
             "Linux",
             "setting"
         ],
-        posterID: 1
+        posterID: 2
     },
     {
         projectID: 4,
@@ -44,7 +44,7 @@ export let projectsDB: Project[] = [
             "Container",
             "Docker"
         ],
-        posterID: 0
+        posterID: 2
     },
     {
         projectID: 5,
@@ -53,7 +53,7 @@ export let projectsDB: Project[] = [
             "Java",
             "Gaming"
         ],
-        posterID: 1
+        posterID: 2
     },
     {
         projectID: 6,
@@ -62,7 +62,7 @@ export let projectsDB: Project[] = [
             "Software",
             "Requirement"
         ],
-        posterID: 1
+        posterID: 3
     },
     {
         projectID: 7,
@@ -70,7 +70,7 @@ export let projectsDB: Project[] = [
         tag: [
             "Chat"
         ],
-        posterID: 2
+        posterID: 3
     },
     {
         projectID: 8,
@@ -79,6 +79,6 @@ export let projectsDB: Project[] = [
             "Trojan",
             "Security"
         ],
-        posterID: 0
+        posterID: 3
     }
-]
+];
