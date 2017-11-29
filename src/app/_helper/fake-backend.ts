@@ -52,8 +52,15 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                         new ResponseOptions({ status: 401 })
                     ));
                 } else {
+                    var maxUserID = -1;
+                    users.forEach((elem) => {
+                        if(elem.userID > maxUserID) {
+                            maxUserID = elem.userID;
+                        }
+                    });
+                    var newID = maxUserID + 1;
                     let newUser: User = {
-                        userID: params.userID,
+                        userID: newID,
                         username: params.username,
                         password: params.password,
                         email: params.email,
