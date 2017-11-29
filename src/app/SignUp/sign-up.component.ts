@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
  
 import { SignUpService } from '../services/sign-up.service';
+import { EmailValidator } from '@angular/forms';
 
 @Component({
     selector: 'app-sign-up',

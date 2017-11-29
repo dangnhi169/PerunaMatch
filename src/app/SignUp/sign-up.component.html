@@ -29,11 +29,18 @@
                 <div class="input-group mb-2 mb-sm-0">
                     <div class="input-group-addon">SMU Email</div>
                     <input type="email" class="form-control" id="email" 
-                            name="email" [(ngModel)]="model.email" #email="ngModel" required>
+                            name="email" [(ngModel)]="model.email" #email="ngModel" 
+                            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required>
                 </div>
-                <div *ngIf="email.invalid && (email.dirty || email.touched)"
-                    class="text-danger">
-                    Email required
+                <div *ngIf="email.errors && email.touched">
+                    <div [hidden]="!email.errors.required"
+                        class="text-danger">
+                        Email required
+                    </div>
+                    <div [hidden]="!email.errors.pattern"
+                        class="text-danger">
+                        Email not valid
+                    </div>
                 </div>
             </div>
             <div class="form-group">
