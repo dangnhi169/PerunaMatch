@@ -42,7 +42,7 @@ import { ListingDetailsComponent } from './listing-details/listing-details.compo
 import { FavoritesItemComponent } from './favorites-item/favorites-item.component';
 import { FavoritesListComponent } from './favorites-list/favorites-list.component';
 import { FavoritesDetailsComponent } from './favorites-details/favorites-details.component';
-import { FavoriteModalComponent, ModalComponent, NgbdModalContent } from './modal/modal.component';
+import { ModalComponent, NgbdModalContent } from './modal/modal.component';
 import { SignUpService} from './services/sign-up.service';
 import { SearchService } from './services/search.service';
 import { ProjectService } from './services/project.service';
@@ -54,7 +54,6 @@ import { ProjectAddComponent } from './project-add/project-add.component';
 import { ListingEditComponent } from './listing-edit/listing-edit.component';
 
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FavoriteService } from './services/favorite.service';
 
 @NgModule({
 
@@ -85,7 +84,6 @@ import { FavoriteService } from './services/favorite.service';
         FavoritesItemComponent,
         FavoritesListComponent,
         FavoritesDetailsComponent,
-        FavoriteModalComponent,
         ModalComponent,
         NgbdModalContent,
         ListingAddComponent,
@@ -97,7 +95,6 @@ import { FavoriteService } from './services/favorite.service';
 
     ],
     providers: [
-        FavoriteService,
         ListingService,
         AuthGuard,
         AuthenticationService,
@@ -110,11 +107,7 @@ import { FavoriteService } from './services/favorite.service';
         ProjectService,
         NgbActiveModal
     ],
-    entryComponents: [ 
-        NgbdModalContent,
-        ListingDetailsComponent,
-        FavoritesDetailsComponent
-     ],
+    entryComponents: [NgbdModalContent,ListingDetailsComponent],
     bootstrap: [
         AppComponent
     ]
