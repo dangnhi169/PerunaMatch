@@ -1,42 +1,42 @@
-
-<div class="modal-header"style="background-color: #009688;">
-<h4 class="modal-title">Listing Details</h4>
-<button type="button" class="close" aria-label="Close" (click)="activeModal.close('Close click')">
-  <span aria-hidden="true">&times;</span>
-</button>
+<div class="modal-header" style="background-color: #009688;">
+  <h4 class="modal-title">Listing Details</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close('Close click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 
-  <div class="modal-body">
-<div class = "row">
-  <div class = "col-md-12">
-    <h1>
-      {{ item.title }}
-    </h1>
-    <p> Description:{{ item.description }} </p>
-    <div class ="row">
-      <div class = "col-md-6">
-        Start Date: {{ item.start | date: 'shortDate' }}<br>
-        Majors:
-        <ul class="list-group"*ngFor = "let m of item.majors;">
-          <li> {{ m }}</li>
-        </ul>
-      </div>
-      <div class = "col-md-6">
-        End Date: {{ item.end | date: 'shortDate' }}<br>
-      <!--  Perfered Skills:
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>
+        {{ item.title }}
+      </h1>
+      <p> Description:{{ item.description }} </p>
+      <div class="row">
+        <div class="col-md-6">
+          Start Date: {{ item.start | date: 'shortDate' }}
+          <br> Majors:
+          <ul class="list-group" *ngFor="let m of item.majors;">
+            <li> {{ m }}</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          End Date: {{ item.end | date: 'shortDate' }}
+          <br>
+          <!--  Perfered Skills:
         <ul class="list-group"*ngFor = "let s of item.skills;">
           <li> {{ s }}</li>
         </ul>-->
+        </div>
       </div>
-    </div>
-    <br>
-    <div class = "row">
-      <div class = "col-md-12">
-        Contact: {{ item.contactName }} {{ item.contactEmail}}
+      <br>
+      <div class="row">
+        <button class="btn btn-block">
+          <a [href]="'mailto:' + item?.contactEmail">Contact</a>
+        </button>
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="modal-footer">
