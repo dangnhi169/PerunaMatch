@@ -60,7 +60,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                     });
                     var newID = maxUserID + 1;
                     let newUser: User = {
-                        userID: newID,
+                        userID: Number(newID)
                         username: params.username,
                         password: params.password,
                         email: params.email,
