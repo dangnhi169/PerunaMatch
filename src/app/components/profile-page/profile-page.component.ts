@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../../models/user';
 import { UserService } from '../../services/user.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -17,7 +18,8 @@ export class ProfilePageComponent implements OnInit {
   userId: number;
 
   constructor(private userService: UserService, private router: Router,
-    private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
+    private authenticationService: AuthenticationService, private route: ActivatedRoute,
+    private sharedService: SharedService) { }
 
   ngOnInit() {
 
@@ -35,9 +37,10 @@ export class ProfilePageComponent implements OnInit {
 
   logout() {
     // on logout, return to home
-        this.authenticationService.logout();
-        localStorage.clear();
-        this.router.navigate(['/home']);
+    this.sharedService.emitChange(false);
+    this.authenticationService.logout();
+    localStorage.clear();
+    this.router.navigate(['/home']);
   }
 
 }
