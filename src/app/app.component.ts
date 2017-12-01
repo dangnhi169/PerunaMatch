@@ -12,16 +12,10 @@ import { AuthGuard } from './_guard/index';
 })
 export class AppComponent {
 
-    //users: User[] = [];
-    
        constructor(private userService: UserService, private authGuard: AuthGuard, private router: Router) { }
-    
+
        ngOnInit() {
-        //    // get users from secure api end point
-        //    this.userService.getUsers()
-        //        .subscribe(users => {
-        //            this.users = users;
-        //        });
+
        }
 
        changeRoute(){
