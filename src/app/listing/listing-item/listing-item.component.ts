@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild} from '@angular/core';
-import { Listing } from '../listing';
+import { Listing } from '../../listing';
 
 @Component({
   selector: 'listing-item',

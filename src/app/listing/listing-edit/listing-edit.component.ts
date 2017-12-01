@@ -3,8 +3,8 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Input, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm,FormControl, NgModel, FormGroup, FormBuilder,Validators } from '@angular/forms';
-import { ListingService } from '../services/listing.service';
-import { Listing } from '../listing';
+import { ListingService } from '../../services/listing.service';
+import { Listing } from '../../listing';
 @Component({
   selector: 'app-listing-edit',
   templateUrl: './listing-edit.component.html',

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Listing } from '../listing';
+import { Listing } from '../../listing';
 import { Subscription } from 'rxjs/Subscription';
-import { ListingService } from '../services/listing.service';
+import { ListingService } from '../../services/listing.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({

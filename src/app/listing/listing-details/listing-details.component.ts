@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Listing } from '../listing';
-import { ListingService } from '../services/listing.service';
+import { Listing } from '../../listing';
+import { ListingService } from '../../services/listing.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
