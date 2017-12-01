@@ -3,9 +3,9 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Component, OnInit,Input, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm,FormControl, NgModel, FormGroup, FormBuilder,Validators } from '@angular/forms';
-import { ListingService } from '../services/listing.service';
-import { Listing } from '../listing';
-import { DashComponent } from '../dash/dash.component';
+import { ListingService } from '../../services/listing.service';
+import { Listing } from '../../listing';
+import { DashComponent } from '../../dash/dash.component';
 
 @Component({
   providers:[DashComponent],

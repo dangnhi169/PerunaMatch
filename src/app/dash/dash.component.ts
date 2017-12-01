@@ -8,7 +8,7 @@ import { SearchService } from '../services/search.service';
 
 import { Project } from '../../models/project';
 import { Listing } from '../listing';
-import { ListingAddComponent } from '../listing-add/listing-add.component';
+import { ListingAddComponent } from '../listing/listing-add/listing-add.component';
 import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-dash',
