@@ -5,9 +5,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm,FormControl, NgModel, FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { ListingService } from '../services/listing.service';
 import { Listing } from '../listing';
-//import { ActivatedRoute, Params, Router } from '@angular/router';
-//import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DashComponent } from '../dash/dash.component';
+
 @Component({
   providers:[DashComponent],
   selector: 'listing-add',
@@ -20,8 +19,6 @@ export class ListingAddComponent implements OnInit{
   model:number[];
   projectId: number;
   posterId:number;
-  //@Input( projectId: number;
-//  @ViewChild(DashComponent) myDC: DashComponent;
 
   myOptions: IMultiSelectOption[] = [
     { id: 'Computer Science', name: 'Computer Science' },
@@ -33,7 +30,7 @@ export class ListingAddComponent implements OnInit{
 
 
   constructor(private fb: FormBuilder, private listingService: ListingService,
-  /*public activeModal: NgbActiveModal,*/private router: Router, private comp: DashComponent,
+  private router: Router, private comp: DashComponent,
   private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -85,31 +82,11 @@ export class ListingAddComponent implements OnInit{
       contactName: this.form.value['cname'],
       contactEmail:this.form.value['cemail']
     }
-      //console.log(newListing);
       this.nextid++;
       this.listingService.addListing(newListing);
       this.form.reset();
       this.router.navigateByUrl('/dash/' + this.posterId);
 
-    //  this.router.navigateByUrl('');
-    //  this.router.navigateByUrl('/dash/' + this.projectId);
-
     }
 
-  //  refresh(){
-  //    this.myDC.refreshFromParent();
-  //  }
-    //close(){
-  //  this.router.navigateByUrl('/dash/' + this.posterId);
-    //  console.log("close");
-    //  this.activeModal.close('Close click');
-  //    this.refresh();
-  //    this.comp.reloadListings();
-  //  }
-
   }
-  /*  this.listingService.addListing(newListing);
-    this.form.reset();
-  }
-
-}*/
