@@ -18,7 +18,7 @@ import { Observable } from 'rxjs/Observable';
 export class DashComponent implements OnInit {
     projects: Project[];
     projectId: number;
-    posterId:number;
+    posterId: number;
     listings: Listing[];
     subscription: Subscription;
 
