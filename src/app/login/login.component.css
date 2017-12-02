@@ -21,12 +21,12 @@ a{
 .loginButton {
     display: flex;
     align-items: center;
-    justify-content: center;   
+    justify-content: center;
 }
 
-.bg { 
-    background-image: url("../../assets/images/books.jpg");
-    height: 100%; 
+.bg {
+    background-image: url("../../assets/images/book.jpg");
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
