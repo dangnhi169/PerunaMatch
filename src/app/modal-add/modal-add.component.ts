@@ -2,7 +2,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Listing } from '../listing';
-import { ListingAddComponent } from '../listing-add/listing-add.component';
+import { ListingAddComponent } from '../listing/listing-add/listing-add.component';
 //import { DashComponent } from '../dash/dash.component';
 @Component({
   selector: 'modal-add',

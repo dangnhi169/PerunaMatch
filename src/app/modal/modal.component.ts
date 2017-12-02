@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Listing } from '../listing';
-import { ListingDetailsComponent } from '../listing-details/listing-details.component';
+import { ListingDetailsComponent } from '../listing/listing-details/listing-details.component';
 
 @Component({
   selector: 'ngbd-modal-content',

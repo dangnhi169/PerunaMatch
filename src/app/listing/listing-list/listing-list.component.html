@@ -1,11 +1,6 @@
 <h1>Listings for Project</h1>
 <div class="row">
   <div class="col-12">
-    <!--<modal-add></modal-add>-->
-    <!--<a routerLink = "/add"
-    routerLinkActive = "active"
-
-    class="btn btn-secondary">Add Listing</a>-->
     <div class = "container" *ngIf = "listings.length > 0; else default">
     <listing-item
       *ngFor="let l of listings; let i = index"

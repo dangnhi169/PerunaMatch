@@ -14,11 +14,8 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         let users: User[] = JSON.parse(localStorage.getItem('users')) || UserDB;
         let listings: Listing[] = JSON.parse(localStorage.getItem('listings')) || listingDB;
-      //  let projects: Project[] = projectsDB;
-        console.log(listings);
-      // JSON.parse(localStorage.getItem('listings')) ||
         let projects: Project[] = JSON.parse(localStorage.getItem('projects')) || projectsDB;
-        console.log(projects);
+
         // wrap in timeout to simulate server api call
         setTimeout(() => {
 
@@ -102,7 +99,6 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
             // API: To get all listings with specific product id
             if (connection.request.url.match(/\/api\/listing\/\d+$/) && connection.request.method === RequestMethod.Get) {
-            /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
               if (!listingDB) {
                     connection.mockRespond(new Response(
                         new ResponseOptions({ status: 400 })
@@ -122,23 +118,19 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
           // API: To get listing with specific id
           if (connection.request.url.match(/\/api\/listing\/edit\/\d+$/) && connection.request.method === RequestMethod.Get) {
-          /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
             if(!listingDB){
                   connection.mockRespond(new Response(
                       new ResponseOptions({ status: 400 })
                   ));
               }else{
                   //find matching id in Listings Array
-                  //console.log("edit");
                   let urlParts = connection.request.url.split('/');
                   let id = parseInt(urlParts[urlParts.length-1]);
                   let matchedListings = listings.filter(listing => {return listing.id === id;});
-                  //console.log(matchedListings);
                   let listing = matchedListings.length ? matchedListings[0] : null;
                   listing.start = new Date(listing.start);
                   listing.end = new Date(listing.end);
 
-                  console.log(listing);
                   //respond with listings that match the project ID
                   connection.mockRespond(new Response(
                       new ResponseOptions({ status: 200, body: {listing: listing}})
@@ -148,7 +140,6 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
           // API: To get all projects with specific product id and corsponding listings
           if (connection.request.url.match(/\/api\/dash\/\d+$/) && connection.request.method === RequestMethod.Get) {
-          /*  if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {*/
             if(!projectsDB){
                   connection.mockRespond(new Response(
                       new ResponseOptions({ status: 400 })
@@ -163,17 +154,12 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                   var ml;
                   for (var i  = 0; i < matchedProjects.length; i++){
                     let projectId = matchedProjects[i].projectID;
-                    //var matchedListings;
-                  //  console.log(projectId);
                     let id = +projectId;
                     ml = listings.filter(listing => {return listing.projectId === projectId;});
-                  //  console.log(ml);
                     if(ml.length > 0)
                     for(var k = 0; k < ml.length;k++)
                     matchedListings.push(ml[k]);
-                  //  console.log(matchedListings);
                   }
-                  //console.log(matchedListings);
                   //respond with listings that match the project ID
                   connection.mockRespond(new Response(
                       new ResponseOptions({ status: 200, body: {projects: matchedProjects,listings: matchedListings }})
@@ -183,10 +169,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
         // delete listing
             if (connection.request.url.match(/\/api\/listing\/\d+$/) && connection.request.method === RequestMethod.Delete) {
-                // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
-                //if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                    // find user by id in users array
-                    //console.log("delete");
+
                     let urlParts = connection.request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);
                     for (let i = 0; i < listings.length; i++) {
@@ -196,16 +179,11 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                             localStorage.setItem('listings', JSON.stringify(listings));
                             break;
                         }
-                  //  }
                     console.log(listings);
 
                     // respond 200 OK
                     connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
-                } //else {
-                    // return 401 not authorised if token is null or invalid
-                  //  connection.mockRespond(new Response(new ResponseOptions({ status: 401 })));
-              //  }
-
+                }
                 return;
             }
 
@@ -265,48 +243,44 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         return;
     }
 
-//update lisitng
-if (connection.request.url.endsWith('/api/update') &&
-    connection.request.method === RequestMethod.Put) {{
-    //  console.log("in update");
-    let receivedListing = JSON.parse(connection.request.getBody());
-    //let clonedListing = receivedListing;
-    console.log("dates" , receivedListing.start,receivedListing.end) ;
-    receivedListing.start = new Date(receivedListing.start);
-    receivedListing.end = new Date(receivedListing.end);
-    let listingWasFound = false;
-    listings.some((element: Listing, index: number) => {
-        if (element.id === receivedListing.id) {
-      //    console.log("found");
-            listings[index] = receivedListing;
-            listingWasFound = true;
-            localStorage.setItem('listings', JSON.stringify(listings));
-            return true;
-        }
-    });
-    if (!listingWasFound) {
-            connection.mockRespond(new Response(new ResponseOptions({
-                status: 400,
-                body: 'Listing not found'
-            })));
+    //update lisitng
+    if (connection.request.url.endsWith('/api/update') &&
+      connection.request.method === RequestMethod.Put) {
+
+        let receivedListing = JSON.parse(connection.request.getBody());
+        receivedListing.start = new Date(receivedListing.start);
+        receivedListing.end = new Date(receivedListing.end);
+        let listingWasFound = false;
+        listings.some((element: Listing, index: number) => {
+          if (element.id === receivedListing.id) {
+              listings[index] = receivedListing;
+              listingWasFound = true;
+              localStorage.setItem('listings', JSON.stringify(listings));
+              return true;
+            }
+          });
+          if (!listingWasFound) {
+              connection.mockRespond(new Response(new ResponseOptions({
+                  status: 400,
+                  body: 'Listing not found'
+                })));
         } else {
             connection.mockRespond(new Response(new ResponseOptions({status: 200})));
-        }
+          }
 
         return;
-  }}
+  }
 
     // add Project
- if (connection.request.url.endsWith('/api/dash/addProject') &&
-     connection.request.method === RequestMethod.Post) {
-    let receivedProject = JSON.parse(connection.request.getBody());
-    receivedProject.projectID = projects[projects.length - 1].projectID + 1;
-     projects.push(receivedProject);
-     localStorage.setItem('projects', JSON.stringify(projects));
-     console.log(projects);
+    if (connection.request.url.endsWith('/api/dash/addProject') &&
+      connection.request.method === RequestMethod.Post) {
+        let receivedProject = JSON.parse(connection.request.getBody());
+        receivedProject.projectID = projects[projects.length - 1].projectID + 1;
+        projects.push(receivedProject);
+        localStorage.setItem('projects', JSON.stringify(projects));
      // return projects for the current poster
-     let projectsForCurUser: Project[] = [];
-     projectsDB.forEach(element => {
+        let projectsForCurUser: Project[] = [];
+        projectsDB.forEach(element => {
         if(element.posterID === receivedProject.posterID ){
             projectsForCurUser.push(element);
         }

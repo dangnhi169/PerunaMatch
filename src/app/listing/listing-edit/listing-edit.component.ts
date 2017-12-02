@@ -3,8 +3,8 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Input, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm,FormControl, NgModel, FormGroup, FormBuilder,Validators } from '@angular/forms';
-import { ListingService } from '../services/listing.service';
-import { Listing } from '../listing';
+import { ListingService } from '../../services/listing.service';
+import { Listing } from '../../listing';
 @Component({
   selector: 'app-listing-edit',
   templateUrl: './listing-edit.component.html',
@@ -18,8 +18,6 @@ export class ListingEditComponent implements OnInit {
  model:number[];
  projectId: number;
  posterId:number;
- //@Input( projectId: number;
-//  @ViewChild(DashComponent) myDC: DashComponent;
 
  myOptions: IMultiSelectOption[] = [
    { id: 'Computer Science', name: 'Computer Science' },
@@ -29,8 +27,7 @@ export class ListingEditComponent implements OnInit {
 
  ];
   constructor(private fb: FormBuilder, private listingService: ListingService,
-  /*public activeModal: NgbActiveModal,*/private router: Router,
-  private route: ActivatedRoute) { }
+  private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params
@@ -60,51 +57,8 @@ export class ListingEditComponent implements OnInit {
                         this.listing = result;
                         this.addFormValues();
                   });
-      //this.initForm();
+
     }
-  /*  private initForm() {
-      //this.listingService.getListingsbyId(this.listingid)
-      //            .subscribe(result => {
-      //                  console.log(result);
-      //                  this.listing = result;
-       //           });
-      //console.log(this.listing);
-      /*let listtitle = this.listing.title;
-      let listdes = this.listing.description;
-      let stdate = this.listing.start;
-      let endate = this.listing.end;
-      let majors = this.listing.majors;
-      let cname = this.listing.contactName;
-      let cemail = this.listing.contactEmail;*/
-
-      /*let listtitle = '';
-      let listdes = '';
-      let stdate = '';
-      let endate = '';
-      let majors = [];
-      let cname = '';
-      let cemail = '';
-
-      this.form = new FormGroup({
-        'title': new FormControl(listtitle, Validators.required),
-        'des': new FormControl(listdes, Validators.required),
-        'sdate': new FormControl(stdate, Validators.required),
-        'edate': new FormControl(endate, Validators.required),
-        'majors': new FormControl(majors, Validators.required),
-        'cname': new FormControl(cname, Validators.required),
-        'cemail': new FormControl(cemail, Validators.required),
-      });*/
-
-      /*this.form = new FormGroup({
-        'title': new FormControl(Validators.required),
-        'des': new FormControl(Validators.required),
-        'sdate': new FormControl(Validators.required),
-        'edate': new FormControl( Validators.required),
-        'majors': new FormControl( Validators.required),
-        'cname': new FormControl( Validators.required),
-        'cemail': new FormControl( Validators.required)
-    });*/
-  //}
 
     addFormValues(){
       console.log(this.listing.start,this.listing.end);
@@ -121,8 +75,6 @@ export class ListingEditComponent implements OnInit {
     }
 
     onSubmit(){
-      //console.log(this.form.value);
-      //console.log(this.form.value['sdate'].toDate());
       const newListing = {
         id:this.listing.id,
         projectId: this.listing.projectId,
@@ -134,28 +86,15 @@ export class ListingEditComponent implements OnInit {
         contactName: this.form.value['cname'],
         contactEmail:this.form.value['cemail']
       }
-        //console.log(newListing);
-        console.log(newListing.start);
-        console.log(newListing.end);
-        //this.nextid++;
+
         this.listingService.updateListing(newListing);
         this.form.reset();
         this.router.navigateByUrl('/dash/' + this.posterId);
 
-      //  this.router.navigateByUrl('');
-      //  this.router.navigateByUrl('/dash/' + this.projectId);
-
       }
 
-    //  refresh(){
-    //    this.myDC.refreshFromParent();
-    //  }
       close(){
       this.router.navigateByUrl('/dash/' + this.posterId);
-      //  console.log("close");
-      //  this.activeModal.close('Close click');
-    //    this.refresh();
-    //    this.comp.reloadListings();
       }
 
     }

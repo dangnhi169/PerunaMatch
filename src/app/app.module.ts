@@ -14,8 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './SignUp/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
-import { ListingListComponent } from './listing-list/listing-list.component';
-import { ListingItemComponent } from './listing-item/listing-item.component';
+import { ListingListComponent } from './listing/listing-list/listing-list.component';
+import { ListingItemComponent } from './listing/listing-item/listing-item.component';
 
 
 //added Modules
@@ -35,10 +35,10 @@ import { fakeBackendProvider } from './_helper/fake-backend';
 import { AuthGuard } from './_guard/auth.guard';
 
 //added services
-import { ListingService } from  './services/listing.service';
+import { ListingService } from './services/listing.service';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
-import { ListingDetailsComponent } from './listing-details/listing-details.component';
+import { ListingDetailsComponent } from './listing/listing-details/listing-details.component';
 import { FavoritesItemComponent } from './favorites-item/favorites-item.component';
 import { FavoritesListComponent } from './favorites-list/favorites-list.component';
 import { FavoritesDetailsComponent } from './favorites-details/favorites-details.component';
@@ -48,11 +48,11 @@ import { SearchService } from './services/search.service';
 import { ProjectService } from './services/project.service';
 import { SharedService } from './services/shared.service';
 
-import { ListingAddComponent } from './listing-add/listing-add.component';
+import { ListingAddComponent } from './listing/listing-add/listing-add.component';
 import { ModalAddComponent } from './modal-add/modal-add.component';
 import { DashComponent } from './dash/dash.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
-import { ListingEditComponent } from './listing-edit/listing-edit.component';
+import { ListingEditComponent } from './listing/listing-edit/listing-edit.component';
 
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -94,8 +94,6 @@ import { NavigationComponent } from './navigation/navigation.component';
         ProjectAddComponent,
         ListingEditComponent,
         NavigationComponent
-
-
     ],
     providers: [
         ListingService,
