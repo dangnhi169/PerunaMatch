@@ -3,20 +3,21 @@ ss-multiselect-dropdown {
     width: 100%;
     padding: 2%;
   }
-  
+
   form{
     padding: 5%;
   }
-  
+  container{
+    color: white;
+  }
   h1{
     text-align: center;
   }
-  
+
   label {
     font-weight: bold;
   }
-  
+
   .bold {
-    font-weight: bold;  
+    font-weight: bold;
   }
-  

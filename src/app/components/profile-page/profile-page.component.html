@@ -1,13 +1,19 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="card mt-3 mb-3">
-  <img src="../../../assets/images/user.png" alt="" style="width:100%">
-  <h3>Username</h3>
-  <h4>{{user?.username}}</h4>
-  <h3>E-mail</h3>
-  <h4>{{user?.email}}</h4>
-  <p class="title">{{user?.isProfessor ? "Professor" : "Student"}}</p>
-  <p>Southern Methodist University</p>
-  <p><a [href]="'mailto:' + user?.email">Contact</a></p>
-  <button class="btn btn-primary" (click)="logout()">Log out</button>
-  <button *ngIf="user?.isProfessor" class="btn btn-secondary" routerLink="{{'/dash/' + user?.userID}}">Dashboard</button>
+<div class="card card-inverse">
+  <img class="card-img bg" src="../../../assets/images/dallas-hall-boulevard.jpg" style="no-repeat center center fixed">
+  <div class="card-img-overlay">
+    <div class="content card-block mt-2 mb-3">
+      <img class="profile" src="../../../assets/images/user.png" alt="">
+      <h3>Username</h3>
+      <h4>{{user?.username}}</h4>
+      <h3>E-mail</h3>
+      <h4>{{user?.email}}</h4>
+      <p class="title">{{user?.isProfessor ? "Professor" : "Student"}}</p>
+      <p>Southern Methodist University</p>
+      <p>
+        <a [href]="'mailto:' + user?.email">Contact</a>
+      </p>
+      <button class="btn btn-primary" (click)="logout()">Log out</button>
+      <button *ngIf="user?.isProfessor" class="btn btn-secondary" routerLink="{{'/dash/' + user?.userID}}">Dashboard</button>
+    </div>
+  </div>
 </div>

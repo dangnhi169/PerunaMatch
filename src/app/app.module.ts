@@ -46,6 +46,7 @@ import { ModalComponent, NgbdModalContent } from './modal/modal.component';
 import { SignUpService} from './services/sign-up.service';
 import { SearchService } from './services/search.service';
 import { ProjectService } from './services/project.service';
+import { SharedService } from './services/shared.service';
 
 import { ListingAddComponent } from './listing/listing-add/listing-add.component';
 import { ModalAddComponent } from './modal-add/modal-add.component';
@@ -54,6 +55,7 @@ import { ProjectAddComponent } from './project-add/project-add.component';
 import { ListingEditComponent } from './listing/listing-edit/listing-edit.component';
 
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
 
@@ -90,11 +92,11 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
         ModalAddComponent,
         DashComponent,
         ProjectAddComponent,
-        ListingEditComponent
+        ListingEditComponent,
+        NavigationComponent
     ],
     providers: [
         ListingService,
-        AuthGuard,
         AuthenticationService,
         UserService,
         fakeBackendProvider,
@@ -103,9 +105,10 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
         SignUpService,
         SearchService,
         ProjectService,
-        NgbActiveModal
+        NgbActiveModal,
+        SharedService
     ],
-    entryComponents: [NgbdModalContent,ListingDetailsComponent],
+    entryComponents: [NgbdModalContent, ListingDetailsComponent],
     bootstrap: [
         AppComponent
     ]

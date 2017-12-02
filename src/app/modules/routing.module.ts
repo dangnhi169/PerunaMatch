@@ -11,12 +11,14 @@ import { FavoritesListComponent } from '../favorites-list/favorites-list.compone
 import { ListingAddComponent } from '../listing/listing-add/listing-add.component';
 import { DashComponent } from '../dash/dash.component';
 import { AuthGuard } from '../_guard/index';
+import { RegGuard } from '../_guard/reg.guard';
 import { ProjectAddComponent } from '../project-add/project-add.component';
 import { ListingEditComponent } from '../listing/listing-edit/listing-edit.component';
+
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent},
-  { path: 'signup', component: SignUpComponent},
+  { path: 'login', component: LoginComponent, /*canActivate: [RegGuard]*/},
+  { path: 'signup', component: SignUpComponent, canActivate: [RegGuard]},
   { path: 'home', component: HomeComponent},
   { path: 'listing/:id', component: ListingListComponent},
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
@@ -32,7 +34,11 @@ const appRoutes: Routes = [
     imports: [
         RouterModule.forRoot(appRoutes)
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [
+        AuthGuard,
+        RegGuard
+    ]
 
 })
 

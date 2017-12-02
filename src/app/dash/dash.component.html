@@ -1,7 +1,7 @@
 <h1 class="myheader text-center mt-3 mb-5">
     Dashboard
   <div class="mybutton float-right">
-      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="openModal()">Add a New Project</button>
+      <button class="btn btn-danger" data-toggle="modal" data-target="#myModal" (click)="openModal()">Add a New Project</button>
   </div>
 </h1>
 <div class="container">
@@ -21,7 +21,7 @@
                 <div class = "row">
                 <button class= "btn btn-danger" (click) = "delete(l.id)">Delete</button>
                 <a routerLink = "/edit/{{p.posterID}}/{{l.id}}"
-                  routerLinkActive = "active" class= "btn btn-info" > Edit</a>
+                  routerLinkActive = "active" class= "btn btn-danger" > Edit</a>
                 </div>
               </li>
             </div>
@@ -29,7 +29,7 @@
         </div>
         <div class = "card-footer text-center">
           <a routerLink = "/add/{{p.posterID}}/{{p.projectID}}"
-          routerLinkActive = "active" class="btn btn-info"> Add Listing</a>
+          routerLinkActive = "active" class="btn btn-danger"> Add Listing</a>
         </div>
       </div>
     </div>

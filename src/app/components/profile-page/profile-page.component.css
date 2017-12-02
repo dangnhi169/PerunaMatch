@@ -1,17 +1,26 @@
-.card {
+.content {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+    max-width: 50%;
+    height: 100%;
     margin: auto;
     text-align: center;
 }
-
-.title {
-    color: grey;
-    font-size: 18px;
+.profile {
+    max-width: 25%;
 }
 
-button {
+.card-img {
+    height: 75%;
+}
 
+
+.pic {
+    max-width: 25%;
+}
+
+.title {
+    color: black;
+    font-size: 18px;
 }
 
 a {
@@ -26,4 +35,12 @@ button:hover, a:hover {
 
 .icon {
     display: inline-block;
+}
+
+.bg {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 0.5;
 }
