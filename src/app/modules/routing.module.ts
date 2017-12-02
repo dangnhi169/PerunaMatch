@@ -17,7 +17,7 @@ import { ListingEditComponent } from '../listing-edit/listing-edit.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent, canActivate: [RegGuard]},
+  { path: 'login', component: LoginComponent, /*canActivate: [RegGuard]*/},
   { path: 'signup', component: SignUpComponent, canActivate: [RegGuard]},
   { path: 'home', component: HomeComponent},
   { path: 'listing/:id', component: ListingListComponent},

@@ -21,6 +21,7 @@ export class AppComponent {
     ngOnInit() {
         this.sharedService.changeEmitted$.subscribe(
             response => {
+                console.log("Changing event logged in status");
                 this.isLoggedIn = response;
                 console.log(response);
             });
