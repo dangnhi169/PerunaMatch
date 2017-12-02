@@ -1,5 +1,6 @@
 #welcome-message {
     text-align: center;
+    background-color: white;
 }
 
 #search {
@@ -13,12 +14,14 @@
 
 th {
     text-align: center;
+    background-color: #0039A6;
 }
 
 td {
     text-align:center;
     font-weight:bold;
 }
+
 
 input[type=text] {
     width: 130px;
@@ -37,5 +40,3 @@ button:hover a{
 .card-img {
     opacity: 0.25;
 }
-
-

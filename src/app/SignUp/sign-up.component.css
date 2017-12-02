@@ -1,10 +1,10 @@
 .mySignUp {
-    background-color: #0f4d92;
-    background: #b2dfdb; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#b2dfdb, #0f4d92); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#b2dfdb, #0f4d92); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#b2dfdb, #0f4d92); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#b2dfdb, #0f4d92); /* Standard syntax */
+    background-color: #0039A6;
+    /*background: #b2dfdb; /* For browsers that do not support gradients */
+    /*background: -webkit-linear-gradient(#b2dfdb, #0039A6); /* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient(#b2dfdb, #0039A6); /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(#b2dfdb, #0039A6); /* For Firefox 3.6 to 15 */
+    /*background: linear-gradient(#b2dfdb, #0039A6); /* Standard syntax */
 }
 .container {
     padding: 10% 10%;

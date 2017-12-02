@@ -4,7 +4,7 @@ h1 {
 }
 
 .card-header {
-  background-color: #00798C;
+  background-color: #0039A6;
   height: 140px;
   color: white;
 }
@@ -14,16 +14,16 @@ h1 {
 }
 
 .card-footer{
-  background-color: #E1E5F2
+  background-color: #0039A6
 }
 
 .btn.btn-danger{
   margin: 3%;
   min-width: 40%;
 }
-.btn.btn-info {
+.btn.btn-primary {
   margin: 3%;
-  min-width: 40%;  
+  min-width: 40%;
 }
 
 .list-group-item {
@@ -39,7 +39,7 @@ button:hover {
   }
 
 .modal-header {
-  background-color: #009688;
+  background-color: #0039A6;
 }
 
 .modal-title {

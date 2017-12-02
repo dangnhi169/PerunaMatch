@@ -1,5 +1,6 @@
 .container {
     padding: 5% ;
+
 }
 
 .modal-body{
@@ -10,6 +11,6 @@
   color: white;
 }
 
-.list-group-item {
-  background-color: #b2dfdb;
-}
+/*.list-group-item {
+  background-color: #0039A6;
+}*/
