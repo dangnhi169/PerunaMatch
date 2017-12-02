@@ -16,10 +16,10 @@
 
 .pic {
     max-width: 25%;
-} 
+}
 
 .title {
-    color: grey;
+    color: black;
     font-size: 18px;
 }
 
@@ -37,9 +37,9 @@ button:hover, a:hover {
     display: inline-block;
 }
 
-.bg { 
+.bg {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-} 
+}
